@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subject Detail | University Notes</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Highlight.js for code syntax -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Navigation Sidebar -->
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>MyNotes</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li class="active"><a href="year1.html"><i class="fa-solid fa-1"></i> Primo Anno</a></li>
+                <li><a href="year2.html"><i class="fa-solid fa-2"></i> Secondo Anno</a></li>
+                <li><a href="year3.html"><i class="fa-solid fa-3"></i> Terzo Anno</a></li>
+            </ul>
+            <div class="nav-footer">
+                <a href="https://github.com/mattiascarpa" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="mailto:contact@example.com"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-bar">
+                <div class="breadcrumbs">
+                    <a href="index.html">Home</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <a href="year1.html">Primo Anno</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <span id="subjectTitleBreadcrumb">Analisi Matematica 2</span>
+                </div>
+                <div class="user-profile">
+                    <span>Mattia Scarpa</span>
+                    <div class="avatar">MS</div>
+                </div>
+            </header>
+
+            <!-- Subject Hero -->
+            <section class="hero-small">
+                <div class="hero-content">
+                    <h1 id="subjectTitle">Analisi Matematica <span class="gradient-text">2</span></h1>
+                    <p id="subjectDesc">Corso di matematica avanzata.</p>
+                </div>
+            </section>
+
+            <!-- Two Column Layout -->
+            <div class="subject-layout">
+
+                <!-- Left Column: Main Content -->
+                <div class="subject-main">
+                    <!-- Tabs Navigation -->
+                    <div class="tabs-container">
+                        <button class="tab-btn active" onclick="openTab('notes')"><i
+                                class="fa-regular fa-file-lines"></i> Appunti</button>
+                        <button class="tab-btn" onclick="openTab('timeline')"><i class="fa-solid fa-timeline"></i>
+                            Timeline</button>
+                        <button class="tab-btn" onclick="openTab('projects')"><i class="fa-solid fa-laptop-code"></i>
+                            Formulario</button>
+                        <button class="tab-btn" onclick="openTab('resources')"><i class="fa-solid fa-folder-open"></i>
+                            Risorse</button>
+                    </div>
+
+                    <!-- NOTES TAB -->
+                    <div id="notes" class="tab-content active">
+                        <div class="markdown-content">
+                            <h2>Concetti Fondamentali</h2>
+                            <p>Il corso di Analisi 2 estende i concetti del calcolo differenziale e integrale a funzioni
+                                di più variabili reali e studia le equazioni differenziali.</p>
+
+                            <h3>1. Equazioni Differenziali Ordinarie (EDO)</h3>
+                            <p>Un'equazione differenziale lega una funzione incognita \( y(x) \) e le sue derivate.</p>
+                            <ul>
+                                <li><strong>Ordine:</strong> L'ordine della derivata più alta presente.</li>
+                                <li><strong>Problema di Cauchy:</strong> EDO + condizioni iniziali per determinare una
+                                    soluzione unica.</li>
+                            </ul>
+
+                            <h3>2. Calcolo in R^n</h3>
+                            <p>Studio di funzioni \( f: \mathbb{R}^n \to \mathbb{R} \).</p>
+                            <ul>
+                                <li><strong>Derivate Parziali:</strong> Derivata rispetto a una variabile mantenendo le
+                                    altre costanti.</li>
+                                <li><strong>Gradiente (\( \nabla f \)):</strong> Vettore che punta nella direzione di
+                                    massima crescita.</li>
+                                <li><strong>Matrice Hessiana:</strong> Matrice delle derivate seconde.</li>
+                            </ul>
+
+                            <h3>3. Ottimizzazione</h3>
+                            <p>Ricerca di punti di massimo e minimo locale.</p>
+                            <pre><code class="language-text">Hf(x_0) definita positiva -> Minimo locale
+Hf(x_0) definita negativa -> Massimo locale
+Hf(x_0) indefinita -> Punto di sella</code></pre>
+
+                            <h3>4. Integrali Multipli</h3>
+                            <p>Estensione dell'integrale definito a domini in R^2 o R^3.</p>
+                            <blockquote>
+                                <p>Fondamentale il teorema del cambiamento di variabili, ad esempio passando a
+                                    coordinate polari per domini circolari.</p>
+                            </blockquote>
+                        </div>
+                    </div>
+
+                    <!-- TIMELINE TAB (New) -->
+                    <div id="timeline" class="tab-content">
+                        <div class="timeline-container">
+                            <div class="timeline-item">
+                                <div class="timeline-dot completed"></div>
+                                <div class="timeline-content">
+                                    <h4>Fase 1: Integrali & EDO Base</h4>
+                                    <p>Integrali Generalizzati, Equazioni Differenziali Ordinarie (1° ordine).</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot completed"></div>
+                                <div class="timeline-content">
+                                    <h4>Fase 2: EDO Avanzate & Curve</h4>
+                                    <p>EDO (2° ordine), Curve Parametriche, Lunghezza d'arco.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot completed"></div>
+                                <div class="timeline-content">
+                                    <h4>Fase 3: Funzioni a più variabili</h4>
+                                    <p>Topologia R^n, Limiti, Continuità, Derivate Parziali, Gradiente.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot completed"></div>
+                                <div class="timeline-content">
+                                    <h4>Fase 4: Ottimizzazione</h4>
+                                    <p>Matrice Hessiana, Ricerca Massimi e Minimi, Moltiplicatori di Lagrange.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-dot active"></div>
+                                <div class="timeline-content">
+                                    <h4>Fase 5: Integrali Multipli</h4>
+                                    <p>Integrali Doppi, Cambiamento di variabili (Polari), Baricentro.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROJECTS TAB -->
+                    <div id="projects" class="tab-content">
+                        <div class="cards-grid">
+                            <div class="card">
+                                <div class="card-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <h3>Formulario</h3>
+                                <p>Formulario per lo svolgimento dell'esame.</p>
+                                <a href="Analisi2/formulario.pdf" class="btn-text">Vedi Formulario <i
+                                        class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RESOURCES TAB (tab Risorse)-->
+                    <div id="resources" class="tab-content">
+                        <h3 class="section-title">Appunti Lezioni</h3>
+                        <div class="resources-list">
+                            <a href="Analisi2/integrali_gen.pdf" class="resource-link">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info">
+                                    <h4>Lezione 01 - Integrali Generalizzati</h4>
+                                    <p>PDF - 1.3 MB</p>
+                                </div>
+                                <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                            </a>
+                            <!-- Lezione2 -->
+                            <a href="Analisi2/integrali_gen_2.pdf" class="resource-link">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info">
+                                    <h4>Lezione 02 - Integrali Generalizzati 2</h4>
+                                    <p>PDF - 1.8 MB</p>
+                                </div>
+                                <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                            </a>
+                            <!-- Lezione3 -->
+                            <a href="Analisi2/integrali_gen_3.pdf" class="resource-link">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info">
+                                    <h4>Lezione 03 - Integrali Generalizzati 3</h4>
+                                    <p>PDF - 1.8 MB</p>
+                                </div>
+                                <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                            </a>
+                            <!-- Lezione4 -->
+                            <a href="Analisi2/EDO.pdf" class="resource-link">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info">
+                                    <h4>Lezione 04 - Equazioni Differenziali Ordinarie (1° ordine)</h4>
+                                    <p>PDF - 1.8 MB</p>
+                                </div>
+                                <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                            </a>
+                            <!-- Lezione5 -->
+                            <a href="Analisi2/EDO2.pdf" class="resource-link">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info">
+                                    <h4>Lezione 05 - EDO 2 (1° ordine)</h4>
+                                    <p>PDF - 1.8 MB</p>
+                                </div>
+                                <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                            </a>
+                            <!-- EDO 3 (1° & 2° ordine) Lezione6 DA FINIREEEEE file dentro Analisi2/...-->
+                            <a href="Analisi2/EDO3.pdf" class="resource-link">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info">
+                                    <h4>Lezione 06 - EDO 3 (1° & 2° ordine)</h4>
+                                    <p>PDF - 1.8 MB</p>
+                                </div>
+                                <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                            </a>
+                            <!-- Lezione7 -->
+                            <a href="Analisi2/EDO4.pdf" class="resource-link">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info">
+                                    <h4>Lezione 07 - EDO 4 (2° ordine)</h4>
+                                    <p>PDF - 1.8 MB</p>
+                                </div>
+                                <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                            </a>
+                            <!-- Lezione8 -->
+                            <a href="Analisi2/curve_param.pdf" class="resource-link">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info">
+                                    <h4>Lezione 08 - Curve Parametriche</h4>
+                                    <p>PDF - 1.8 MB</p>
+                                </div>
+                                <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                            </a>
+                            <!-- Lezione9 -->
+                            <a href="Analisi2/curve_param2.pdf" class="resource-link">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info">
+                                    <h4>Lezione 09 - Curve Parametriche 2</h4>
+                                    <p>PDF - 1.8 MB</p>
+                                </div>
+                                <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                            </a>
+                            <!-- Lezione10 -->
+                            <a href="Analisi2/curve_param3.pdf" class="resource-link">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info">
+                                    <h4>Lezione 10 - Curve Parametriche 3 (Polari)</h4>
+                                    <p>PDF - 1.8 MB</p>
+                                </div>
+                                <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                            </a>
+                            <!-- Lezione11 -->
+                            <a href="Analisi2/lung_curve.pdf" class="resource-link">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info">
+                                    <h4>Lezione 11 - Lunghezza Curve & Integrale di Linea prima specie</h4>
+                                    <p>PDF - 1.8 MB</p>
+                                </div>
+                                <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                            </a>
+                            <!-- Lezione12 -->
+                            <a href="Analisi2/funz_reali.pdf" class="resource-link">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info">
+                                    <h4>Lezione 12 - Funzioni Reali di più Variabili Reali</h4>
+                                    <p>PDF - 1.8 MB</p>
+                                </div>
+                                <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                            </a>
+                            <!-- Lezione13 -->
+                            <a href="Analisi2/A 25.03.25 - Topologia di R^2.pdf" class="resource-link">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info">
+                                    <h4>Lezione 13 - Topologia di R^2</h4>
+                                    <p>PDF - 1.7 MB - 25.03.25</p>
+                                </div>
+                                <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                            </a>
+                            <!-- Lezione14 -->
+                            <a href="Analisi2/A 27.03.25 - Limiti di funzioni a 2 variabili & Calcolo differenziale.pdf"
+                                class="resource-link">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info">
+                                    <h4>Lezione 14 - Limiti di funzioni a 2 variabili & Calcolo differenziale</h4>
+                                    <p>PDF - 1.5 MB - 27.03.25</p>
+                                </div>
+                                <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                            </a>
+                            <!-- Lezione15 -->
+                            <a href="Analisi2/B 01.04.25 - Funzioni Differenziabili & Derivate parziali di ordine superiore.pdf"
+                                class="resource-link">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info">
+                                    <h4>Lezione 15 - Funzioni Differenziabili & Derivate parziali di ordine superiore
+                                    </h4>
+                                    <p>PDF - 2.3 MB - 01.04.25</p>
+                                </div>
+                                <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                            </a>
+                            <!-- Lezione16 -->
+                            <a href="Analisi2/B 03.04.25 - Classificazione di matrici Hessiane.pdf"
+                                class="resource-link">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info">
+                                    <h4>Lezione 16 - Classificazione di matrici Hessiane</h4>
+                                    <p>PDF - 2.1 MB - 03.04.25</p>
+                                </div>
+                                <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                            </a>
+                            <!-- Lezione17 -->
+                            <a href="Analisi2/B 08.04.25 - Ricerca estremi 2 variabili.pdf" class="resource-link">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info">
+                                    <h4>Lezione 17 - Ricerca estremi 2 variabili</h4>
+                                    <p>PDF - 1.8 MB - 08.04.25</p>
+                                </div>
+                                <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                            </a>
+                            <!-- Lezione18 -->
+                            <a href="Analisi2/B 10.04.25 - Esercizi ricerca estremi.pdf" class="resource-link">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info">
+                                    <h4>Lezione 18 - Esercizi ricerca estremi</h4>
+                                    <p>PDF - 1.6 MB - 10.04.25</p>
+                                </div>
+                                <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                            </a>
+                            <!-- Lezione19 -->
+                            <a href="Analisi2/B 15.04.25 - Esercizi 2 ricerca estremi.pdf" class="resource-link">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info">
+                                    <h4>Lezione 19 - Esercizi 2 ricerca estremi</h4>
+                                    <p>PDF - 2.0 MB - 15.04.25</p>
+                                </div>
+                                <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                            </a>
+                            <!-- Lezione20 -->
+                            <a href="Analisi2/B 17.04.25 - Integrali doppi.pdf" class="resource-link">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info">
+                                    <h4>Lezione 20 - Integrali doppi</h4>
+                                    <p>PDF - 1.4 MB - 17.04.25</p>
+                                </div>
+                                <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                            </a>
+                            <!-- Lezione21 -->
+                            <a href="Analisi2/24 apr 2025 integrali doppi cambiamento variabile.pdf"
+                                class="resource-link">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info">
+                                    <h4>Lezione 21 - Integrali doppi cambiamento variabile</h4>
+                                    <p>PDF - 2.1 MB - 24.04.25</p>
+                                </div>
+                                <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                            </a>
+                            <!-- Lezione22 -->
+                            <a href="Analisi2/29 apr 2025 baricentro.pdf" class="resource-link">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info">
+                                    <h4>Lezione 22 - Baricentro</h4>
+                                    <p>PDF - 1.4 MB - 29.04.25</p>
+                                </div>
+                                <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                            </a>
+                            <!-- Lezione23 -->
+                            <a href="Analisi2/6 mag 2025 estremi liberi.pdf" class="resource-link">
+                                <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                <div class="resource-info">
+                                    <h4>Lezione 23 - Estremi liberi</h4>
+                                    <p>PDF - 1.2 MB - 06.05.25</p>
+                                </div>
+                                <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                            </a>
+                        </div>
+                        <!-- ESAMI VECCHI -->
+                        <h3 class="section-title" style="margin-top: 2rem;">Esami Passati</h3>
+
+                        <!-- 2024 -->
+                        <details class="snippet-container">
+                            <summary class="snippet-header">
+                                <div class="snippet-title">
+                                    <h3>Esami 2024</h3>
+                                    <p>4 Esami disponibili</p>
+                                </div>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </summary>
+                            <div class="snippet-body" style="padding: 1rem;">
+                                <div class="resources-list">
+                                    <a href="Analisi2/Esami/Esame del 2024-01-17 (solo traccia).pdf"
+                                        class="resource-link">
+                                        <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                        <div class="resource-info">
+                                            <h4>Esame 17/01/2024 (Solo Traccia)</h4>
+                                            <p>PDF</p>
+                                        </div>
+                                        <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                                    </a>
+                                    <a href="Analisi2/Esami/Esame del 2024-06-03.pdf" class="resource-link">
+                                        <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                        <div class="resource-info">
+                                            <h4>Esame 03/06/2024</h4>
+                                            <p>PDF</p>
+                                        </div>
+                                        <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                                    </a>
+                                    <a href="Analisi2/Esami/Esame del 2024-06-17.pdf" class="resource-link">
+                                        <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                        <div class="resource-info">
+                                            <h4>Esame 17/06/2024</h4>
+                                            <p>PDF</p>
+                                        </div>
+                                        <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                                    </a>
+                                    <a href="Analisi2/Esami/Esame del 2024-09-05.pdf" class="resource-link">
+                                        <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                        <div class="resource-info">
+                                            <h4>Esame 05/09/2024</h4>
+                                            <p>PDF</p>
+                                        </div>
+                                        <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                                    </a>
+                                </div>
+                            </div>
+                        </details>
+
+                        <!-- 2023 -->
+                        <details class="snippet-container">
+                            <summary class="snippet-header">
+                                <div class="snippet-title">
+                                    <h3>Esami 2023</h3>
+                                    <p>3 Esami disponibili</p>
+                                </div>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </summary>
+                            <div class="snippet-body" style="padding: 1rem;">
+                                <div class="resources-list">
+                                    <a href="Analisi2/Esami/Esame del 2023-01-27 (solo traccia).pdf"
+                                        class="resource-link">
+                                        <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                        <div class="resource-info">
+                                            <h4>Esame 27/01/2023 (Solo Traccia)</h4>
+                                            <p>PDF</p>
+                                        </div>
+                                        <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                                    </a>
+                                    <a href="Analisi2/Esami/Esame del 2023-06-01 (solo traccia).pdf"
+                                        class="resource-link">
+                                        <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                        <div class="resource-info">
+                                            <h4>Esame 01/06/2023 (Solo Traccia)</h4>
+                                            <p>PDF</p>
+                                        </div>
+                                        <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                                    </a>
+                                    <a href="Analisi2/Esami/Esame del 2023-06-23.pdf" class="resource-link">
+                                        <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                        <div class="resource-info">
+                                            <h4>Esame 23/06/2023</h4>
+                                            <p>PDF</p>
+                                        </div>
+                                        <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                                    </a>
+                                </div>
+                            </div>
+                        </details>
+
+                        <!-- 2022 -->
+                        <details class="snippet-container">
+                            <summary class="snippet-header">
+                                <div class="snippet-title">
+                                    <h3>Esami 2022</h3>
+                                    <p>4 Esami disponibili</p>
+                                </div>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </summary>
+                            <div class="snippet-body" style="padding: 1rem;">
+                                <div class="resources-list">
+                                    <a href="Analisi2/Esami/Esame del 2022-01-24.pdf" class="resource-link">
+                                        <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                        <div class="resource-info">
+                                            <h4>Esame 24/01/2022</h4>
+                                            <p>PDF</p>
+                                        </div>
+                                        <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                                    </a>
+                                    <a href="Analisi2/Esami/Esame del 2022-06-03.pdf" class="resource-link">
+                                        <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                        <div class="resource-info">
+                                            <h4>Esame 03/06/2022</h4>
+                                            <p>PDF</p>
+                                        </div>
+                                        <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                                    </a>
+                                    <a href="Analisi2/Esami/Esame del 2022-06-24.pdf" class="resource-link">
+                                        <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                        <div class="resource-info">
+                                            <h4>Esame 24/06/2022</h4>
+                                            <p>PDF</p>
+                                        </div>
+                                        <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                                    </a>
+                                    <a href="Analisi2/Esami/Esame del 2022-09-09 (solo traccia).pdf"
+                                        class="resource-link">
+                                        <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                        <div class="resource-info">
+                                            <h4>Esame 09/09/2022 (Solo Traccia)</h4>
+                                            <p>PDF</p>
+                                        </div>
+                                        <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                                    </a>
+                                </div>
+                            </div>
+                        </details>
+
+                        <!-- 2021 -->
+                        <details class="snippet-container">
+                            <summary class="snippet-header">
+                                <div class="snippet-title">
+                                    <h3>Esami 2021</h3>
+                                    <p>5 Esami disponibili</p>
+                                </div>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </summary>
+                            <div class="snippet-body" style="padding: 1rem;">
+                                <div class="resources-list">
+                                    <a href="Analisi2/Esami/Esame del 2021-01-18.pdf" class="resource-link">
+                                        <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                        <div class="resource-info">
+                                            <h4>Esame 18/01/2021</h4>
+                                            <p>PDF</p>
+                                        </div>
+                                        <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                                    </a>
+                                    <a href="Analisi2/Esami/Esame del 2021-06-09 A.pdf" class="resource-link">
+                                        <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                        <div class="resource-info">
+                                            <h4>Esame 09/06/2021 A</h4>
+                                            <p>PDF</p>
+                                        </div>
+                                        <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                                    </a>
+                                    <a href="Analisi2/Esami/Esame del 2021-06-09 B.pdf" class="resource-link">
+                                        <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                        <div class="resource-info">
+                                            <h4>Esame 09/06/2021 B</h4>
+                                            <p>PDF</p>
+                                        </div>
+                                        <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                                    </a>
+                                    <a href="Analisi2/Esami/Esame del 2021-06-29.pdf" class="resource-link">
+                                        <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                        <div class="resource-info">
+                                            <h4>Esame 29/06/2021</h4>
+                                            <p>PDF</p>
+                                        </div>
+                                        <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                                    </a>
+                                    <a href="Analisi2/Esami/Esame del 2021-08-31.pdf" class="resource-link">
+                                        <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                        <div class="resource-info">
+                                            <h4>Esame 31/08/2021</h4>
+                                            <p>PDF</p>
+                                        </div>
+                                        <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                                    </a>
+                                </div>
+                            </div>
+                        </details>
+
+                        <!-- 2020 -->
+                        <details class="snippet-container">
+                            <summary class="snippet-header">
+                                <div class="snippet-title">
+                                    <h3>Esami 2020</h3>
+                                    <p>3 Esami disponibili</p>
+                                </div>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </summary>
+                            <div class="snippet-body" style="padding: 1rem;">
+                                <div class="resources-list">
+                                    <a href="Analisi2/Esami/Esame del 2020-06-09.pdf" class="resource-link">
+                                        <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                        <div class="resource-info">
+                                            <h4>Esame 09/06/2020</h4>
+                                            <p>PDF</p>
+                                        </div>
+                                        <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                                    </a>
+                                    <a href="Analisi2/Esami/Esame del 2020-06-23.pdf" class="resource-link">
+                                        <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                        <div class="resource-info">
+                                            <h4>Esame 23/06/2020</h4>
+                                            <p>PDF</p>
+                                        </div>
+                                        <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                                    </a>
+                                    <a href="Analisi2/Esami/Esame del 2020-08-27.pdf" class="resource-link">
+                                        <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                                        <div class="resource-info">
+                                            <h4>Esame 27/08/2020</h4>
+                                            <p>PDF</p>
+                                        </div>
+                                        <div class="resource-action"><i class="fa-solid fa-download"></i></div>
+                                    </a>
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- Right Column: Sidebar Info -->
+                <aside class="subject-sidebar">
+                    <!-- Course Info Card -->
+                    <div class="info-card">
+                        <h3>Info Corso</h3>
+                        <div class="info-item">
+                            <span class="label">CFU</span>
+                            <span class="value">6</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Semestre</span>
+                            <span class="value">2°</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Professore</span>
+                            <span class="value">Roberto Ghiselli Ricci</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Anno</span>
+                            <span class="value">2024/2025</span>
+                        </div>
+                    </div>
+
+                    <!-- Progress Card -->
+                    <div class="info-card">
+                        <h3>Il tuo Progresso</h3>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%;"></div>
+                            </div>
+                            <span class="progress-text">100% Completato</span>
+                        </div>
+                        <div class="checklist">
+                            <div class="check-item">
+                                <i class="fa-solid fa-circle-check completed"></i>
+                                <span>Lezioni Seguite</span>
+                            </div>
+                            <div class="check-item">
+                                <i class="fa-solid fa-circle-check completed"></i>
+                                <span>Esame Superato</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="info-card">
+                        <h3>Link Utili</h3>
+                        <ul class="quick-links">
+                            <!--<li><a href="#"><i class="fa-brands fa-github"></i> Repo Corso</a></li>-->
+                            <li><a href="https://www.unive.it/data/persone/27715991"><i class="fa-solid fa-globe"></i>
+                                    Sito Docente</a></li>
+                        </ul>
+                    </div>
+                </aside>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script>
+        function openTab(tabName) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Show specific tab content
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked button
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+    <script src="script.js"></script>
+    <!-- AUTH GUARD -->
+    <script type="module" src="auth-guard.js"></script>
+</body>
+
+</html>

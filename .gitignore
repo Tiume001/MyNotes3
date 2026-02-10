@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Testing
+tests/
+vitest.config.js
+package.json
+package-lock.json
+
+# Kiro specs
+.kiro/
+
+# Documentation files (non necessari per il sito live)
+TASK_*.md
+TESTING_SETUP.md
+FIREBASE_SETUP.md
+
+# System files
+.DS_Store
+.vscode/
+
+# Template files (se non servono)
+subject_template.html
+subject_template copy.html
+node_modules/

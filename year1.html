@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primo Anno | University Notes</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="animations.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Navigation Sidebar -->
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>MyNotes</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li class="active"><a href="year1.html"><i class="fa-solid fa-1"></i> Primo Anno</a></li>
+                <li><a href="year2.html"><i class="fa-solid fa-2"></i> Secondo Anno</a></li>
+                <li><a href="year3.html"><i class="fa-solid fa-3"></i> Terzo Anno</a></li>
+                <li><a href="personal.html"><i class="fa-solid fa-user"></i> Portfolio</a></li>
+                <li><a href="nerd-stats.html"><i class="fa-solid fa-chart-line"></i> Stats</a></li>
+            </ul>
+            <div class="nav-footer">
+                <a href="https://github.com/Tiume001" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="mailto:tiume00@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-bar">
+                <div class="breadcrumbs">
+                    <a href="index.html">Home</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <span>Primo Anno</span>
+                </div>
+                <div class="user-profile">
+                    <span>Mattia Scarpa</span>
+                    <div class="avatar">MS</div>
+                </div>
+            </header>
+
+            <!-- Hero Section -->
+            <section class="hero-small">
+                <div class="hero-content">
+                    <h1>Primo <span class="gradient-text">Anno</span></h1>
+                    <p>Le basi fondamentali: programmazione, matematica e architettura degli elaboratori.</p>
+                </div>
+            </section>
+
+            <!-- Subjects Grid -->
+            <section class="subjects-section">
+                <div class="cards-grid">
+                    <!-- Subject Card 1 -->
+                    <a href="IAP.html?subject=fondamenti" class="card subject-card">
+                        <div class="card-header-img programming-bg">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="tags">
+                                <span class="tag tag-completed">Completato</span>
+                                <span class="tag tag-code">C</span>
+                            </div>
+                            <h3>Introduzione alla Programmazione</h3>
+                            <p>Introduzione alla programmazione, puntatori, strutture dati e algoritmi base.</p>
+                            <div class="card-meta">
+                                <span><i class="fa-regular fa-file-lines"></i> 12 Appunti</span>
+                                <span><i class="fa-solid fa-laptop-code"></i> 5 Progetti</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Subject Card 2 -->
+                    <a href="subject_template.html?subject=analisi1" class="card subject-card">
+                        <div class="card-header-img math-bg">
+                            <i class="fa-solid fa-infinity"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="tags">
+                                <span class="tag tag-completed">Completato</span>
+                                <span class="tag tag-theory">Teoria</span>
+                            </div>
+                            <h3>Analisi Matematica 1</h3>
+                            <p>Limiti, derivate, integrali, serie numeriche e studi di funzione.</p>
+                            <div class="card-meta">
+                                <span><i class="fa-regular fa-file-lines"></i> 24 Appunti</span>
+                                <span><i class="fa-solid fa-file-pdf"></i> 10 PDF</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Subject Card 3 -->
+                    <a href="subject_template.html?subject=architettura" class="card subject-card">
+                        <div class="card-header-img hardware-bg">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="tags">
+                                <span class="tag tag-completed">Completato</span>
+                                <span class="tag tag-hardware">Assembly</span>
+                            </div>
+                            <h3>Architettura Elaboratori</h3>
+                            <p>Logica booleana, circuiti digitali, Assembly MIPS e architettura CPU.</p>
+                            <div class="card-meta">
+                                <span><i class="fa-regular fa-file-lines"></i> 15 Appunti</span>
+                                <span><i class="fa-solid fa-laptop-code"></i> 3 Lab</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Subject Card 4 -->
+                    <a href="subject_template.html?subject=algebra" class="card subject-card">
+                        <div class="card-header-img math-bg">
+                            <i class="fa-solid fa-vector-square"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="tags">
+                                <span class="tag tag-completed">Completato</span>
+                            </div>
+                            <h3>Algebra Lineare</h3>
+                            <p>Spazi vettoriali, matrici, sistemi lineari e geometria nello spazio.</p>
+                            <div class="card-meta">
+                                <span><i class="fa-regular fa-file-lines"></i> 18 Appunti</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Subject Card 5 -->
+                    <a href="Analisi2.html?subject=analisi1" class="card subject-card">
+                        <div class="card-header-img math-bg">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="tags">
+                                <span class="tag tag-completed">Idoneità</span>
+                            </div>
+                            <h3>Analisi matematica 2</h3>
+                            <p>Derivate di secondo ordine, matrici Hessiane, Integrali doppi.</p>
+                            <div class="card-meta">
+                                <span><i class="fa-solid fa-file-pdf"></i> 5 Slide</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Subject Card 6 -->
+                    <a href="subject_template.html?subject=inglese" class="card subject-card">
+                        <div class="card-header-img programming-bg">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="tags">
+                                <span class="tag tag-completed">Idoneità</span>
+                                <span class="tag tag-code">C++</span>
+                            </div>
+                            <h3>Programmazione e Laboratorio</h3>
+                            <p>Linked list, Doubly Linked list, JSON parser.</p>
+                            <div class="card-meta">
+                                <span><i class="fa-solid fa-file-pdf"></i> 5 Slide</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+    <!-- AUTH GUARD -->
+    <script type="module" src="auth-guard.js"></script>
+    <!-- Year Pages Functionality -->
+    <script src="year-pages.js"></script>
+</body>
+
+</html>

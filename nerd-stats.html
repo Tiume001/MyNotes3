@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nerd Stats | Mattia Scarpa</title>
+    <meta name="description" content="Statistiche tecniche in tempo reale sul tuo sistema e connessione.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="animations.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Navigation Sidebar -->
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>MyNotes</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="year1.html"><i class="fa-solid fa-1"></i> Primo Anno</a></li>
+                <li><a href="year2.html"><i class="fa-solid fa-2"></i> Secondo Anno</a></li>
+                <li><a href="year3.html"><i class="fa-solid fa-3"></i> Terzo Anno</a></li>
+                <li><a href="personal.html"><i class="fa-solid fa-user"></i> Portfolio</a></li>
+                <li class="active"><a href="nerd-stats.html"><i class="fa-solid fa-chart-line"></i> Stats</a></li>
+            </ul>
+            <div class="nav-footer">
+                <a href="https://github.com/Tiume001" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="mailto:tiume00@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-bar">
+                <div class="breadcrumbs">
+                    <a href="index.html">Home</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <span>Nerd Stats</span>
+                </div>
+                <div class="user-profile">
+                    <span>Mattia Scarpa</span>
+                    <div class="avatar">MS</div>
+                </div>
+            </header>
+
+            <!-- Hero Section -->
+            <section class="hero-small">
+                <div class="hero-content">
+                    <h1>Nerd <span class="gradient-text">Statistics</span></h1>
+                    <p>Statistiche tecniche in tempo reale sul tuo sistema e connessione.</p>
+                </div>
+            </section>
+
+            <!-- Stats Grid -->
+            <section class="stats-dashboard">
+                <div class="stats-grid">
+                    <!-- IP Address Card -->
+                    <div class="stat-card card">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>IP Address</h3>
+                            <p class="stat-value monospace" id="ipAddress">Loading...</p>
+                            <span class="stat-label">Your Public IP</span>
+                        </div>
+                    </div>
+
+                    <!-- Network Info Card -->
+                    <div class="stat-card card">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-wifi"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Connection Type</h3>
+                            <p class="stat-value" id="connectionType">Loading...</p>
+                            <span class="stat-label">Network Interface</span>
+                        </div>
+                    </div>
+
+                    <!-- Downlink Speed Card -->
+                    <div class="stat-card card">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-download"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Download Speed</h3>
+                            <p class="stat-value" id="downlinkSpeed">Not tested</p>
+                            <span class="stat-label">Mbps</span>
+                            <button class="btn-text" id="testSpeedBtn">
+                                <i class="fa-solid fa-gauge-high"></i> Test Speed
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Browser Info Card -->
+                    <div class="stat-card card">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-earth-americas"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Browser</h3>
+                            <p class="stat-value" id="browserInfo">Loading...</p>
+                            <span class="stat-label">User Agent</span>
+                        </div>
+                    </div>
+
+                    <!-- Screen Resolution Card -->
+                    <div class="stat-card card">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-desktop"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Screen Resolution</h3>
+                            <p class="stat-value monospace" id="screenRes">Loading...</p>
+                            <span class="stat-label">Display Size</span>
+                        </div>
+                    </div>
+
+                    <!-- Device Memory Card -->
+                    <div class="stat-card card">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-memory"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Device Memory</h3>
+                            <p class="stat-value" id="deviceMemory">Loading...</p>
+                            <span class="stat-label">Approximate RAM</span>
+                        </div>
+                    </div>
+
+                    <!-- CPU Cores Card -->
+                    <div class="stat-card card">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>CPU Cores</h3>
+                            <p class="stat-value" id="cpuCores">Loading...</p>
+                            <span class="stat-label">Logical Processors</span>
+                        </div>
+                    </div>
+
+                    <!-- Battery Status Card -->
+                    <div class="stat-card card">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-battery-three-quarters"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Battery Level</h3>
+                            <div class="battery-container">
+                                <div class="battery-bar" id="batteryBar"></div>
+                            </div>
+                            <p class="stat-value" id="batteryLevel">Loading...</p>
+                            <span class="stat-label" id="batteryStatus">Checking...</span>
+                        </div>
+                    </div>
+
+                    <!-- Geolocation Card -->
+                    <div class="stat-card card">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Location</h3>
+                            <p class="stat-value" id="location">Not Available</p>
+                            <span class="stat-label">Approximate City</span>
+                            <button class="btn-text" id="getLocationBtn">
+                                <i class="fa-solid fa-location-crosshairs"></i> Get Location
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Real-time Updates Section -->
+            <section class="stats-dashboard">
+                <h2>Real-Time Metrics</h2>
+                <div class="realtime-card card">
+                    <div class="metric-row">
+                        <span class="metric-label">Page Load Time:</span>
+                        <span class="metric-value monospace" id="loadTime">0ms</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Time on Page:</span>
+                        <span class="metric-value monospace" id="timeOnPage">0s</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Last Update:</span>
+                        <span class="metric-value monospace" id="lastUpdate">--:--:--</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- AUTH GUARD -->
+    <script type="module" src="auth-guard.js"></script>
+    <!-- Nerd Stats Functionality -->
+    <script src="nerd-stats.js"></script>
+</body>
+
+</html>

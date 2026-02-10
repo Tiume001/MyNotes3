@@ -1,0 +1,209 @@
+/* 
+   Animations Stylesheet
+   Dedicated animation styles for University Site Modernization
+   Uses GPU-accelerated properties (transform, opacity) for performance
+*/
+
+/* =========================================
+   Entrance Animations
+   ========================================= */
+
+/* Fade Up Animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Fade In Up (for staggered cards) */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scale In Animation */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================================
+   Animation Classes
+   ========================================= */
+
+/* Elements with data-animate attribute start hidden */
+[data-animate] {
+  opacity: 0;
+}
+
+/* Fade up animation trigger */
+[data-animate="fade-up"] {
+  animation: fadeUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Fade in animation trigger */
+[data-animate="fade-in"] {
+  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Scale in animation trigger */
+[data-animate="scale-in"] {
+  animation: scaleIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Animation delays for staggered effects */
+[data-delay="100"] { animation-delay: 0.1s; }
+[data-delay="200"] { animation-delay: 0.2s; }
+[data-delay="300"] { animation-delay: 0.3s; }
+[data-delay="400"] { animation-delay: 0.4s; }
+[data-delay="500"] { animation-delay: 0.5s; }
+[data-delay="600"] { animation-delay: 0.6s; }
+
+/* =========================================
+   Homepage Enhancements
+   ========================================= */
+
+/* Parallax Background Effect */
+.hero-visual {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* Enhanced Year Card Hover Effects */
+.year-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+}
+
+.year-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.4);
+}
+
+/* =========================================
+   Year Pages - 3D Card Effects
+   ========================================= */
+
+/* Subject Card Base Styles */
+.subject-card {
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  opacity: 0;
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* 3D Hover Effect */
+.subject-card:hover {
+  transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) translateY(-10px);
+}
+
+/* Card Header with Animated Gradient */
+.card-header-img {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              background-size 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background-size: 150%;
+  background-position: center;
+  will-change: transform, background-size;
+}
+
+.subject-card:hover .card-header-img {
+  transform: translateZ(20px);
+  background-size: 160%;
+}
+
+/* Staggered Animation Delays for Subject Cards */
+.subject-card:nth-child(1) { animation-delay: 0.1s; }
+.subject-card:nth-child(2) { animation-delay: 0.2s; }
+.subject-card:nth-child(3) { animation-delay: 0.3s; }
+.subject-card:nth-child(4) { animation-delay: 0.4s; }
+.subject-card:nth-child(5) { animation-delay: 0.5s; }
+.subject-card:nth-child(6) { animation-delay: 0.6s; }
+.subject-card:nth-child(7) { animation-delay: 0.7s; }
+.subject-card:nth-child(8) { animation-delay: 0.8s; }
+.subject-card:nth-child(9) { animation-delay: 0.9s; }
+.subject-card:nth-child(10) { animation-delay: 1.0s; }
+
+/* =========================================
+   Portfolio & Stats Sections
+   ========================================= */
+
+/* Social Card Hover Effect */
+.social-card {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.social-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Stat Card Hover Effect */
+.stat-card {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+}
+
+/* Battery Bar Animation */
+.battery-bar {
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: width;
+}
+
+/* =========================================
+   Performance Optimizations
+   ========================================= */
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* GPU Acceleration Hints */
+.year-card,
+.subject-card,
+.social-card,
+.stat-card,
+.hero-visual {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}

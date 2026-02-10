@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secondo Anno | University Notes</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="animations.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Navigation Sidebar -->
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>UniNotes</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="year1.html"><i class="fa-solid fa-1"></i> Primo Anno</a></li>
+                <li class="active"><a href="year2.html"><i class="fa-solid fa-2"></i> Secondo Anno</a></li>
+                <li><a href="year3.html"><i class="fa-solid fa-3"></i> Terzo Anno</a></li>
+                <li><a href="personal.html"><i class="fa-solid fa-user"></i> Portfolio</a></li>
+                <li><a href="nerd-stats.html"><i class="fa-solid fa-chart-line"></i> Stats</a></li>
+            </ul>
+            <div class="nav-footer">
+                <a href="https://github.com/mattiascarpa" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="mailto:contact@example.com"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-bar">
+                <div class="breadcrumbs">
+                    <a href="index.html">Home</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <span>Secondo Anno</span>
+                </div>
+                <div class="user-profile">
+                    <span>Mattias Carpa</span>
+                    <div class="avatar">MC</div>
+                </div>
+            </header>
+
+            <!-- Hero Section -->
+            <section class="hero-small">
+                <div class="hero-content">
+                    <h1>Secondo <span class="gradient-text">Anno</span></h1>
+                    <p>Il cuore dell'informatica: algoritmi, sistemi operativi e gestione dei dati.</p>
+                </div>
+            </section>
+
+            <!-- Subjects Grid -->
+            <section class="subjects-section">
+                <div class="cards-grid">
+                    <!-- Subject Card 1 -->
+                    <a href="subject_template.html?subject=algoritmi" class="card subject-card">
+                        <div class="card-header-img programming-bg">
+                            <i class="fa-solid fa-diagram-project"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="tags">
+                                <span class="tag tag-completed">Completato</span>
+                                <span class="tag tag-code">Java</span>
+                            </div>
+                            <h3>Algoritmi e Strutture Dati</h3>
+                            <p>Complessità computazionale, alberi, grafi e algoritmi di ordinamento.</p>
+                            <div class="card-meta">
+                                <span><i class="fa-regular fa-file-lines"></i> 20 Appunti</span>
+                                <span><i class="fa-solid fa-laptop-code"></i> 8 Progetti</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Subject Card 2 -->
+                    <a href="subject_template.html?subject=os" class="card subject-card">
+                        <div class="card-header-img hardware-bg">
+                            <i class="fa-solid fa-terminal"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="tags">
+                                <span class="tag tag-completed">Completato</span>
+                                <span class="tag tag-code">C</span>
+                            </div>
+                            <h3>Sistemi Operativi</h3>
+                            <p>Processi, thread, gestione della memoria, file system e concorrenza.</p>
+                            <div class="card-meta">
+                                <span><i class="fa-regular fa-file-lines"></i> 18 Appunti</span>
+                                <span><i class="fa-solid fa-laptop-code"></i> 4 Lab</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Subject Card 3 -->
+                    <a href="subject_template.html?subject=db" class="card subject-card">
+                        <div class="card-header-img math-bg">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="tags">
+                                <span class="tag tag-completed">Completato</span>
+                                <span class="tag tag-code">SQL</span>
+                            </div>
+                            <h3>Basi di Dati</h3>
+                            <p>Modello relazionale, algebra relazionale, progettazione ER e SQL.</p>
+                            <div class="card-meta">
+                                <span><i class="fa-regular fa-file-lines"></i> 15 Appunti</span>
+                                <span><i class="fa-solid fa-laptop-code"></i> 1 Progetto</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Subject Card 4 -->
+                    <a href="subject_template.html?subject=reti" class="card subject-card">
+                        <div class="card-header-img hardware-bg">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <div class="card-content">
+                            <div class="tags">
+                                <span class="tag tag-progress">In Corso</span>
+                                <span class="tag tag-theory">Teoria</span>
+                            </div>
+                            <h3>Reti di Calcolatori</h3>
+                            <p>Stack ISO/OSI, protocolli TCP/IP, routing e sicurezza di rete.</p>
+                            <div class="card-meta">
+                                <span><i class="fa-regular fa-file-lines"></i> 10 Appunti</span>
+                                <span><i class="fa-solid fa-file-pdf"></i> 8 Slide</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+    <!-- AUTH GUARD -->
+    <script type="module" src="auth-guard.js"></script>
+    <!-- Year Pages Functionality -->
+    <script src="year-pages.js"></script>
+</body>
+
+</html>

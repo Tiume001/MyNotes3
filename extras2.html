@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side Projects | University Notes</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Highlight.js -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Navigation Sidebar -->
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>UniNotes</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="year1.html"><i class="fa-solid fa-1"></i> Primo Anno</a></li>
+                <li><a href="year2.html"><i class="fa-solid fa-2"></i> Secondo Anno</a></li>
+                <li><a href="year3.html"><i class="fa-solid fa-3"></i> Terzo Anno</a></li>
+
+            </ul>
+            <div class="nav-footer">
+                <a href="https://github.com/mattiascarpa" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="mailto:contact@example.com"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-bar">
+                <div class="breadcrumbs">
+                    <a href="index.html">Home</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <span>Side Projects</span>
+                </div>
+                <div class="user-profile">
+                    <span>Mattias Carpa</span>
+                    <div class="avatar">MC</div>
+                </div>
+            </header>
+
+            <!-- Hero Section -->
+            <section class="hero-small">
+                <div class="hero-content">
+                    <h1>Side <span class="gradient-text">Projects</span></h1>
+                    <p>Progetti personali sviluppati durante il percorso universitario.</p>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section class="projects-section">
+                <h2><i class="fa-solid fa-laptop-code"></i> Progetti Recenti</h2>
+
+                <div class="cards-grid">
+                    <!-- Project 1 -->
+                    <a href="#" class="card">
+                        <div class="card-icon"><i class="fa-solid fa-globe"></i></div>
+                        <h3>Portfolio Personale</h3>
+                        <p>Questo sito web, realizzato con HTML, CSS moderni e JavaScript.</p>
+                        <div class="card-meta" style="margin-top: 1rem; border: none; padding:0;">
+                            <span class="tag tag-code">HTML/CSS</span>
+                        </div>
+                    </a>
+
+                    <!-- Project 2 -->
+                    <a href="#" class="card">
+                        <div class="card-icon"><i class="fa-solid fa-gamepad"></i></div>
+                        <h3>Unity 2D Game</h3>
+                        <p>Un piccolo platform 2D sviluppato in Unity e C# come hobby.</p>
+                        <div class="card-meta" style="margin-top: 1rem; border: none; padding:0;">
+                            <span class="tag tag-code">C#</span>
+                            <span class="tag tag-hardware">Unity</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="script.js"></script>
+    <!-- AUTH GUARD -->
+    <script type="module" src="auth-guard.js"></script>
+</body>
+
+</html>
