@@ -857,44 +857,143 @@ h2::before {
     gap: var(--spacing-sm);
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
+/* -------------------------------------------------------------------------- */
+/* RESPONSIVE DESIGN & SIDEBAR LOGIC                                          */
+/* -------------------------------------------------------------------------- */
+
+/* Sidebar Toggle Button (Floating Single Button) - Base Styles */
+.sidebar-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    cursor: pointer !important;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    transition: all var(--transition-smooth);
+    z-index: 9999;
+    position: fixed;
+    top: 37px;
+    /* Vertically centered with logo (center = 51px) */
+    left: 190px;
+    /* Clean gap after 'MyNotes' text (ends at 181px) */
+    border: none;
+    box-shadow: none;
+}
+
+.sidebar-toggle:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+}
+
+/* ----------------------------- DESKTOP LOGIC (> 768px) -------------------- */
+@media (min-width: 769px) {
     .sidebar {
-        width: 80px;
-        padding: var(--spacing-md);
+        width: 260px;
+        transform: translateX(0);
+        transition: transform var(--transition-smooth);
     }
 
-    .logo span,
-    .nav-links span,
-    .nav-footer {
-        display: none;
+    .sidebar.closed {
+        transform: translateX(-100%);
     }
 
-    .nav-links a {
-        justify-content: center;
-        padding: 1rem;
+    /* Move toggle button when sidebar is closed */
+    body.sidebar-closed .sidebar-toggle {
+        left: 32px;
+        /* Aligned with sidebar padding */
+        top: 32px;
+        background: rgba(20, 20, 30, 0.7);
+        backdrop-filter: blur(8px);
+        color: var(--text-primary);
     }
 
     .main-content {
-        margin-left: 80px;
+        margin-left: 260px;
+        transition: margin-left var(--transition-smooth);
     }
 
+    .main-content.expanded {
+        margin-left: 0;
+    }
+}
+
+/* ----------------------------- TABLET OPTIMIZATION (< 1024px) -------------- */
+@media (max-width: 1024px) {
+
+    /* If you want a mini-sidebar on tablet, define it here. 
+       Currently, we sticking to the Toggle Logic. */
     .hero h1 {
         font-size: 2.5rem;
     }
 }
 
+/* ----------------------------- MOBILE LOGIC (<= 768px) --------------------- */
 @media (max-width: 768px) {
+    .sidebar-toggle {
+        left: 20px;
+        top: 20px;
+        background: var(--bg-card);
+    }
+
+    /* When sidebar is OPEN on mobile */
+    body.sidebar-open .sidebar-toggle {
+        left: 190px;
+        background: transparent;
+        color: var(--text-secondary);
+    }
+
     .sidebar {
+        display: flex;
+        transform: translateX(-100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 260px;
+        z-index: 1000;
+        transition: transform var(--transition-smooth);
+        border-right: 1px solid var(--border-color);
+        background-color: var(--bg-sidebar);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .sidebar-overlay {
         display: none;
-        /* Mobile menu to be implemented */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        backdrop-filter: blur(4px);
+        opacity: 0;
+        transition: opacity var(--transition-fast);
+    }
+
+    .sidebar-overlay.active {
+        display: block;
+        opacity: 1;
     }
 
     .main-content {
-        margin-left: 0;
-        padding: var(--spacing-md);
+        margin-left: 0 !important;
+        /* Always 0 on mobile */
     }
+}
 
+
+
+
+
+@media (max-width: 768px) {
     .top-bar {
         flex-direction: column-reverse;
         gap: var(--spacing-md);
@@ -1349,7 +1448,7 @@ details.snippet-container[open] summary.snippet-header i.fa-chevron-down {
     margin-bottom: 1rem;
 }
 
-.project-header > i {
+.project-header>i {
     font-size: 1.5rem;
     color: var(--accent-primary);
 }
@@ -1386,7 +1485,7 @@ details.snippet-container[open] summary.snippet-header i.fa-chevron-down {
     font-size: 1.1rem;
 }
 
-.project-card > p {
+.project-card>p {
     color: var(--text-secondary);
     font-size: 0.9rem;
     line-height: 1.6;
@@ -1476,11 +1575,11 @@ details.snippet-container[open] summary.snippet-header i.fa-chevron-down {
         flex-direction: column;
         gap: 0.5rem;
     }
-    
+
     .cv-date {
         min-width: auto;
     }
-    
+
     .social-grid {
         grid-template-columns: 1fr;
     }

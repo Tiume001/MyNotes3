@@ -23,6 +23,11 @@
 
 <body>
     <div class="app-container">
+        <!-- Floating Sidebar Toggle -->
+        <button id="sidebarToggle" class="sidebar-toggle" title="Toggle Menu">
+            <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+
         <!-- Navigation Sidebar -->
         <nav class="sidebar">
             <div class="logo">
@@ -68,65 +73,233 @@
 
             <!-- CV Section -->
             <section class="portfolio-section">
-                <h2>Curriculum Vitae</h2>
-                <div class="cv-container">
-                    <div class="cv-card card">
-                        <div class="cv-header">
-                            <div class="cv-avatar">MS</div>
-                            <div class="cv-info">
-                                <h3>Mattia Scarpa</h3>
-                                <p>Computer Science Student | Full-Stack Developer</p>
+            <h2>Curriculum Vitae</h2>
+            <div class="cv-container">
+                <div class="cv-card card">
+                    
+                    <div class="cv-header">
+                        <div class="cv-avatar">MS</div> <div class="cv-info">
+                            <h3>Mattia Scarpa</h3>
+                            <p>Studente di Informatica | Sviluppatore Full Stack</p>
+                            <div class="cv-contacts" style="font-size: 0.9em; margin-top: 5px; opacity: 0.8;">
+                                <span><i class="fa-solid fa-location-dot"></i> Venezia, Italia</span> |
+                                <span><i class="fa-solid fa-phone"></i> +39 340 008 0030</span> |
+                                <span><i class="fa-solid fa-envelope"></i> tiume00@gmail.com</span>
                             </div>
-                        </div>
-                        <div class="cv-section">
-                            <h4><i class="fa-solid fa-graduation-cap"></i> Educazione</h4>
-                            <div class="cv-item">
-                                <span class="cv-date">2022 - 2025</span>
-                                <div class="cv-details">
-                                    <strong>Laurea Triennale in Informatica</strong>
-                                    <p>Università Ca' Foscari Venezia</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cv-section">
-                            <h4><i class="fa-solid fa-code"></i> Competenze</h4>
-                            <div class="skills-grid">
-                                <span class="skill-tag">JavaScript</span>
-                                <span class="skill-tag">Python</span>
-                                <span class="skill-tag">C/C++</span>
-                                <span class="skill-tag">HTML/CSS</span>
-                                <span class="skill-tag">Firebase</span>
-                                <span class="skill-tag">Git</span>
+                            <div class="cv-socials" style="margin-top: 5px;">
+                                <a href="https://github.com/Tiume001" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a> |
+                                <a href="https://linkedin.com/in/mattia-scarpa" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
                             </div>
                         </div>
                     </div>
+
+                    <div class="cv-section">
+                        <h4><i class="fa-solid fa-briefcase"></i> Esperienza Professionale</h4>
+                        
+                        <div class="cv-item">
+                            <span class="cv-date">2025</span>
+                            <div class="cv-details">
+                                <strong>Oste</strong>
+                                <p>Enoteca "La Sete", Venezia</p>
+                                [cite_start]<p class="job-desc">Accoglienza clienti, servizio al banco/tavoli, consulenza vini e gestione mescita[cite: 8].</p>
+                            </div>
+                        </div>
+
+                        <div class="cv-item">
+                            <span class="cv-date">2023 - 2024</span>
+                            <div class="cv-details">
+                                <strong>Bartender</strong>
+                                <p>Hotel Bonvecchiati, Venezia</p>
+                                [cite_start]<p class="job-desc">Servizio in contesto alberghiero di alto livello, creazione drink e gestione banco[cite: 8].</p>
+                            </div>
+                        </div>
+
+                        <div class="cv-item">
+                            <span class="cv-date">2022</span>
+                            <div class="cv-details">
+                                <strong>Operaio Metalmeccanico</strong>
+                                <p>Re.Te., Venezia</p>
+                                [cite_start]<p class="job-desc">Raccolta, selezione e trasporto materiali (incluso trasporto in barca verso smaltimento)[cite: 8].</p>
+                            </div>
+                        </div>
+
+                        <div class="cv-item">
+                            <span class="cv-date">2019</span>
+                            <div class="cv-details">
+                                <strong>Operaio Edile (Volontariato)</strong>
+                                <p>Lunaria, Beruges (Francia)</p>
+                                [cite_start]<p class="job-desc">Progetto internazionale: costruzione muro in pietra, lavoro in team multiculturale[cite: 8].</p>
+                            </div>
+                        </div>
+
+                        <div class="cv-item">
+                            <span class="cv-date">2018</span>
+                            <div class="cv-details">
+                                <strong>Aiuto Cameriere</strong>
+                                <p>Fernhill House Hotel, Clonakilty (Irlanda)</p>
+                                [cite_start]<p class="job-desc">Pulizia tavoli e preparazione buffet (tramite European Career Evolution)[cite: 8].</p>
+                            </div>
+                        </div>
+
+                        <div class="cv-item">
+                            <span class="cv-date">2018</span>
+                            <div class="cv-details">
+                                <strong>Operatore Socio Sanitario (Volontario)</strong>
+                                <p>Unitalsi Triveneta, Lourdes (Francia)</p>
+                                [cite_start]<p class="job-desc">Assistenza anziani durante viaggio in treno e supporto logistico[cite: 8].</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cv-section">
+                        <h4><i class="fa-solid fa-graduation-cap"></i> Istruzione</h4>
+                        <div class="cv-item">
+                            <span class="cv-date">2021 - Presente</span>
+                            <div class="cv-details">
+                                <strong>Laurea Triennale in Informatica</strong>
+                                <p>Università Ca' Foscari Venezia</p>
+                                [cite_start]<p class="job-desc">Indirizzo: Tecnologie e Scienze dell'Informazione[cite: 21, 28].</p>
+                            </div>
+                        </div>
+                        <div class="cv-item">
+                            <span class="cv-date">2015 - 2021</span>
+                            <div class="cv-details">
+                                <strong>Diploma di Liceo Linguistico</strong>
+                                <p>Liceo Benedetti Tommaseo, Venezia</p>
+                                [cite_start]<p class="job-desc">Indirizzo lingue: Grammatica e Letteratura[cite: 33, 35].</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cv-section">
+                        <h4><i class="fa-solid fa-code-branch"></i> Progetti Accademici</h4>
+                        <div class="cv-item">
+                            <span class="cv-date">2024</span>
+                            <div class="cv-details">
+                                <strong>Server Email con Postfix</strong>
+                                [cite_start]<p>Configurazione VM Ubuntu su macOS, implementazione server Postfix per invio/ricezione email[cite: 23].</p>
+                            </div>
+                        </div>
+                        <div class="cv-item">
+                            <span class="cv-date">2024</span>
+                            <div class="cv-details">
+                                <strong>FileFlow (Flutter/Dart)</strong>
+                                [cite_start]<p>App Android/iOS per gestione documentazione personale con login e organizzazione file[cite: 24].</p>
+                            </div>
+                        </div>
+                        <div class="cv-item">
+                            <span class="cv-date">2022</span>
+                            <div class="cv-details">
+                                <strong>JSON Parser in C++</strong>
+                                [cite_start]<p>Parser tramite grammatiche context-free, operator overloading e iteratori[cite: 38].</p>
+                            </div>
+                        </div>
+                        <div class="cv-item">
+                            <span class="cv-date">2021</span>
+                            <div class="cv-details">
+                                <strong>Tetris in C</strong>
+                                [cite_start]<p>Gioco in console con logica collisioni e punteggio[cite: 40].</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cv-section">
+                        <h4><i class="fa-solid fa-laptop-code"></i> Competenze Tecniche</h4>
+                        
+                        <p><strong>Linguaggi di Programmazione:</strong></p>
+                        <div class="skills-grid">
+                            <span class="skill-tag">Java (8+)</span>
+                            <span class="skill-tag">C++ (12+)</span>
+                            <span class="skill-tag">C (90+)</span>
+                            <span class="skill-tag">Python (2+)</span>
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">Dart</span>
+                            <span class="skill-tag">Swift</span>
+                            <span class="skill-tag">Assembly</span>
+                            <span class="skill-tag">Shell UNIX</span>
+                            <span class="skill-tag">LaTeX</span>
+                        </div>
+
+                        <p style="margin-top: 10px;"><strong>Software & Tools:</strong></p>
+                        <div class="skills-grid">
+                            <span class="skill-tag">Git/GitHub</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Flutter</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">Wireshark</span>
+                            <span class="skill-tag">Android Studio</span>
+                            <span class="skill-tag">VS Code</span>
+                            <span class="skill-tag">IntelliJ IDEA</span>
+                            <span class="skill-tag">Xcode</span>
+                        </div>
+
+                        <p style="margin-top: 10px;"><strong>Sistemi Operativi:</strong></p>
+                        <div class="skills-grid">
+                            <span class="skill-tag">macOS (Primario)</span>
+                            <span class="skill-tag">Linux (Admin/Server)</span>
+                            <span class="skill-tag">Windows</span>
+                        </div>
+                    </div>
+
+                    <div class="cv-section">
+                        <h4><i class="fa-solid fa-language"></i> Lingue & Certificazioni</h4>
+                        <div class="cv-details">
+                            [cite_start]<p><strong>Lingue:</strong> Italiano (Madrelingua), Inglese (B2), Spagnolo (B2), Tedesco (A1)[cite: 4].</p>
+                            [cite_start]<p><strong>Certificazioni:</strong> HackerRank (JS, CSS, Python Base), Certificazione Inglese B1 (Ca' Foscari)[cite: 41, 46].</p>
+                        </div>
+                    </div>
+
                 </div>
-            </section>
+            </div>
+        </section>
 
             <!-- Certifications Section -->
             <section class="portfolio-section">
                 <h2>Certificazioni</h2>
                 <div class="cards-grid">
                     <div class="card cert-card">
-                        <div class="cert-icon"><i class="fa-solid fa-certificate"></i></div>
-                        <h3>AWS Certified Cloud Practitioner</h3>
-                        <p class="cert-issuer">Amazon Web Services</p>
+                        <div class="cert-icon"><i class="fa-brands fa-hackerrank"></i></div>
+                        <h3>HackerRank Javascript</h3>
+                        <p class="cert-issuer">HackerRank</p>
+                        <p class="cert-date">Issued: December 2023</p>
+                        <a href="Certificazioni/js_hr.pdf" class="btn-text">Visualizza <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                    <div class="card cert-card">
+                        <div class="cert-icon"><i class="fa-brands fa-hackerrank"></i></div>
+                        <h3>HackerRank Python</h3>
+                        <p class="cert-issuer">HackerRank</p>
+                        <p class="cert-date">Issued: December 2023</p>
+                        <a href="Certificazioni/py_hr.pdf" class="btn-text">Visualizza <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                    <div class="card cert-card">
+                        <div class="cert-icon"><i class="fa-brands fa-hackerrank"></i></div>
+                        <h3>HackerRank CSS</h3>
+                        <p class="cert-issuer">HackerRank</p>
+                        <p class="cert-date">Issued: December 2023</p>
+                        <a href="Certificazioni/css_hr.pdf" class="btn-text">Visualizza <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                    <div class="card cert-card">
+                        <div class="cert-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <h3>Coursera WordPress</h3>
+                        <p class="cert-issuer">Coursera</p>
                         <p class="cert-date">Issued: January 2024</p>
-                        <a href="#" class="btn-text">Visualizza <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="Certificazioni/coursera.pdf" class="btn-text">Visualizza <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                     <div class="card cert-card">
-                        <div class="cert-icon"><i class="fa-solid fa-certificate"></i></div>
-                        <h3>JavaScript Algorithms and Data Structures</h3>
-                        <p class="cert-issuer">freeCodeCamp</p>
-                        <p class="cert-date">Issued: November 2023</p>
-                        <a href="#" class="btn-text">Visualizza <i class="fa-solid fa-arrow-right"></i></a>
+                        <div class="cert-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                        <h3>Aulab Web Developer</h3>
+                        <p class="cert-issuer">Aulab Hackademy</p>
+                        <p class="cert-date">Issued: July 2023</p>
+                        <a href="Certificazioni/aulab.pdf" class="btn-text">Visualizza <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                     <div class="card cert-card">
-                        <div class="cert-icon"><i class="fa-solid fa-certificate"></i></div>
-                        <h3>Responsive Web Design</h3>
-                        <p class="cert-issuer">freeCodeCamp</p>
-                        <p class="cert-date">Issued: September 2023</p>
-                        <a href="#" class="btn-text">Visualizza <i class="fa-solid fa-arrow-right"></i></a>
+                        <div class="cert-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                        <h3>Aulab UX/UI Design</h3>
+                        <p class="cert-issuer">Aulab Hackademy</p>
+                        <p class="cert-date">Issued: July 2023</p>
+                        <a href="Certificazioni/aulab2.pdf" class="btn-text">Visualizza <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
             </section>
@@ -141,14 +314,16 @@
                             <span class="project-status status-active">In Sviluppo</span>
                         </div>
                         <h3>AI-Powered Study Assistant</h3>
-                        <p>Un assistente di studio basato su intelligenza artificiale che aiuta gli studenti a organizzare note e creare quiz personalizzati.</p>
+                        <p>Un assistente di studio basato su intelligenza artificiale che aiuta gli studenti a
+                            organizzare note e creare quiz personalizzati.</p>
                         <div class="project-tech">
                             <span class="tech-tag">React</span>
                             <span class="tech-tag">Node.js</span>
                             <span class="tech-tag">OpenAI</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/Tiume001/study-assistant" target="_blank" title="GitHub Repository"><i class="fa-brands fa-github"></i></a>
+                            <a href="https://github.com/Tiume001/study-assistant" target="_blank"
+                                title="GitHub Repository"><i class="fa-brands fa-github"></i></a>
                             <a href="#" target="_blank" title="Live Demo"><i class="fa-solid fa-link"></i></a>
                         </div>
                     </div>
@@ -158,14 +333,16 @@
                             <span class="project-status status-completed">Completato</span>
                         </div>
                         <h3>Task Management Dashboard</h3>
-                        <p>Una dashboard moderna per la gestione di task e progetti con funzionalità di drag-and-drop e collaborazione in tempo reale.</p>
+                        <p>Una dashboard moderna per la gestione di task e progetti con funzionalità di drag-and-drop e
+                            collaborazione in tempo reale.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Vue.js</span>
                             <span class="tech-tag">Firebase</span>
                             <span class="tech-tag">Tailwind</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/Tiume001/task-dashboard" target="_blank" title="GitHub Repository"><i class="fa-brands fa-github"></i></a>
+                            <a href="https://github.com/Tiume001/task-dashboard" target="_blank"
+                                title="GitHub Repository"><i class="fa-brands fa-github"></i></a>
                             <a href="#" target="_blank" title="Live Demo"><i class="fa-solid fa-link"></i></a>
                         </div>
                     </div>
@@ -175,14 +352,16 @@
                             <span class="project-status status-paused">In Pausa</span>
                         </div>
                         <h3>Fitness Tracker Mobile App</h3>
-                        <p>App mobile per il tracciamento di allenamenti e obiettivi fitness con integrazione di wearable devices.</p>
+                        <p>App mobile per il tracciamento di allenamenti e obiettivi fitness con integrazione di
+                            wearable devices.</p>
                         <div class="project-tech">
                             <span class="tech-tag">React Native</span>
                             <span class="tech-tag">TypeScript</span>
                             <span class="tech-tag">MongoDB</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/Tiume001/fitness-tracker" target="_blank" title="GitHub Repository"><i class="fa-brands fa-github"></i></a>
+                            <a href="https://github.com/Tiume001/fitness-tracker" target="_blank"
+                                title="GitHub Repository"><i class="fa-brands fa-github"></i></a>
                         </div>
                     </div>
                 </div>
@@ -192,7 +371,8 @@
             <section class="portfolio-section">
                 <h2>Collegamenti Social</h2>
                 <div class="social-grid">
-                    <a href="https://www.linkedin.com/in/mattia-scarpa-a20a6b277/" target="_blank" class="social-card card">
+                    <a href="https://www.linkedin.com/in/mattia-scarpa-a20a6b277/" target="_blank"
+                        class="social-card card">
                         <i class="fa-brands fa-linkedin"></i>
                         <h3>LinkedIn</h3>
                         <p>Profilo professionale</p>
@@ -207,7 +387,7 @@
                         <h3>Instagram</h3>
                         <p>Contenuti personali</p>
                     </a>
-                    <a href="https://hackerrank.com/mattiascarpa" target="_blank" class="social-card card">
+                    <a href="https://www.hackerrank.com/profile/h892831" target="_blank" class="social-card card">
                         <i class="fa-solid fa-code"></i>
                         <h3>HackerRank</h3>
                         <p>Sfide di programmazione</p>
@@ -219,6 +399,8 @@
 
     <!-- AUTH GUARD -->
     <script type="module" src="auth-guard.js"></script>
+    <!-- Sidebar Toggle -->
+    <script src="script.js"></script>
     <!-- Personal Section Functionality -->
     <script src="personal.js"></script>
 </body>

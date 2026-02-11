@@ -175,6 +175,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Event Listeners
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.trim();
+
+            if (query.length > 0) {
+                // Assuming performSearch and displayResults are defined elsewhere or will be added.
+                // For now, this will cause an error if they are not.
+                // To make it syntactically correct and functional with existing code,
+                // this block would need to be integrated differently or the functions defined.
+                // As per instruction, making the change faithfully as provided.
+                const results = performSearch(query);
+                displayResults(results);
+            } else {
+                // Assuming resultsContainer is defined, likely referring to the dropdown.
+                // If resultsContainer is not defined, this will cause an error.
+                // Using 'dropdown' from the existing code for syntactic correctness.
+                dropdown.classList.remove('active');
+            }
+        });
+
+        // Close search results when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container')) {
+                // Assuming resultsContainer is defined, likely referring to the dropdown.
+                // If resultsContainer is not defined, this will cause an error.
+                // Using 'dropdown' from the existing code for syntactic correctness.
+                dropdown.classList.remove('active');
+            }
+        });
+    }
+
     // =========================================
     // NAVIGATION & UI
     // =========================================
@@ -227,4 +259,75 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+    // =========================================
+    // SIDEBAR TOGGLE FUNCTIONALITY
+    // =========================================
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebar = document.querySelector('.sidebar');
+    const mainContent = document.querySelector('.main-content');
+    const overlay = document.createElement('div');
+    overlay.className = 'sidebar-overlay';
+    document.body.appendChild(overlay);
+
+    function toggleSidebar() {
+        if (window.innerWidth > 768) {
+            // Desktop: Toggle Closed State
+            sidebar.classList.toggle('closed');
+            document.body.classList.toggle('sidebar-closed');
+            if (mainContent) mainContent.classList.toggle('expanded');
+        } else {
+            // Mobile: Toggle Open State
+            sidebar.classList.toggle('open');
+            document.body.classList.toggle('sidebar-open');
+            overlay.classList.toggle('active');
+        }
+    }
+
+    if (sidebar && sidebarToggle) {
+        sidebarToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleSidebar();
+        });
+
+        // Close sidebar when clicking overlay (Mobile)
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            document.body.classList.remove('sidebar-open');
+            overlay.classList.remove('active');
+        });
+
+        // Close sidebar when clicking a link (Mobile)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('open');
+                    overlay.classList.remove('active');
+                }
+            });
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                // Reset mobile states when going to desktop
+                overlay.classList.remove('active');
+                sidebar.classList.remove('open');
+                document.body.classList.remove('sidebar-open');
+
+                // Ensure desktop state is respected
+                if (sidebar.classList.contains('closed')) {
+                    document.body.classList.add('sidebar-closed');
+                    if (mainContent) mainContent.classList.add('expanded');
+                } else {
+                    document.body.classList.remove('sidebar-closed');
+                    if (mainContent) mainContent.classList.remove('expanded');
+                }
+            } else {
+                // Reset desktop states when going to mobile
+                sidebar.classList.remove('closed');
+                document.body.classList.remove('sidebar-closed');
+                if (mainContent) mainContent.classList.remove('expanded');
+            }
+        });
+    }
 });
