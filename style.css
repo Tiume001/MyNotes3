@@ -1695,7 +1695,7 @@ details.snippet-container[open] summary.snippet-header i.fa-chevron-down {
     height: 100%;
     background: var(--gradient-main);
     border-radius: 100px;
-    transition: width 0.3s var(--transition-smooth);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     width: 0%;
 }
 
