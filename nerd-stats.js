@@ -1,95 +1,86 @@
-// Nerd Stats - Technical Statistics Dashboard
-// Fetches and displays real-time system and network information
+// Fetch IP Address and Network Info from external API
+// Uses ipapi.co which provides IP, ISP, and connection details cross-browser
+async function fetchIPAndNetworkInfo() {
+  const ipEl = document.getElementById('ipAddress');
+  const connEl = document.getElementById('connectionType');
+  const labelEl = document.getElementById('connectionLabel');
 
-// Fetch IP Address from external API
-async function fetchIPAddress() {
+  // Set up connection type from navigator.connection (or fallback)
+  setupConnectionType(connEl);
+
   try {
-    const response = await fetch('https://api.ipify.org?format=json');
-    if (!response.ok) throw new Error('API request failed');
+    // Try ipapi.co first (gives IP + ISP info)
+    const response = await fetch('https://ipapi.co/json/');
+    if (!response.ok) throw new Error('ipapi.co failed');
     const data = await response.json();
-    document.getElementById('ipAddress').textContent = data.ip;
-  } catch (error) {
-    console.error('Failed to fetch IP:', error);
-    document.getElementById('ipAddress').textContent = 'Unavailable';
+
+    if (ipEl) ipEl.textContent = data.ip || 'Unavailable';
+    if (labelEl && data.org) labelEl.textContent = data.org;
+  } catch (err1) {
+    // Fallback: try ipify.org for IP only (more CORS-friendly)
+    try {
+      const response = await fetch('https://api.ipify.org?format=json');
+      if (!response.ok) throw new Error('ipify failed');
+      const data = await response.json();
+      if (ipEl) ipEl.textContent = data.ip || 'Unavailable';
+    } catch (err2) {
+      console.error('All IP APIs failed:', err2);
+      if (ipEl) ipEl.textContent = 'Unavailable';
+    }
   }
 }
 
-// Get Network Information using Navigator API
-function getNetworkInfo() {
+// Setup connection type using navigator.connection or user agent fallback
+function setupConnectionType(connEl) {
+  if (!connEl) return;
+
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-
   if (connection) {
-    // Get connection type (wifi, cellular, ethernet, etc.)
-    let connectionType = 'Unknown';
-
-    if (connection.type) {
-      // Map connection types to readable names
-      const typeMap = {
-        'wifi': 'WiFi',
-        'cellular': 'Mobile Data',
-        'ethernet': 'Ethernet',
-        'bluetooth': 'Bluetooth',
-        'wimax': 'WiMAX',
-        'none': 'Offline',
-        'unknown': 'Unknown'
-      };
-      connectionType = typeMap[connection.type] || connection.type;
-    } else if (connection.effectiveType) {
-      // Fallback to effective type with better labels
-      const effectiveType = connection.effectiveType;
-      const typeMap = {
-        'slow-2g': 'Mobile (2G Slow)',
-        '2g': 'Mobile (2G)',
-        '3g': 'Mobile (3G)',
-        '4g': 'Mobile (4G/LTE)'
-      };
-      connectionType = typeMap[effectiveType] || effectiveType;
-    }
-
-    document.getElementById('connectionType').textContent = connectionType;
-
-    // Update on connection change
+    connEl.textContent = getConnectionTypeLabel(connection);
     connection.addEventListener('change', () => {
-      let newType = 'Unknown';
-
-      if (connection.type) {
-        const typeMap = {
-          'wifi': 'WiFi',
-          'cellular': 'Mobile Data',
-          'ethernet': 'Ethernet',
-          'bluetooth': 'Bluetooth',
-          'wimax': 'WiMAX',
-          'none': 'Offline',
-          'unknown': 'Unknown'
-        };
-        newType = typeMap[connection.type] || connection.type;
-      } else if (connection.effectiveType) {
-        const effectiveType = connection.effectiveType;
-        const typeMap = {
-          'slow-2g': 'Mobile (2G Slow)',
-          '2g': 'Mobile (2G)',
-          '3g': 'Mobile (3G)',
-          '4g': 'Mobile (4G/LTE)'
-        };
-        newType = typeMap[effectiveType] || effectiveType;
-      }
-
-      document.getElementById('connectionType').textContent = newType;
+      connEl.textContent = getConnectionTypeLabel(connection);
     });
   } else {
-    // Fallback: detect connection type from user agent or online status
+    // Safari/Firefox fallback
     if (navigator.onLine) {
-      // Try to guess from user agent
       const ua = navigator.userAgent.toLowerCase();
       if (ua.includes('mobile') || ua.includes('android') || ua.includes('iphone')) {
-        document.getElementById('connectionType').textContent = 'Online (Mobile)';
+        connEl.textContent = 'Mobile';
       } else {
-        document.getElementById('connectionType').textContent = 'Online';
+        connEl.textContent = 'Online';
       }
     } else {
-      document.getElementById('connectionType').textContent = 'Offline';
+      connEl.textContent = 'Offline';
     }
+    // Listen for online/offline changes
+    window.addEventListener('online', () => { connEl.textContent = 'Online'; });
+    window.addEventListener('offline', () => { connEl.textContent = 'Offline'; });
   }
+}
+
+// Helper: get readable connection type label from navigator.connection
+function getConnectionTypeLabel(connection) {
+  if (connection.type) {
+    const typeMap = {
+      'wifi': 'WiFi',
+      'cellular': 'Mobile Data',
+      'ethernet': 'Ethernet',
+      'bluetooth': 'Bluetooth',
+      'wimax': 'WiMAX',
+      'none': 'Offline',
+      'unknown': 'Unknown'
+    };
+    return typeMap[connection.type] || connection.type;
+  } else if (connection.effectiveType) {
+    const typeMap = {
+      'slow-2g': 'Mobile (2G Slow)',
+      '2g': 'Mobile (2G)',
+      '3g': 'Mobile (3G)',
+      '4g': 'WiFi / 4G'
+    };
+    return typeMap[connection.effectiveType] || connection.effectiveType;
+  }
+  return 'Unknown';
 }
 
 // Get Browser Information from user agent
@@ -131,11 +122,58 @@ function getCPUCores() {
   document.getElementById('cpuCores').textContent = cores || 'N/A';
 }
 
+// Get GPU / Graphics Renderer info via WebGL (cross-browser)
+function getGPUInfo() {
+  const rendererEl = document.getElementById('gpuRenderer');
+  const vendorEl = document.getElementById('gpuVendor');
+
+  try {
+    const canvas = document.createElement('canvas');
+    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+
+    if (gl) {
+      const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+      if (debugInfo) {
+        const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+        const vendor = gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL);
+
+        // Clean up renderer string (remove "ANGLE (...)" wrapper if present)
+        let cleanRenderer = renderer;
+        const angleMatch = renderer.match(/ANGLE \((.+?)(?:,\s*(.+?))?(?:,\s*(.+?))?\)/);
+        if (angleMatch) {
+          // ANGLE wraps the actual GPU info, extract it
+          cleanRenderer = angleMatch[2] || angleMatch[1];
+          cleanRenderer = cleanRenderer.replace(/Direct3D\d+/i, '').trim();
+          cleanRenderer = cleanRenderer.replace(/vs_\d+_\d+/g, '').replace(/ps_\d+_\d+/g, '').trim();
+          cleanRenderer = cleanRenderer.replace(/,\s*$/, '').trim();
+        }
+
+        if (rendererEl) rendererEl.textContent = cleanRenderer || renderer;
+        if (vendorEl) vendorEl.textContent = vendor || 'Graphics Hardware';
+      } else {
+        // Fallback: use basic renderer info
+        const renderer = gl.getParameter(gl.RENDERER);
+        const vendor = gl.getParameter(gl.VENDOR);
+        if (rendererEl) rendererEl.textContent = renderer || 'WebGL Supported';
+        if (vendorEl) vendorEl.textContent = vendor || 'Graphics Hardware';
+      }
+
+      // Clean up the context
+      const loseCtx = gl.getExtension('WEBGL_lose_context');
+      if (loseCtx) loseCtx.loseContext();
+    } else {
+      if (rendererEl) rendererEl.textContent = 'WebGL N/A';
+      if (vendorEl) vendorEl.textContent = 'No GPU acceleration';
+    }
+  } catch (error) {
+    console.error('GPU info error:', error);
+    if (rendererEl) rendererEl.textContent = 'Error';
+  }
+}
+
 // Get Battery Status using Battery API
 async function getBatteryStatus() {
-  const levelEl = document.getElementById('batteryLevel');
-  const statusEl = document.getElementById('batteryStatus');
-  const barEl = document.getElementById('batteryBar');
+  const card = document.getElementById('batteryCard');
 
   if ('getBattery' in navigator) {
     try {
@@ -147,25 +185,12 @@ async function getBatteryStatus() {
       battery.addEventListener('chargingchange', () => updateBatteryUI(battery));
     } catch (error) {
       console.error('Battery API error:', error);
-      setBatteryUnavailable(levelEl, statusEl, barEl, 'Errore API');
+      // Hide the card if API errors out
+      if (card) card.style.display = 'none';
     }
   } else {
-    // Battery API not supported (Safari, Firefox)
-    // Try to detect if it's a laptop/mobile based on screen/touch
-    const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
-    const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    const hint = (isMobile || hasTouch) ? 'Dispositivo con batteria rilevato' : 'Dispositivo desktop';
-    setBatteryUnavailable(levelEl, statusEl, barEl, `Non supportato (${hint})`);
-  }
-}
-
-// Set battery UI to unavailable state
-function setBatteryUnavailable(levelEl, statusEl, barEl, message) {
-  if (levelEl) levelEl.textContent = 'N/A';
-  if (statusEl) statusEl.textContent = message;
-  if (barEl) {
-    barEl.style.width = '100%';
-    barEl.style.opacity = '0.15';
+    // Battery API not supported (Safari, Firefox) — hide the card
+    if (card) card.style.display = 'none';
   }
 }
 
@@ -324,12 +349,12 @@ function initializeStats() {
   }, 1000);
 
   // Initialize all other stats
-  fetchIPAddress();
-  getNetworkInfo();
+  fetchIPAndNetworkInfo();
   getBrowserInfo();
   getScreenResolution();
   getDeviceMemory();
   getCPUCores();
+  getGPUInfo();
   getBatteryStatus();
 }
 

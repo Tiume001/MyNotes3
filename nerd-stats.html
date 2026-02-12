@@ -94,7 +94,7 @@
                         <div class="stat-content">
                             <h3>Connection Type</h3>
                             <p class="stat-value" id="connectionType">Loading...</p>
-                            <span class="stat-label">Network Interface</span>
+                            <span class="stat-label" id="connectionLabel">Network Interface</span>
                         </div>
                     </div>
 
@@ -161,8 +161,20 @@
                         </div>
                     </div>
 
-                    <!-- Battery Status Card -->
+                    <!-- GPU Renderer Card -->
                     <div class="stat-card card">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-display"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>GPU Renderer</h3>
+                            <p class="stat-value" id="gpuRenderer">Loading...</p>
+                            <span class="stat-label" id="gpuVendor">Graphics Hardware</span>
+                        </div>
+                    </div>
+
+                    <!-- Battery Status Card (hidden on unsupported browsers) -->
+                    <div class="stat-card card" id="batteryCard">
                         <div class="stat-icon">
                             <i class="fa-solid fa-battery-three-quarters"></i>
                         </div>
