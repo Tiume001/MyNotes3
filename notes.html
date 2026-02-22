@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Notes | Mattia Scarpa</title> <!-- Titolo che compare sulla scheda del browser -->
+    <meta name="description" content="Note universitarie, progetti e risorse per studenti.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="animations.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Floating Sidebar Toggle -->
+        <button id="sidebarToggle" class="sidebar-toggle" title="Toggle Menu">
+            <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+
+        <!-- Navigation Sidebar -->
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>MyNotes</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li class="active"><a href="notes.html"><i class="fa-solid fa-book"></i> Archivio Appunti</a></li>
+                <li><a href="year1.html"><i class="fa-solid fa-1"></i> Primo Anno</a></li>
+                <li><a href="year2.html"><i class="fa-solid fa-2"></i> Secondo Anno</a></li>
+                <li><a href="year3.html"><i class="fa-solid fa-3"></i> Terzo Anno</a></li>
+                <li><a href="nerd-stats.html"><i class="fa-solid fa-chart-line"></i> Stats</a></li>
+            </ul>
+            <div class="nav-footer">
+                <a href="https://github.com/Tiume001" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="mailto:tiume00@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-bar">
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" placeholder="Cerca una materia, un appunto...">
+                </div>
+                <div class="user-profile">
+                    <span>Mattia Scarpa</span>
+                    <div class="avatar">MS</div>
+                    <button id="logoutBtn" class="logout-btn" title="Logout">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Hero Section -->
+            <section id="home" class="hero" data-animate="fade-up">
+                <div class="hero-content" data-animate="fade-up" data-delay="200">
+                    <h1>Benvenuto nel mio <span class="gradient-text">Archivio Universitario</span></h1>
+                    <p>Appunti, progetti e risorse della laurea triennale a Ca’ Foscari, organizzati e liberamente
+                        accessibili.</p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">Anni</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">20+</span>
+                            <span class="stat-label">Materie</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100+</span>
+                            <span class="stat-label">Risorse</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual" data-animate="fade-in" data-delay="400">
+                    <!-- Abstract decorative element -->
+                    <div class="blob blob-1"></div>
+                    <div class="blob blob-2"></div>
+                </div>
+            </section>
+
+            <!-- Years Grid -->
+            <section class="years-section">
+                <h2>Esplora per Anno</h2>
+                <div class="cards-grid">
+                    <a href="year1.html" class="card year-card">
+                        <div class="card-icon"><i class="fa-solid fa-1"></i></div>
+                        <div class="card-content">
+                            <h3>Primo Anno</h3>
+                            <p>Fondamenti, Matematica, Programmazione base.</p>
+                        </div>
+                        <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                    </a>
+                    <a href="year2.html" class="card year-card">
+                        <div class="card-icon"><i class="fa-solid fa-2"></i></div>
+                        <div class="card-content">
+                            <h3>Secondo Anno</h3>
+                            <p>Algoritmi, Sistemi Operativi, Basi di Dati.</p>
+                        </div>
+                        <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                    </a>
+                    <a href="year3.html" class="card year-card">
+                        <div class="card-icon"><i class="fa-solid fa-3"></i></div>
+                        <div class="card-content">
+                            <h3>Terzo Anno</h3>
+                            <p>Ingegneria del Software, Ricerca Operativa, Reti di Calcolatori.</p>
+                        </div>
+                        <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Extras Section -->
+            <section id="extras" class="extras-section">
+                <h2>Sezioni Extra</h2>
+                <div class="cards-grid">
+                    <a href="extras1.html" class="card extra-card">
+                        <div class="card-header">
+                            <i class="fa-solid fa-flag"></i>
+                            <span>CTF & Security</span>
+                        </div>
+                        <h3>WeChall & Writeups</h3>
+                        <p>Soluzioni e writeup per le challenge di sicurezza informatica.</p>
+                        <div class="btn-text">Vai alla sezione <i class="fa-solid fa-arrow-right"></i></div>
+                    </a>
+                    <a href="extras2.html" class="card extra-card">
+                        <div class="card-header">
+                            <i class="fa-solid fa-code"></i>
+                            <span>Progetti</span>
+                        </div>
+                        <h3>Side Projects</h3>
+                        <p>Progetti personali sviluppati durante il percorso di studi.</p>
+                        <div class="btn-text">Vai alla sezione <i class="fa-solid fa-arrow-right"></i></div>
+                    </a>
+                    <a href="extras2.html" class="card extra-card">
+                        <div class="card-header">
+                            <i class="fa-solid fa-code"></i>
+                            <span>Progetti</span>
+                        </div>
+                        <h3>Side Projects</h3>
+                        <p>Progetti personali sviluppati durante il percorso di studi.</p>
+                        <div class="btn-text">Vai alla sezione <i class="fa-solid fa-arrow-right"></i></div>
+                    </a>
+                    <a href="extras2.html" class="card extra-card">
+                        <div class="card-header">
+                            <i class="fa-solid fa-code"></i>
+                            <span>Progetti</span>
+                        </div>
+                        <h3>Side Projects</h3>
+                        <p>Progetti personali sviluppati durante il percorso di studi.</p>
+                        <div class="btn-text">Vai alla sezione <i class="fa-solid fa-arrow-right"></i></div>
+                    </a>
+                    <a href="extras2.html" class="card extra-card">
+                        <div class="card-header">
+                            <i class="fa-solid fa-code"></i>
+                            <span>Progetti</span>
+                        </div>
+                        <h3>Side Projects</h3>
+                        <p>Progetti personali sviluppati durante il percorso di studi.</p>
+                        <div class="btn-text">Vai alla sezione <i class="fa-solid fa-arrow-right"></i></div>
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Firebase Authentication Check & Logout -->
+    <script type="module" src="notes.js"></script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
