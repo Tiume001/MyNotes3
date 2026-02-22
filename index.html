@@ -17,263 +17,198 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=5">
     <link rel="stylesheet" href="animations.css">
 </head>
 
 <body>
     <div class="app-container">
-        <!-- Floating Sidebar Toggle -->
-        <button id="sidebarToggle" class="sidebar-toggle" title="Toggle Menu">
-            <i class="fa-solid fa-bars-staggered"></i>
-        </button>
-
-        <!-- Navigation Sidebar -->
-        <nav class="sidebar">
-            <div class="logo">
-                <i class="fa-solid fa-graduation-cap"></i>
-                <span>MyNotes</span>
+        <!-- Top Navigation Bar -->
+        <nav class="top-navbar">
+            <div class="nav-left">
+                <div class="logo">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <span>MyNotes</span>
+                </div>
             </div>
-            <ul class="nav-links">
-                <li class="active"><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
-                <li><a href="notes.html"><i class="fa-solid fa-book"></i> Archivio Appunti</a></li>
-                <li><a href="year1.html"><i class="fa-solid fa-1"></i> Primo Anno</a></li>
-                <li><a href="year2.html"><i class="fa-solid fa-2"></i> Secondo Anno</a></li>
-                <li><a href="year3.html"><i class="fa-solid fa-3"></i> Terzo Anno</a></li>
-                <li><a href="nerd-stats.html"><i class="fa-solid fa-chart-line"></i> Stats</a></li>
-            </ul>
-            <div class="nav-footer">
-                <a href="https://github.com/Tiume001" target="_blank"><i class="fa-brands fa-github"></i></a>
-                <a href="mailto:tiume00@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+
+            <div class="top-nav">
+                <ul class="nav-links">
+                    <li class="active"><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li class=""><a href="notes.html"><i class="fa-solid fa-book"></i> Archivio Appunti <i
+                                id="authPadlock" class="fa-solid fa-lock" title="Stato Accesso"></i></a></li>
+                    <li class=""><a href="nerd-stats.html"><i class="fa-solid fa-chart-line"></i> Stats</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-right">
+                <button id="themeToggleBtn" class="theme-toggle-btn" title="Cambia Tema">
+                    <i id="themeIcon" class="fa-solid fa-moon"></i>
+                </button>
+
+                <a href="https://github.com/Tiume001" target="_blank"
+                    style="color: var(--text-secondary); font-size: 1.2rem; transition: 0.2s;"><i
+                        class="fa-brands fa-github"></i></a>
+                <a href="mailto:tiume00@gmail.com"
+                    style="color: var(--text-secondary); font-size: 1.2rem; transition: 0.2s;"><i
+                        class="fa-solid fa-envelope"></i></a>
             </div>
         </nav>
 
         <!-- Main Content -->
         <main class="main-content">
-            <!-- Header -->
-            <header class="top-bar">
-                <div class="breadcrumbs">
-                    <a href="index.html">Home</a>
-                    <i class="fa-solid fa-chevron-right"></i>
-                    <span>Portfolio</span>
-                </div>
-                <div class="user-profile">
-                    <span>Mattia Scarpa</span>
-                    <div class="avatar">MS</div>
-                </div>
-            </header>
-
             <!-- Hero Section -->
             <section class="hero-small">
-                <div class="hero-content">
-                    <h1>Portfolio <span class="gradient-text">Personale</span></h1>
-                    <p>CV, certificazioni, progetti extra-curriculari e collegamenti social.</p>
+                <div class="hero-content" style="max-width: 800px;">
+                    <h1 style="font-size: 4rem; line-height: 1.1; margin-bottom: 0.5rem;">Benvenuto! <br>Sono <span
+                            class="gradient-text">Mattia Scarpa</span></h1>
+                    <p style="font-size: 1.4rem; color: var(--text-secondary); margin-bottom: 2rem;">Studente di
+                        Informatica e Sviluppatore Full Stack appassionato di intelligenza artificiale, sicurezza e
+                        design di interfacce interattive.</p>
                 </div>
             </section>
 
             <!-- CV Section -->
             <section class="portfolio-section">
-                <h2>Curriculum Vitae</h2>
-                <div class="cv-container">
-                    <div class="cv-card card collapsed" id="cvCard">
 
-                        <div class="cv-header">
-                            <div class="cv-avatar">MS</div>
-                            <div class="cv-info">
-                                <h3>Mattia Scarpa</h3>
-                                <p>Studente di Informatica | Sviluppatore Full Stack</p>
-                                <div class="cv-contacts" style="font-size: 0.9em; margin-top: 5px; opacity: 0.8;">
-                                    <span><i class="fa-solid fa-location-dot"></i> Venezia, Italia</span> |
-                                    <span><i class="fa-solid fa-phone"></i> +39 340 008 0030</span> |
-                                    <span><i class="fa-solid fa-envelope"></i> tiume00@gmail.com</span>
-                                </div>
-                                <div class="cv-socials" style="margin-top: 5px;">
-                                    <a href="https://github.com/Tiume001" target="_blank"><i
-                                            class="fa-brands fa-github"></i> GitHub</a> |
-                                    <a href="https://linkedin.com/in/mattia-scarpa" target="_blank"><i
-                                            class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h2 style="margin: 0;">Curriculum Vitae</h2>
+                    <a href="CV.pdf" download class="btn-primary"
+                        style="padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; background: var(--gradient-main); color: white;">
+                        <i class="fa-solid fa-file-pdf"></i> Scarica CV
+                    </a>
+                </div>
+
+
+                <div class="cv-linear-container">
+
+                    <!-- Formazione IT e Competenze -->
+                    <div class="cv-linear-section">
+                        <h3 class="cv-section-title"><i class="fa-solid fa-laptop-code"></i> Competenze Informatiche
+                        </h3>
+                        <div class="cv-section-content">
+                            <div class="cv-item-linear compact">
+                                <div class="cv-details-linear full-width">
+                                    <strong>Linguaggi Core</strong>
+                                    <p>Java (8+), C/C++ (90+/12+), Python (2+), Dart, Swift, SQL, JavaScript, HTML, CSS,
+                                        Assembly</p>
                                 </div>
                             </div>
-                            <button class="cv-toggle" id="cvToggle" title="Espandi / Comprimi CV">
-                                <i class="fa-solid fa-chevron-down"></i>
-                            </button>
+
+                            <div class="cv-item-linear compact">
+                                <div class="cv-details-linear full-width">
+                                    <strong>Frameworks & Tools</strong>
+                                    <p>Flutter, Docker, Git/GitHub, PostgreSQL, Wireshark</p>
+                                </div>
+                            </div>
+
+                            <div class="cv-item-linear compact" style="border-bottom: none;">
+                                <div class="cv-details-linear full-width">
+                                    <strong>Sistemi Operativi</strong>
+                                    <p>macOS (Primario), Linux (Admin/Server)</p>
+                                </div>
+                            </div>
+
                         </div>
+                    </div>
 
-                        <div class="cv-body" id="cvBody">
-
-                            <div class="cv-section">
-                                <h4><i class="fa-solid fa-briefcase"></i> Esperienza Professionale</h4>
-
-                                <div class="cv-item">
-                                    <span class="cv-date">2025</span>
-                                    <div class="cv-details">
-                                        <strong>Oste</strong>
-                                        <p>Enoteca "La Sete", Venezia</p>
-                                        [cite_start]<p class="job-desc">Accoglienza clienti, servizio al banco/tavoli,
-                                            consulenza vini e gestione mescita[cite: 8].</p>
-                                    </div>
-                                </div>
-
-                                <div class="cv-item">
-                                    <span class="cv-date">2023 - 2024</span>
-                                    <div class="cv-details">
-                                        <strong>Bartender</strong>
-                                        <p>Hotel Bonvecchiati, Venezia</p>
-                                        [cite_start]<p class="job-desc">Servizio in contesto alberghiero di alto
-                                            livello, creazione drink e gestione banco[cite: 8].</p>
-                                    </div>
-                                </div>
-
-                                <div class="cv-item">
-                                    <span class="cv-date">2022</span>
-                                    <div class="cv-details">
-                                        <strong>Operaio Metalmeccanico</strong>
-                                        <p>Re.Te., Venezia</p>
-                                        [cite_start]<p class="job-desc">Raccolta, selezione e trasporto materiali
-                                            (incluso trasporto in barca verso smaltimento)[cite: 8].</p>
-                                    </div>
-                                </div>
-
-                                <div class="cv-item">
-                                    <span class="cv-date">2019</span>
-                                    <div class="cv-details">
-                                        <strong>Operaio Edile (Volontariato)</strong>
-                                        <p>Lunaria, Beruges (Francia)</p>
-                                        [cite_start]<p class="job-desc">Progetto internazionale: costruzione muro in
-                                            pietra, lavoro in team multiculturale[cite: 8].</p>
-                                    </div>
-                                </div>
-
-                                <div class="cv-item">
-                                    <span class="cv-date">2018</span>
-                                    <div class="cv-details">
-                                        <strong>Aiuto Cameriere</strong>
-                                        <p>Fernhill House Hotel, Clonakilty (Irlanda)</p>
-                                        [cite_start]<p class="job-desc">Pulizia tavoli e preparazione buffet (tramite
-                                            European Career Evolution)[cite: 8].</p>
-                                    </div>
-                                </div>
-
-                                <div class="cv-item">
-                                    <span class="cv-date">2018</span>
-                                    <div class="cv-details">
-                                        <strong>Operatore Socio Sanitario (Volontario)</strong>
-                                        <p>Unitalsi Triveneta, Lourdes (Francia)</p>
-                                        [cite_start]<p class="job-desc">Assistenza anziani durante viaggio in treno e
-                                            supporto logistico[cite: 8].</p>
-                                    </div>
+                    <div class="cv-linear-section">
+                        <h3 class="cv-section-title"><i class="fa-solid fa-code-branch"></i> Progetti Accademici IT</h3>
+                        <div class="cv-section-content">
+                            <div class="cv-item-linear">
+                                <div class="cv-date-linear">2024</div>
+                                <div class="cv-details-linear">
+                                    <strong>Server Email con Postfix</strong>
+                                    <p>Configurazione VM Ubuntu su macOS, implementazione server Postfix per
+                                        invio/ricezione email.</p>
                                 </div>
                             </div>
-
-                            <div class="cv-section">
-                                <h4><i class="fa-solid fa-graduation-cap"></i> Istruzione</h4>
-                                <div class="cv-item">
-                                    <span class="cv-date">2021 - Presente</span>
-                                    <div class="cv-details">
-                                        <strong>Laurea Triennale in Informatica</strong>
-                                        <p>Università Ca' Foscari Venezia</p>
-                                        [cite_start]<p class="job-desc">Indirizzo: Tecnologie e Scienze
-                                            dell'Informazione[cite: 21, 28].</p>
-                                    </div>
-                                </div>
-                                <div class="cv-item">
-                                    <span class="cv-date">2015 - 2021</span>
-                                    <div class="cv-details">
-                                        <strong>Diploma di Liceo Linguistico</strong>
-                                        <p>Liceo Benedetti Tommaseo, Venezia</p>
-                                        [cite_start]<p class="job-desc">Indirizzo lingue: Grammatica e Letteratura[cite:
-                                            33, 35].</p>
-                                    </div>
+                            <div class="cv-item-linear">
+                                <div class="cv-date-linear">2024</div>
+                                <div class="cv-details-linear">
+                                    <strong>FileFlow (Flutter/Dart)</strong>
+                                    <p>App Android/iOS per gestione documentazione personale con login e organizzazione
+                                        file.</p>
                                 </div>
                             </div>
-
-                            <div class="cv-section">
-                                <h4><i class="fa-solid fa-code-branch"></i> Progetti Accademici</h4>
-                                <div class="cv-item">
-                                    <span class="cv-date">2024</span>
-                                    <div class="cv-details">
-                                        <strong>Server Email con Postfix</strong>
-                                        [cite_start]<p>Configurazione VM Ubuntu su macOS, implementazione server Postfix
-                                            per invio/ricezione email[cite: 23].</p>
-                                    </div>
-                                </div>
-                                <div class="cv-item">
-                                    <span class="cv-date">2024</span>
-                                    <div class="cv-details">
-                                        <strong>FileFlow (Flutter/Dart)</strong>
-                                        [cite_start]<p>App Android/iOS per gestione documentazione personale con login e
-                                            organizzazione file[cite: 24].</p>
-                                    </div>
-                                </div>
-                                <div class="cv-item">
-                                    <span class="cv-date">2022</span>
-                                    <div class="cv-details">
-                                        <strong>JSON Parser in C++</strong>
-                                        [cite_start]<p>Parser tramite grammatiche context-free, operator overloading e
-                                            iteratori[cite: 38].</p>
-                                    </div>
-                                </div>
-                                <div class="cv-item">
-                                    <span class="cv-date">2021</span>
-                                    <div class="cv-details">
-                                        <strong>Tetris in C</strong>
-                                        [cite_start]<p>Gioco in console con logica collisioni e punteggio[cite: 40].</p>
-                                    </div>
+                            <div class="cv-item-linear">
+                                <div class="cv-date-linear">2022</div>
+                                <div class="cv-details-linear">
+                                    <strong>JSON Parser in C++</strong>
+                                    <p>Parser tramite grammatiche context-free, operator overloading e iteratori.</p>
                                 </div>
                             </div>
-
-                            <div class="cv-section">
-                                <h4><i class="fa-solid fa-laptop-code"></i> Competenze Tecniche</h4>
-
-                                <p><strong>Linguaggi di Programmazione:</strong></p>
-                                <div class="skills-grid">
-                                    <span class="skill-tag">Java (8+)</span>
-                                    <span class="skill-tag">C++ (12+)</span>
-                                    <span class="skill-tag">C (90+)</span>
-                                    <span class="skill-tag">Python (2+)</span>
-                                    <span class="skill-tag">HTML/CSS</span>
-                                    <span class="skill-tag">JavaScript</span>
-                                    <span class="skill-tag">SQL</span>
-                                    <span class="skill-tag">Dart</span>
-                                    <span class="skill-tag">Swift</span>
-                                    <span class="skill-tag">Assembly</span>
-                                    <span class="skill-tag">Shell UNIX</span>
-                                    <span class="skill-tag">LaTeX</span>
-                                </div>
-
-                                <p style="margin-top: 10px;"><strong>Software & Tools:</strong></p>
-                                <div class="skills-grid">
-                                    <span class="skill-tag">Git/GitHub</span>
-                                    <span class="skill-tag">Docker</span>
-                                    <span class="skill-tag">Flutter</span>
-                                    <span class="skill-tag">PostgreSQL</span>
-                                    <span class="skill-tag">Wireshark</span>
-                                    <span class="skill-tag">Android Studio</span>
-                                    <span class="skill-tag">VS Code</span>
-                                    <span class="skill-tag">IntelliJ IDEA</span>
-                                    <span class="skill-tag">Xcode</span>
-                                </div>
-
-                                <p style="margin-top: 10px;"><strong>Sistemi Operativi:</strong></p>
-                                <div class="skills-grid">
-                                    <span class="skill-tag">macOS (Primario)</span>
-                                    <span class="skill-tag">Linux (Admin/Server)</span>
-                                    <span class="skill-tag">Windows</span>
+                            <div class="cv-item-linear">
+                                <div class="cv-date-linear">2021</div>
+                                <div class="cv-details-linear">
+                                    <strong>Tetris in C</strong>
+                                    <p>Gioco in console con logica collisioni e punteggio.</p>
                                 </div>
                             </div>
+                        </div>
+                    </div>
 
-                            <div class="cv-section">
-                                <h4><i class="fa-solid fa-language"></i> Lingue & Certificazioni</h4>
-                                <div class="cv-details">
-                                    [cite_start]<p><strong>Lingue:</strong> Italiano (Madrelingua), Inglese (B2),
-                                        Spagnolo (B2), Tedesco (A1)[cite: 4].</p>
-                                    [cite_start]<p><strong>Certificazioni:</strong> HackerRank (JS, CSS, Python Base),
-                                        Certificazione Inglese B1 (Ca' Foscari)[cite: 41, 46].</p>
+                    <div class="cv-linear-section">
+                        <h3 class="cv-section-title"><i class="fa-solid fa-graduation-cap"></i> Istruzione</h3>
+                        <div class="cv-section-content">
+                            <div class="cv-item-linear">
+                                <div class="cv-date-linear">2021 - Presente</div>
+                                <div class="cv-details-linear">
+                                    <strong>Laurea Triennale in Informatica</strong>
+                                    <p>Università Ca' Foscari Venezia &mdash; Indirizzo: Tecnologie e Scienze
+                                        dell'Informazione.</p>
                                 </div>
                             </div>
+                            <div class="cv-item-linear">
+                                <div class="cv-date-linear">2015 - 2021</div>
+                                <div class="cv-details-linear">
+                                    <strong>Diploma di Liceo Linguistico</strong>
+                                    <p>Liceo Benedetti Tommaseo, Venezia</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                        </div> <!-- /.cv-body -->
-                    </div> <!-- /.cv-card -->
+                    <div class="cv-linear-section">
+                        <h3 class="cv-section-title"><i class="fa-solid fa-language"></i> Lingue & Certificazioni</h3>
+                        <div class="cv-section-content">
+                            <div class="cv-item-linear">
+                                <div class="cv-details-linear full-width">
+                                    <p><strong>Lingue:</strong> Italiano (Madrelingua), Inglese (B2), Spagnolo (B2),
+                                        Tedesco (A1)</p>
+                                    <p style="margin-top: 5px;"><strong>Competenze HackerRank:</strong> JS, CSS, Python
+                                        Base</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cv-linear-section">
+                        <h3 class="cv-section-title"><i class="fa-solid fa-briefcase"></i> Altre Esperienze Lavorative
+                        </h3>
+                        <div class="cv-section-content">
+                            <div class="cv-item-linear compact">
+                                <div class="cv-date-linear">2025</div>
+                                <div class="cv-details-linear">
+                                    <strong>Oste</strong> &mdash; Enoteca "La Sete", Venezia
+                                </div>
+                            </div>
+                            <div class="cv-item-linear compact">
+                                <div class="cv-date-linear">2023 - 2024</div>
+                                <div class="cv-details-linear">
+                                    <strong>Bartender</strong> &mdash; Hotel Bonvecchiati, Venezia
+                                </div>
+                            </div>
+                            <div class="cv-item-linear compact">
+                                <div class="cv-date-linear">2022</div>
+                                <div class="cv-details-linear">
+                                    <strong>Operaio Metalmeccanico</strong> &mdash; Re.Te., Venezia
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </section>
 
             <!-- Certifications Section -->
@@ -429,6 +364,8 @@
     <script src="script.js"></script>
     <!-- Personal Section Functionality -->
     <script src="personal.js"></script>
+    <script type="module" src="navbar-auth.js"></script>
+    <script type="module" src="theme-switcher.js"></script>
 </body>
 
 </html>

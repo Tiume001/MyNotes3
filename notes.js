@@ -13,7 +13,7 @@ onAuthStateChanged(auth, (user) => {
     if (!user) {
         // User is not signed in, redirect to auth page
         console.log('User not authenticated, redirecting to auth.html');
-        window.location.href = 'auth.html';
+        window.location.replace('auth.html');
     } else {
         console.log('User authenticated:', user.email);
         // Update user info in the UI if needed
@@ -171,3 +171,14 @@ if (document.readyState === 'loading') {
 } else {
     setupParallaxEffect();
 }
+
+// ============================================
+// BATCH SAFARI BFCACHE WORKAROUND
+// ============================================
+window.addEventListener('pageshow', (event) => {
+    // If the page was loaded from the Back-Forward Cache (e.g. Safari back button)
+    if (event.persisted) {
+        // Force a reload so Firebase Auth state can be freshly evaluated
+        window.location.reload();
+    }
+});
