@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FileFlow App | MyPortfolio</title>
+
+    <!-- Sync Theme Fix -->
+    <script>
+        if (localStorage.getItem('app-theme') === 'light') {
+            document.documentElement.classList.add('light-mode');
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Highlight.js for code syntax -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+
+    <link rel="stylesheet" href="style.css?v=5">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Top Navigation Bar -->
+        <nav class="top-navbar">
+            <div class="nav-left">
+                <div class="logo">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <span>MyPortfolio</span>
+                </div>
+            </div>
+
+            <div class="top-nav">
+                <ul class="nav-links">
+                    <li class=""><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li class=""><a href="notes.html"><i class="fa-solid fa-book"></i> Archivio Appunti <i
+                                id="authPadlock" class="fa-solid fa-lock" title="Stato Accesso"></i></a></li>
+                    <li class=""><a href="nerd-stats.html"><i class="fa-solid fa-chart-line"></i> Stats</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-right">
+                <button id="themeToggleBtn" class="theme-toggle-btn" title="Cambia Tema">
+                    <i id="themeIcon" class="fa-solid fa-moon"></i>
+                </button>
+
+                <a href="https://github.com/Tiume001" target="_blank"
+                    style="color: var(--text-secondary); font-size: 1.2rem; transition: 0.2s;"><i
+                        class="fa-brands fa-github"></i></a>
+                <a href="mailto:tiume00@gmail.com"
+                    style="color: var(--text-secondary); font-size: 1.2rem; transition: 0.2s;"><i
+                        class="fa-solid fa-envelope"></i></a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-bar">
+                <div class="breadcrumbs">
+                    <a href="index.html">Home</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <span id="subjectTitleBreadcrumb">Progetto: FileFlow App</span>
+                </div>
+                <div class="user-profile">
+                    <span>Mattias Carpa</span>
+                    <div class="avatar">MC</div>
+                </div>
+            </header>
+
+            <!-- Subject Hero -->
+            <section class="hero-small">
+                <div class="hero-content">
+                    <h1 id="subjectTitle">Sviluppo <span class="gradient-text">FileFlow App</span></h1>
+                    <p id="subjectDesc">Applicazione mobile cross-platform per la gestione personale e sicura dei
+                        documenti.</p>
+                </div>
+            </section>
+
+            <!-- Two Column Layout -->
+
+            <div class="subject-layout">
+                <!-- Main Content -->
+                <div class="subject-main">
+                    <div
+                        style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem;">
+                        <h2>Applicazione Mobile Reactiva</h2>
+                        <p
+                            style="color: var(--text-secondary); line-height: 1.6; margin-top: 1rem; margin-bottom: 2rem;">
+                            <strong>FileFlow</strong> nasce dall'esigenza di organizzare la documentazione accademica e
+                            personale in modo strutturato e con sincronizzazione cloud in tempo reale. Sviluppata in
+                            Flutter per garantire una UI coerente sia su iOS che Android a partire dal medesimo codice
+                            base.</p>
+
+                        <h3>Funzionalità Principali:</h3>
+                        <ul
+                            style="color: var(--text-secondary); line-height: 1.6; margin-top: 1rem; margin-left: 1.5rem; margin-bottom: 2rem;">
+                            <li>Integrazione di un sistema di Autenticazione (OAuth, Email/PWD).</li>
+                            <li>Gestione dei file e categorizzazione in cartelle cloud.</li>
+                            <li>Interfaccia utente curata, moderna e reattiva (State management fluido).</li>
+                            <li>Operazioni CRUD ottimizzate per il risparmio di banda in mobilità.</li>
+                        </ul>
+
+                        <div
+                            style="background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); border-radius: 12px; padding: 2rem; display: flex; justify-content: center; align-items: center; min-height: 200px;">
+                            <i class="fa-solid fa-mobile-screen"
+                                style="font-size: 4rem; color: var(--text-secondary); opacity: 0.5;"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <aside class="subject-sidebar">
+                    <div class="info-card">
+                        <h3>Dettagli Progetto</h3>
+
+                        <div class="info-item"><span class="label">Anno</span><span class="value">2024</span></div>
+                        <div class="info-item"><span class="label">Ruolo</span><span class="value">Fullstack Dev</span>
+                        </div>
+                        <div class="info-item"
+                            style="flex-direction: column; align-items: flex-start; gap: 0.5rem; margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+                            <span class="label">Tecnologie:</span>
+                            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                <span
+                                    style="font-size: 0.8rem; padding: 0.3rem 0.6rem; background: rgba(255,255,255,0.1); border-radius: 4px; display: flex; align-items:center; gap: 4px;"><img
+                                        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg"
+                                        style="width:12px;" /> Flutter</span>
+                                <span
+                                    style="font-size: 0.8rem; padding: 0.3rem 0.6rem; background: rgba(255,255,255,0.1); border-radius: 4px; display: flex; align-items:center; gap: 4px;"><img
+                                        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg"
+                                        style="width:12px;" /> Dart</span>
+                                <span
+                                    style="font-size: 0.8rem; padding: 0.3rem 0.6rem; background: rgba(255,255,255,0.1); border-radius: 4px;"><i
+                                        class="fa-solid fa-fire"></i> Firebase</span>
+                            </div>
+                        </div>
+                        <a href="https://github.com/Tiume001" target="_blank" class="btn-primary"
+                            style="display: flex; justify-content: center; gap: 0.5rem; align-items: center; margin-top: 1.5rem; padding: 0.8rem; border-radius: 8px;">
+                            <i class="fa-brands fa-github"></i> Vedi su GitHub
+                        </a>
+                    </div>
+                </aside>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script>
+        function openTab(tabName) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Show specific tab content
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked button
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+    <script src="script.js"></script>
+    <script type="module" src="navbar-auth.js"></script>
+    <script type="module" src="theme-switcher.js"></script>
+</body>
+
+</html>

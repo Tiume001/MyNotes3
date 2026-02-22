@@ -7,6 +7,13 @@
     <title>Portfolio | Mattia Scarpa</title>
     <meta name="description" content="Portfolio personale, CV, certificazioni e progetti extra-curriculari.">
 
+    <!-- Sync Theme Fix -->
+    <script>
+        if (localStorage.getItem('app-theme') === 'light') {
+            document.documentElement.classList.add('light-mode');
+        }
+    </script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -83,72 +90,143 @@
                 <div class="cv-linear-container">
 
                     <!-- Formazione IT e Competenze -->
-                    <div class="cv-linear-section">
+                    <div class="cv-linear-section scroll-animate">
+
                         <h3 class="cv-section-title"><i class="fa-solid fa-laptop-code"></i> Competenze Informatiche
                         </h3>
                         <div class="cv-section-content">
+
+                            <!-- Linguaggi Core -->
                             <div class="cv-item-linear compact">
                                 <div class="cv-details-linear full-width">
-                                    <strong>Linguaggi Core</strong>
-                                    <p>Java (8+), C/C++ (90+/12+), Python (2+), Dart, Swift, SQL, JavaScript, HTML, CSS,
-                                        Assembly</p>
+                                    <strong style="margin-bottom: 0.8rem;">Linguaggi Core</strong>
+                                    <div class="tech-grid">
+                                        <div class="tech-item highlight-tech"
+                                            data-tooltip="Esperienza: 2+ anni | Backend & OOP"><i
+                                                class="fa-brands fa-java" style="color: #f89820;"></i> Java (8+)</div>
+                                        <div class="tech-item highlight-tech"
+                                            data-tooltip="Esperienza: 3+ anni | Algoritmica & Memory Mngt"><i
+                                                class="fa-solid fa-c" style="color: #00599C;"></i> / <i
+                                                class="fa-brands fa-cuttlefish"></i>++
+                                            (90+/12+)</div>
+                                        <div class="tech-item highlight-tech"
+                                            data-tooltip="Esperienza: 2+ anni | Scripting, AI Base & Data"><i
+                                                class="fa-brands fa-python" style="color: #3776AB;"></i> Python (2+)
+                                        </div>
+                                        <div class="tech-item highlight-tech"
+                                            data-tooltip="Esperienza: 1+ anni | Mobile App Dev"><img
+                                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg"
+                                                style="width: 14px; height: 14px; vertical-align: middle; margin-right: 4px;" />
+                                            Dart</div>
+                                        <div class="tech-item highlight-tech"
+                                            data-tooltip="Esperienza: <1 anno | iOS App Dev"><i
+                                                class="fa-brands fa-swift" style="color: #F05138;"></i> Swift</div>
+                                        <div class="tech-item" data-tooltip="Esperienza: 2+ anni | RDBMS Design"><i
+                                                class="fa-solid fa-database" style="color: #336791;"></i> SQL</div>
+                                        <div class="tech-item"
+                                            data-tooltip="Esperienza: 2+ anni | Frontend Web Development"><i
+                                                class="fa-brands fa-js" style="color: #F7DF1E;"></i> /
+                                            <i class="fa-brands fa-html5" style="color: #E34F26;"></i> / <i
+                                                class="fa-brands fa-css3-alt" style="color: #1572B6;"></i>
+                                        </div>
+                                        <div class="tech-item"
+                                            data-tooltip="Esperienza: Recente | Architettura x86 e ARM"><i
+                                                class="fa-solid fa-microchip" style="color: #4B5563;"></i> Assembly
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
+                            <!-- Frameworks & Tools -->
                             <div class="cv-item-linear compact">
                                 <div class="cv-details-linear full-width">
-                                    <strong>Frameworks & Tools</strong>
-                                    <p>Flutter, Docker, Git/GitHub, PostgreSQL, Wireshark</p>
+                                    <strong style="margin-bottom: 0.8rem;">Frameworks & Tools</strong>
+                                    <div class="tech-grid">
+                                        <div class="tech-item highlight-tech"
+                                            data-tooltip="Esperienza: 1+ anni | UI Cross-Platform Fluidity"><img
+                                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg"
+                                                style="width: 14px; height: 14px; vertical-align: middle; margin-right: 4px;" />
+                                            Flutter</div>
+                                        <div class="tech-item highlight-tech"
+                                            data-tooltip="Esperienza: <1 anno | Containerizzazione App IT"><i
+                                                class="fa-brands fa-docker" style="color: #2496ED;"></i> Docker</div>
+                                        <div class="tech-item"
+                                            data-tooltip="Esperienza: 3+ anni | Versioning System CI/CD"><i
+                                                class="fa-brands fa-github"></i> Git / GitHub</div>
+                                        <div class="tech-item"
+                                            data-tooltip="Esperienza: 1+ anni | Database Relazionali & Cloud"><img
+                                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+                                                style="width: 14px; height: 14px; vertical-align: middle; margin-right: 4px;" />
+                                            PostgreSQL</div>
+                                        <div class="tech-item"
+                                            data-tooltip="Esperienza: Recente | Analisi Traffico di Rete"><i
+                                                class="fa-solid fa-network-wired" style="color: #1a5690;"></i> Wireshark
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
+                            <!-- Sistemi Operativi -->
                             <div class="cv-item-linear compact" style="border-bottom: none;">
                                 <div class="cv-details-linear full-width">
-                                    <strong>Sistemi Operativi</strong>
-                                    <p>macOS (Primario), Linux (Admin/Server)</p>
+                                    <strong style="margin-bottom: 0.8rem;">Sistemi Operativi</strong>
+                                    <div class="tech-grid">
+                                        <div class="tech-item"
+                                            data-tooltip="Uso: Quotidiano | Sviluppo & Produttività Personale"><i
+                                                class="fa-brands fa-apple" style="color: var(--text-primary);"></i>
+                                            macOS (Primario)</div>
+                                        <div class="tech-item highlight-tech"
+                                            data-tooltip="Uso: Admin / CLI | Configurazione VM & Server"><i
+                                                class="fa-brands fa-linux" style="color: #FCC624;"></i> Linux
+                                            (Admin/Server)</div>
+                                    </div>
                                 </div>
                             </div>
 
                         </div>
                     </div>
 
-                    <div class="cv-linear-section">
+                    <div class="cv-linear-section scroll-animate delay-100">
                         <h3 class="cv-section-title"><i class="fa-solid fa-code-branch"></i> Progetti Accademici IT</h3>
                         <div class="cv-section-content">
-                            <div class="cv-item-linear">
+                            <a href="project-email.html" class="cv-item-linear clickable-project">
                                 <div class="cv-date-linear">2024</div>
                                 <div class="cv-details-linear">
                                     <strong>Server Email con Postfix</strong>
                                     <p>Configurazione VM Ubuntu su macOS, implementazione server Postfix per
                                         invio/ricezione email.</p>
                                 </div>
-                            </div>
-                            <div class="cv-item-linear">
+                                <i class="fa-solid fa-chevron-right project-arrow"></i>
+                            </a>
+                            <a href="project-fileflow.html" class="cv-item-linear clickable-project">
                                 <div class="cv-date-linear">2024</div>
                                 <div class="cv-details-linear">
                                     <strong>FileFlow (Flutter/Dart)</strong>
                                     <p>App Android/iOS per gestione documentazione personale con login e organizzazione
                                         file.</p>
                                 </div>
-                            </div>
-                            <div class="cv-item-linear">
+                                <i class="fa-solid fa-chevron-right project-arrow"></i>
+                            </a>
+                            <a href="project-json.html" class="cv-item-linear clickable-project">
                                 <div class="cv-date-linear">2022</div>
                                 <div class="cv-details-linear">
                                     <strong>JSON Parser in C++</strong>
                                     <p>Parser tramite grammatiche context-free, operator overloading e iteratori.</p>
                                 </div>
-                            </div>
-                            <div class="cv-item-linear">
+                                <i class="fa-solid fa-chevron-right project-arrow"></i>
+                            </a>
+                            <a href="project-tetris.html" class="cv-item-linear clickable-project">
                                 <div class="cv-date-linear">2021</div>
                                 <div class="cv-details-linear">
                                     <strong>Tetris in C</strong>
                                     <p>Gioco in console con logica collisioni e punteggio.</p>
                                 </div>
-                            </div>
+                                <i class="fa-solid fa-chevron-right project-arrow"></i>
+                            </a>
                         </div>
                     </div>
 
-                    <div class="cv-linear-section">
+                    <div class="cv-linear-section scroll-animate delay-200">
                         <h3 class="cv-section-title"><i class="fa-solid fa-graduation-cap"></i> Istruzione</h3>
                         <div class="cv-section-content">
                             <div class="cv-item-linear">
@@ -169,7 +247,7 @@
                         </div>
                     </div>
 
-                    <div class="cv-linear-section">
+                    <div class="cv-linear-section scroll-animate delay-100">
                         <h3 class="cv-section-title"><i class="fa-solid fa-language"></i> Lingue & Certificazioni</h3>
                         <div class="cv-section-content">
                             <div class="cv-item-linear">
@@ -212,7 +290,7 @@
             </section>
 
             <!-- Certifications Section -->
-            <section class="portfolio-section">
+            <section class="portfolio-section scroll-animate delay-100">
                 <h2>Certificazioni</h2>
                 <div class="cards-grid">
                     <div class="card cert-card">
@@ -267,7 +345,7 @@
             </section>
 
             <!-- Projects Section -->
-            <section class="portfolio-section">
+            <section class="portfolio-section scroll-animate delay-200">
                 <h2>Progetti Extra-Curriculari</h2>
                 <div class="cards-grid">
                     <div class="card project-card" data-project-type="personal">
@@ -330,7 +408,7 @@
             </section>
 
             <!-- Social Links Section -->
-            <section class="portfolio-section">
+            <section class="portfolio-section scroll-animate delay-100">
                 <h2>Collegamenti Social</h2>
                 <div class="social-grid">
                     <a href="https://www.linkedin.com/in/mattia-scarpa-a20a6b277/" target="_blank"
@@ -366,6 +444,7 @@
     <script src="personal.js"></script>
     <script type="module" src="navbar-auth.js"></script>
     <script type="module" src="theme-switcher.js"></script>
+    <script src="animations.js"></script>
 </body>
 
 </html>

@@ -207,3 +207,26 @@
   transform: translateZ(0);
   backface-visibility: hidden;
 }
+
+/* =========================================
+   Scroll Animations triggered by JS
+   ========================================= */
+
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+}
+
+.scroll-animate.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggering modifiers for grouped items */
+.scroll-animate.delay-100 { transition-delay: 0.1s; }
+.scroll-animate.delay-200 { transition-delay: 0.2s; }
+.scroll-animate.delay-300 { transition-delay: 0.3s; }
+.scroll-animate.delay-400 { transition-delay: 0.4s; }

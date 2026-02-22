@@ -11,6 +11,7 @@
     --text-primary: #ffffff;
     --text-secondary: #a1a1aa;
     --accent-primary: #6366f1;
+    --accent-primary-rgb: 99, 102, 241;
     /* Indigo */
     --accent-secondary: #8b5cf6;
     /* Violet */
@@ -45,6 +46,7 @@
     --text-secondary: #795548;
     /* Medium brown text */
     --accent-primary: #8d6e63;
+    --accent-primary-rgb: 141, 110, 99;
     /* Elegant brown accent */
     --accent-secondary: #d84315;
     /* Warm terra cotta orange */
@@ -707,6 +709,7 @@ a {
 .gradient-text {
     background: var(--gradient-main);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -1219,6 +1222,11 @@ details.snippet-container[open] summary.snippet-header i.fa-chevron-down {
 /* Portfolio Sections */
 .portfolio-section {
     margin-bottom: 4rem;
+    max-width: 1300px;
+    padding: 0 1.5rem;
+    /* Ensure it never touches the screen edge on small monitors */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* CV Card */
@@ -1861,7 +1869,8 @@ details.snippet-container[open] summary.snippet-header i.fa-chevron-down {
 .cv-linear-container {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 4rem;
+    /* Increased spacing between sections */
     padding: 1rem 0;
 }
 
@@ -1906,7 +1915,8 @@ details.snippet-container[open] summary.snippet-header i.fa-chevron-down {
 .cv-section-content {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2.5rem;
+    /* Increased spacing between subsections/items */
 }
 
 /* Linear specific items */
@@ -1938,7 +1948,7 @@ details.snippet-container[open] summary.snippet-header i.fa-chevron-down {
 }
 
 .cv-item-linear.compact {
-    padding-bottom: 0.8rem;
+    padding-bottom: 1.2rem;
     align-items: center;
     gap: 1.5rem;
 }
@@ -1990,5 +2000,168 @@ details.snippet-container[open] summary.snippet-header i.fa-chevron-down {
         left: -18px;
         padding: 0.6rem;
         font-size: 1.2rem;
+    }
+}
+
+/* Tech Grid for IT Skills */
+.tech-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+.tech-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.8rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+    position: relative;
+    cursor: default;
+}
+
+/* Elegant CSS Tooltips for IT Skills */
+.tech-item[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    padding: 0.6rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.tech-item[data-tooltip]:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.tech-item.highlight-tech {
+    background: rgba(var(--accent-primary-rgb, 124, 92, 252), 0.05);
+    border-color: rgba(var(--accent-primary-rgb, 124, 92, 252), 0.3);
+    color: var(--text-primary);
+}
+
+.tech-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: var(--text-primary);
+}
+
+.tech-item i {
+    font-size: 1.1rem;
+}
+
+/* Clickable Project Items */
+a.clickable-project {
+    display: flex;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    border-radius: 12px;
+    padding: 1rem;
+    margin: -1rem;
+    /* Offset padding to keep alignment */
+    align-items: center;
+    /* Align arrow vertically */
+}
+
+a.clickable-project:hover {
+    background: rgba(var(--accent-primary-rgb, 124, 92, 252), 0.05);
+    /* very light accent bg */
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-color: transparent;
+    /* hide dotted bottom border if any */
+}
+
+.project-arrow {
+    margin-left: auto;
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+a.clickable-project:hover .project-arrow {
+    opacity: 1;
+    transform: translateX(0);
+    color: var(--accent-primary);
+}
+
+a.clickable-project:hover .cv-details-linear strong {
+    color: var(--accent-primary);
+}
+
+/* Global Mobile Fixes for Navbar and Headlines */
+@media (max-width: 768px) {
+
+    /* Navbar Wrapping */
+    .top-navbar {
+        padding: 1rem 1.5rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .nav-left {
+        flex: 1;
+        /* Pushes theme toggle to the right */
+    }
+
+    .top-nav {
+        order: 3;
+        /* Push links to a new row below logo */
+        width: 100%;
+        margin: 0;
+        justify-content: center;
+    }
+
+    .nav-links {
+        gap: 0.8rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        font-size: 0.9rem;
+        padding: 0.3rem 0.5rem;
+    }
+
+    /* Oversized Hero Text Fix */
+    .hero-small {
+        padding: 2rem 1.5rem;
+    }
+
+    .hero-small h1,
+    .hero-content h1 {
+        font-size: 2.2rem !important;
+        /* Overrides inline 4rem size */
+        line-height: 1.2;
+    }
+
+    .hero-content p {
+        font-size: 1.1rem !important;
     }
 }
