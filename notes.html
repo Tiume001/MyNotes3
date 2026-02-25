@@ -7,9 +7,9 @@
     <title>University Notes | Mattia Scarpa</title> <!-- Titolo che compare sulla scheda del browser -->
     <meta name="description" content="Note universitarie, progetti e risorse per studenti.">
 
-        <!-- Sync Theme Fix -->
+    <!-- Sync Theme Fix -->
     <script>
-        if(localStorage.getItem('app-theme') === 'light') {
+        if (localStorage.getItem('app-theme') === 'light') {
             document.documentElement.classList.add('light-mode');
         }
     </script>
@@ -26,6 +26,14 @@
 
     <link rel="stylesheet" href="style.css?v=5">
     <link rel="stylesheet" href="animations.css">
+    <!-- Prevent Flash of Unauthenticated Content -->
+    <style>
+        body {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+    </style>
 </head>
 
 <body>
@@ -38,11 +46,12 @@
                     <span>MyPortfolio</span>
                 </div>
             </div>
-            
+
             <div class="top-nav">
                 <ul class="nav-links">
                     <li class=""><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
-                    <li class="active"><a href="notes.html"><i class="fa-solid fa-book"></i> Archivio Appunti <i id="authPadlock" class="fa-solid fa-lock" title="Stato Accesso"></i></a></li>
+                    <li class="active"><a href="notes.html"><i class="fa-solid fa-book"></i> Archivio Appunti <i
+                                id="authPadlock" class="fa-solid fa-lock" title="Stato Accesso"></i></a></li>
                     <li class=""><a href="nerd-stats.html"><i class="fa-solid fa-chart-line"></i> Stats</a></li>
                 </ul>
             </div>
@@ -51,9 +60,13 @@
                 <button id="themeToggleBtn" class="theme-toggle-btn" title="Cambia Tema">
                     <i id="themeIcon" class="fa-solid fa-moon"></i>
                 </button>
-                
-                <a href="https://github.com/Tiume001" target="_blank" style="color: var(--text-secondary); font-size: 1.2rem; transition: 0.2s;"><i class="fa-brands fa-github"></i></a>
-                <a href="mailto:tiume00@gmail.com" style="color: var(--text-secondary); font-size: 1.2rem; transition: 0.2s;"><i class="fa-solid fa-envelope"></i></a>
+
+                <a href="https://github.com/Tiume001" target="_blank"
+                    style="color: var(--text-secondary); font-size: 1.2rem; transition: 0.2s;"><i
+                        class="fa-brands fa-github"></i></a>
+                <a href="mailto:tiume00@gmail.com"
+                    style="color: var(--text-secondary); font-size: 1.2rem; transition: 0.2s;"><i
+                        class="fa-solid fa-envelope"></i></a>
             </div>
         </nav>
 
@@ -191,8 +204,8 @@
     <script type="module" src="notes.js"></script>
 
     <script src="script.js"></script>
-<script type="module" src="navbar-auth.js"></script>
-<script type="module" src="theme-switcher.js"></script>
+    <script type="module" src="navbar-auth.js"></script>
+    <script type="module" src="theme-switcher.js"></script>
 </body>
 
 </html>

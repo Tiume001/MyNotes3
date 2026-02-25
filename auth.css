@@ -16,7 +16,7 @@
 
   /* Gradients */
   --gradient-main: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, var(--glass-bg-hover) 100%);
 
   /* Spacing */
   --spacing-xs: 0.5rem;
@@ -39,6 +39,38 @@
 
   /* 3D Perspective */
   --perspective: 1000px;
+
+  /* Glass Effects */
+  --glass-border: var(--glass-bg-active);
+  --glass-bg-subtle: var(--glass-bg-subtle);
+  --glass-bg: var(--glass-bg);
+  --glass-bg-hover: var(--glass-bg-hover);
+  --glass-bg-active: var(--glass-bg-active);
+}
+
+:root.light-mode {
+  --bg-dark: #f2e8d9;
+  --bg-card: #faefe1;
+  --text-primary: #3e2723;
+  --text-secondary: #795548;
+
+  --accent-primary: #8d6e63;
+  --accent-secondary: #d84315;
+  --accent-glow: rgba(141, 110, 99, 0.15);
+
+  --gradient-main: linear-gradient(135deg, #8d6e63 0%, #d84315 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(62, 39, 35, 0.05) 0%, rgba(62, 39, 35, 0.02) 100%);
+
+  --border-color: #d7ccc8;
+  --error-color: #ef4444;
+  --success-color: #22c55e;
+
+  /* Glass Effects Light */
+  --glass-border: rgba(62, 39, 35, 0.15);
+  --glass-bg-subtle: rgba(62, 39, 35, 0.03);
+  --glass-bg: rgba(62, 39, 35, 0.05);
+  --glass-bg-hover: rgba(62, 39, 35, 0.08);
+  --glass-bg-active: rgba(62, 39, 35, 0.12);
 }
 
 * {
@@ -89,7 +121,7 @@ body {
   0%,
   100% {
     box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5), 0 0 0 0 rgba(99, 102, 241, 0);
-    border-color: rgba(255, 255, 255, 0.08);
+    border-color: var(--glass-bg-active);
   }
 
   50% {
@@ -192,7 +224,7 @@ body {
 
 .auth-card {
   background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--glass-bg-active);
   border-radius: 24px;
   padding: var(--spacing-lg);
   box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5);
@@ -210,7 +242,7 @@ body {
   0%,
   100% {
     box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5), 0 0 0px var(--accent-glow);
-    border-color: rgba(255, 255, 255, 0.08);
+    border-color: var(--glass-bg-active);
   }
 
   50% {
@@ -227,7 +259,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+  background: radial-gradient(circle at top left, var(--glass-bg-active) 0%, transparent 60%);
   pointer-events: none;
   z-index: 2;
 }
@@ -273,7 +305,7 @@ body {
 
 .auth-toggle {
   display: flex;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--glass-bg);
   padding: 4px;
   border-radius: var(--radius-md);
   margin-bottom: var(--spacing-lg);
@@ -297,14 +329,14 @@ body {
 }
 
 .toggle-btn.active {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--glass-bg-active);
   color: var(--text-primary);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .toggle-btn:hover:not(.active) {
   color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--glass-bg-subtle);
 }
 
 /* Slider & Forms Structure */
@@ -354,7 +386,7 @@ body {
 .form-input {
   width: 100%;
   padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--glass-bg);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   color: var(--text-primary);
@@ -367,7 +399,7 @@ body {
   outline: none;
   border-color: var(--accent-primary);
   box-shadow: 0 0 0 2px var(--accent-glow);
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--glass-bg-hover);
 }
 
 .input-help {
@@ -460,7 +492,7 @@ body {
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--glass-bg-hover);
   color: var(--text-primary);
   border-color: var(--text-secondary);
 }
@@ -604,13 +636,13 @@ body {
   transition: var(--transition-fast);
   padding: 0.6rem 1.2rem;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-bg-hover);
   backdrop-filter: blur(8px);
 }
 
 .back-home-btn:hover {
   color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--glass-bg-active);
   transform: translateX(-3px);
 }

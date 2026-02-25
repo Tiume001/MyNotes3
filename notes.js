@@ -16,6 +16,11 @@ onAuthStateChanged(auth, (user) => {
         window.location.replace('auth.html');
     } else {
         console.log('User authenticated:', user.email);
+
+        // Show the page content now that user is verified
+        document.body.style.opacity = '1';
+        document.body.style.visibility = 'visible';
+
         // Update user info in the UI if needed
         updateUserProfile(user);
     }
@@ -130,7 +135,7 @@ if (document.readyState === 'loading') {
 
 function setupParallaxEffect() {
     const heroVisual = document.querySelector('.hero-visual');
-    
+
     if (!heroVisual) {
         console.warn('Hero visual element not found for parallax effect');
         return;
@@ -139,7 +144,7 @@ function setupParallaxEffect() {
     // Throttle function to limit scroll event frequency
     function throttle(func, delay) {
         let lastCall = 0;
-        return function(...args) {
+        return function (...args) {
             const now = Date.now();
             if (now - lastCall >= delay) {
                 lastCall = now;
