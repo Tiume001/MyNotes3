@@ -254,7 +254,8 @@ verifyCodeBtn.addEventListener('click', async () => {
         const user = result.user;
         console.log('Phone sign-in successful:', user.phoneNumber);
 
-        // Redirect
+        // Redirections and caching state
+        localStorage.setItem('user_logged_in', 'true');
         window.location.href = '../notes.html';
     } catch (error) {
         console.error('Verify Error:', error);
@@ -383,6 +384,7 @@ loginForm.addEventListener('submit', async (e) => {
         }
 
         console.log('Login successful:', user.email);
+        localStorage.setItem('user_logged_in', 'true');
         // Redirect to main site
         window.location.href = '../notes.html';
     } catch (error) {
@@ -468,6 +470,7 @@ async function handleGoogleSignIn(button) {
     try {
         const result = await signInWithPopup(auth, provider);
         console.log('Google sign-in successful:', result.user.email);
+        localStorage.setItem('user_logged_in', 'true');
         // Redirect to main site
         window.location.href = '../notes.html';
     } catch (error) {

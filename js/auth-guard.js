@@ -8,7 +8,8 @@ import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/fi
 // Check authentication state
 onAuthStateChanged(auth, (user) => {
   if (!user) {
-    // Not logged in → redirect to login page (replace to prevent BFCache)
+    // Not logged in → clear storage and redirect to login page
+    localStorage.removeItem('user_logged_in');
     window.location.replace('auth.html');
   } else {
     // Logged in → Show the page content

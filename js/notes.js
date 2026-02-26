@@ -11,7 +11,8 @@ import { onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/
 
 onAuthStateChanged(auth, (user) => {
     if (!user) {
-        // User is not signed in, redirect to auth page
+        // User is not signed in, clean local trace and redirect to auth page
+        localStorage.removeItem('user_logged_in');
         console.log('User not authenticated, redirecting to auth.html');
         window.location.replace('auth.html');
     } else {
@@ -69,6 +70,7 @@ function setupLogoutButton() {
     if (logoutBtn) {
         logoutBtn.addEventListener('click', async () => {
             try {
+                localStorage.removeItem('user_logged_in');
                 await signOut(auth);
                 console.log('User signed out successfully');
                 // Redirect will happen automatically via onAuthStateChanged

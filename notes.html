@@ -29,11 +29,25 @@
     <!-- Prevent Flash of Unauthenticated Content -->
     <style>
         body {
+            /* Fallback invisibile di default */
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s ease;
         }
+
+        /* Se sappiamo già che c'è la sessione, annulliamo il delay e lo nascondimento CSS */
+        html.auth-preloaded body {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transition: none !important;
+        }
     </style>
+    <!-- Sync Auth Fix to prevent flashing -->
+    <script>
+        if (localStorage.getItem('user_logged_in') === 'true') {
+            document.documentElement.classList.add('auth-preloaded');
+        }
+    </script>
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="apple-touch-icon" href="favicon.png">
 </head>
