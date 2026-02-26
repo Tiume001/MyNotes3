@@ -97,17 +97,19 @@ function switchToSignup() {
 
 // Initial Height Set on Load
 window.addEventListener('load', () => {
-    updateFormsHeight(loginForm);
+    if (loginForm) updateFormsHeight(loginForm);
 });
 
 // Also update on resize to prevent cutting off
 window.addEventListener('resize', () => {
-    const activeDetails = loginToggle.classList.contains('active');
-    updateFormsHeight(activeDetails ? loginForm : signupForm);
+    if (loginToggle && signupToggle) {
+        const activeDetails = loginToggle.classList.contains('active');
+        updateFormsHeight(activeDetails ? loginForm : signupForm);
+    }
 });
 
-loginToggle.addEventListener('click', switchToLogin);
-signupToggle.addEventListener('click', switchToSignup);
+if (loginToggle) loginToggle.addEventListener('click', switchToLogin);
+if (signupToggle) signupToggle.addEventListener('click', switchToSignup);
 
 // Set Language to Italian
 auth.languageCode = 'it';
@@ -149,9 +151,9 @@ function hidePhoneAuth() {
     hideError();
 }
 
-backToLoginBtn.addEventListener('click', hidePhoneAuth);
-phoneLoginBtn.addEventListener('click', showPhoneAuth);
-phoneSignupBtn.addEventListener('click', showPhoneAuth);
+if (backToLoginBtn) backToLoginBtn.addEventListener('click', hidePhoneAuth);
+if (phoneLoginBtn) phoneLoginBtn.addEventListener('click', showPhoneAuth);
+if (phoneSignupBtn) phoneSignupBtn.addEventListener('click', showPhoneAuth);
 
 // ============================================
 // PHONE AUTHENTICATION LOGIC (RECAPTCHA & SMS)
@@ -327,135 +329,139 @@ function getFirebaseErrorMessage(errorCode) {
 // EMAIL/PASSWORD LOGIN
 // ============================================
 
-loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    hideError();
+if (loginForm) {
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        hideError();
 
-    const email = loginEmailInput.value.trim();
-    const password = loginPasswordInput.value;
+        const email = loginEmailInput.value.trim();
+        const password = loginPasswordInput.value;
 
-    if (!email || !password) {
-        showError('Inserisci email e password.');
-        return;
-    }
-
-    setButtonLoading(loginBtn, true);
-
-    try {
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-
-        // Check if email is verified (skip check for Google sign-in users)
-        if (!user.emailVerified && user.providerData[0]?.providerId === 'password') {
-            console.log('Email not verified for:', user.email);
-
-            // Log out the user
-            await auth.signOut();
-
-            // Show error with option to resend verification
-            setButtonLoading(loginBtn, false);
-            showError('⚠️ Email non verificata. Controlla la tua casella di posta e clicca sul link di verifica. Non hai ricevuto l\'email?');
-            errorMessage.style.background = 'rgba(251, 146, 60, 0.1)';
-            errorMessage.style.borderColor = 'rgba(251, 146, 60, 0.5)';
-            errorMessage.style.color = '#fb923c';
-
-            // Add resend button
-            const resendBtn = document.createElement('button');
-            resendBtn.textContent = 'Reinvia email di verifica';
-            resendBtn.className = 'resend-verification-btn';
-            resendBtn.style.cssText = 'margin-top: 0.5rem; padding: 0.5rem 1rem; background: rgba(251, 146, 60, 0.2); border: 1px solid rgba(251, 146, 60, 0.5); color: #fb923c; border-radius: 8px; cursor: pointer; font-size: 0.9rem;';
-            resendBtn.onclick = async () => {
-                try {
-                    // Re-authenticate to get user object
-                    const tempUser = await signInWithEmailAndPassword(auth, email, password);
-                    await sendEmailVerification(tempUser.user);
-                    await auth.signOut();
-                    showError('✅ Email di verifica inviata! Controlla la tua casella di posta.');
-                    errorMessage.style.background = 'rgba(34, 197, 94, 0.1)';
-                    errorMessage.style.borderColor = 'rgba(34, 197, 94, 0.5)';
-                    errorMessage.style.color = '#22c55e';
-                } catch (err) {
-                    console.error('Error resending verification:', err);
-                    showError('Errore durante l\'invio dell\'email. Riprova più tardi.');
-                }
-            };
-            errorMessage.appendChild(resendBtn);
+        if (!email || !password) {
+            showError('Inserisci email e password.');
             return;
         }
 
-        console.log('Login successful:', user.email);
-        localStorage.setItem('user_logged_in', 'true');
-        // Redirect to main site
-        window.location.href = '../notes.html';
-    } catch (error) {
-        console.error('Login error:', error.code, error.message);
-        showError(getFirebaseErrorMessage(error.code));
-        setButtonLoading(loginBtn, false);
-    }
-});
+        setButtonLoading(loginBtn, true);
+
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+
+            // Check if email is verified (skip check for Google sign-in users)
+            if (!user.emailVerified && user.providerData[0]?.providerId === 'password') {
+                console.log('Email not verified for:', user.email);
+
+                // Log out the user
+                await auth.signOut();
+
+                // Show error with option to resend verification
+                setButtonLoading(loginBtn, false);
+                showError('⚠️ Email non verificata. Controlla la tua casella di posta e clicca sul link di verifica. Non hai ricevuto l\'email?');
+                errorMessage.style.background = 'rgba(251, 146, 60, 0.1)';
+                errorMessage.style.borderColor = 'rgba(251, 146, 60, 0.5)';
+                errorMessage.style.color = '#fb923c';
+
+                // Add resend button
+                const resendBtn = document.createElement('button');
+                resendBtn.textContent = 'Reinvia email di verifica';
+                resendBtn.className = 'resend-verification-btn';
+                resendBtn.style.cssText = 'margin-top: 0.5rem; padding: 0.5rem 1rem; background: rgba(251, 146, 60, 0.2); border: 1px solid rgba(251, 146, 60, 0.5); color: #fb923c; border-radius: 8px; cursor: pointer; font-size: 0.9rem;';
+                resendBtn.onclick = async () => {
+                    try {
+                        // Re-authenticate to get user object
+                        const tempUser = await signInWithEmailAndPassword(auth, email, password);
+                        await sendEmailVerification(tempUser.user);
+                        await auth.signOut();
+                        showError('✅ Email di verifica inviata! Controlla la tua casella di posta.');
+                        errorMessage.style.background = 'rgba(34, 197, 94, 0.1)';
+                        errorMessage.style.borderColor = 'rgba(34, 197, 94, 0.5)';
+                        errorMessage.style.color = '#22c55e';
+                    } catch (err) {
+                        console.error('Error resending verification:', err);
+                        showError('Errore durante l\'invio dell\'email. Riprova più tardi.');
+                    }
+                };
+                errorMessage.appendChild(resendBtn);
+                return;
+            }
+
+            console.log('Login successful:', user.email);
+            localStorage.setItem('user_logged_in', 'true');
+            // Redirect to main site
+            window.location.href = '../notes.html';
+        } catch (error) {
+            console.error('Login error:', error.code, error.message);
+            showError(getFirebaseErrorMessage(error.code));
+            if (loginBtn) setButtonLoading(loginBtn, false);
+        }
+    });
+}
 
 // ============================================
 // EMAIL/PASSWORD SIGNUP
 // ============================================
 
-signupForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    hideError();
+if (signupForm) {
+    signupForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        hideError();
 
-    const name = signupNameInput.value.trim();
-    const email = signupEmailInput.value.trim();
-    const password = signupPasswordInput.value;
+        const name = signupNameInput.value.trim();
+        const email = signupEmailInput.value.trim();
+        const password = signupPasswordInput.value;
 
-    if (!name || !email || !password) {
-        showError('Compila tutti i campi.');
-        return;
-    }
+        if (!name || !email || !password) {
+            showError('Compila tutti i campi.');
+            return;
+        }
 
-    if (password.length < 6) {
-        showError('La password deve essere di almeno 6 caratteri.');
-        return;
-    }
+        if (password.length < 6) {
+            showError('La password deve essere di almeno 6 caratteri.');
+            return;
+        }
 
-    setButtonLoading(signupBtn, true);
+        setButtonLoading(signupBtn, true);
 
-    try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        try {
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
-        // Update user profile with name
-        await updateProfile(userCredential.user, {
-            displayName: name
-        });
+            // Update user profile with name
+            await updateProfile(userCredential.user, {
+                displayName: name
+            });
 
-        console.log('Signup successful:', userCredential.user.email);
+            console.log('Signup successful:', userCredential.user.email);
 
-        // Send email verification
-        await sendEmailVerification(userCredential.user);
-        console.log('Verification email sent to:', userCredential.user.email);
+            // Send email verification
+            await sendEmailVerification(userCredential.user);
+            console.log('Verification email sent to:', userCredential.user.email);
 
-        // Log out the user immediately after signup
-        await auth.signOut();
+            // Log out the user immediately after signup
+            await auth.signOut();
 
-        // Clear signup form
-        signupNameInput.value = '';
-        signupEmailInput.value = '';
-        signupPasswordInput.value = '';
+            // Clear signup form
+            signupNameInput.value = '';
+            signupEmailInput.value = '';
+            signupPasswordInput.value = '';
 
-        // Switch to login form
-        loginToggle.click();
+            // Switch to login form
+            if (loginToggle) loginToggle.click();
 
-        // Show success message with verification instructions
-        setButtonLoading(signupBtn, false);
-        showError('✅ Registrazione completata! Ti abbiamo inviato un\'email di verifica. Controlla la tua casella di posta e clicca sul link di conferma prima di effettuare il login.');
-        errorMessage.style.background = 'rgba(34, 197, 94, 0.1)';
-        errorMessage.style.borderColor = 'rgba(34, 197, 94, 0.5)';
-        errorMessage.style.color = '#22c55e';
+            // Show success message with verification instructions
+            setButtonLoading(signupBtn, false);
+            showError('✅ Registrazione completata! Ti abbiamo inviato un\'email di verifica. Controlla la tua casella di posta e clicca sul link di conferma prima di effettuare il login.');
+            errorMessage.style.background = 'rgba(34, 197, 94, 0.1)';
+            errorMessage.style.borderColor = 'rgba(34, 197, 94, 0.5)';
+            errorMessage.style.color = '#22c55e';
 
-    } catch (error) {
-        console.error('Signup error:', error.code, error.message);
-        showError(getFirebaseErrorMessage(error.code));
-        setButtonLoading(signupBtn, false);
-    }
-});
+        } catch (error) {
+            console.error('Signup error:', error.code, error.message);
+            showError(getFirebaseErrorMessage(error.code));
+            if (signupBtn) setButtonLoading(signupBtn, false);
+        }
+    });
+}
 
 // ============================================
 // GOOGLE SIGN-IN
@@ -486,8 +492,8 @@ async function handleGoogleSignIn(button) {
     }
 }
 
-googleLoginBtn.addEventListener('click', () => handleGoogleSignIn(googleLoginBtn));
-googleSignupBtn.addEventListener('click', () => handleGoogleSignIn(googleSignupBtn));
+if (googleLoginBtn) googleLoginBtn.addEventListener('click', () => handleGoogleSignIn(googleLoginBtn));
+if (googleSignupBtn) googleSignupBtn.addEventListener('click', () => handleGoogleSignIn(googleSignupBtn));
 
 
 
@@ -503,8 +509,8 @@ function clearFormInputs() {
     signupPasswordInput.value = '';
 }
 
-loginToggle.addEventListener('click', clearFormInputs);
-signupToggle.addEventListener('click', clearFormInputs);
+if (loginToggle) loginToggle.addEventListener('click', clearFormInputs);
+if (signupToggle) signupToggle.addEventListener('click', clearFormInputs);
 
 // ============================================
 // 3D TILT EFFECT
@@ -513,21 +519,23 @@ signupToggle.addEventListener('click', clearFormInputs);
 const card = document.getElementById('authCard');
 const container = document.querySelector('.auth-container');
 
-container.addEventListener('mousemove', (e) => {
-    const rect = container.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+if (container) {
+    container.addEventListener('mousemove', (e) => {
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
 
-    // Calculate rotation (reduced to max 4 degrees for subtlety)
-    const xRotation = -1 * ((y - rect.height / 2) / rect.height * 4);
-    const yRotation = (x - rect.width / 2) / rect.width * 4;
+        // Calculate rotation (reduced to max 4 degrees for subtlety)
+        const xRotation = -1 * ((y - rect.height / 2) / rect.height * 4);
+        const yRotation = (x - rect.width / 2) / rect.width * 4;
 
-    card.style.transform = `perspective(1000px) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
-});
+        if (card) card.style.transform = `perspective(1000px) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
+    });
 
-container.addEventListener('mouseleave', () => {
-    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-});
+    container.addEventListener('mouseleave', () => {
+        if (card) card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+    });
+}
 
 // ============================================
 // CURSOR SPOTLIGHT
