@@ -255,7 +255,7 @@ verifyCodeBtn.addEventListener('click', async () => {
         console.log('Phone sign-in successful:', user.phoneNumber);
 
         // Redirect
-        window.location.href = 'notes.html';
+        window.location.href = '../notes.html';
     } catch (error) {
         console.error('Verify Error:', error);
         setButtonLoading(verifyCodeBtn, false);
@@ -384,7 +384,7 @@ loginForm.addEventListener('submit', async (e) => {
 
         console.log('Login successful:', user.email);
         // Redirect to main site
-        window.location.href = 'notes.html';
+        window.location.href = '../notes.html';
     } catch (error) {
         console.error('Login error:', error.code, error.message);
         showError(getFirebaseErrorMessage(error.code));
@@ -469,7 +469,7 @@ async function handleGoogleSignIn(button) {
         const result = await signInWithPopup(auth, provider);
         console.log('Google sign-in successful:', result.user.email);
         // Redirect to main site
-        window.location.href = 'notes.html';
+        window.location.href = '../notes.html';
     } catch (error) {
         console.error('Google sign-in error:', error.code, error.message);
 

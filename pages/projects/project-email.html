@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSON Parser | MyPortfolio</title>
+    <title>Server Email | MyPortfolio</title>
 
     <!-- Sync Theme Fix -->
     <script>
@@ -74,7 +74,7 @@
                 <div class="breadcrumbs">
                     <a href="index.html">Home</a>
                     <i class="fa-solid fa-chevron-right"></i>
-                    <span id="subjectTitleBreadcrumb">Progetto: JSON Parser</span>
+                    <span id="subjectTitleBreadcrumb">Progetto: Server Email</span>
                 </div>
                 <div class="user-profile">
                     <span>Mattias Carpa</span>
@@ -85,9 +85,9 @@
             <!-- Subject Hero -->
             <section class="hero-small">
                 <div class="hero-content">
-                    <h1 id="subjectTitle">Libreria <span class="gradient-text">JSON Parser</span></h1>
-                    <p id="subjectDesc">Parser rigoroso e leggero implementato da zero in C++ basato sulle specifiche
-                        formali.</p>
+                    <h1 id="subjectTitle">Configurazione <span class="gradient-text">Server Email</span></h1>
+                    <p id="subjectDesc">Infrastruttura di un server di posta elettronica utilizzando Postfix e Dovecot
+                        su ambiente Linux.</p>
                 </div>
             </section>
 
@@ -98,28 +98,29 @@
                 <div class="subject-main">
                     <div
                         style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem;">
-                        <h2>Ingegneria del Software C++</h2>
+                        <h2>Descrizione Architetturale</h2>
                         <p
                             style="color: var(--text-secondary); line-height: 1.6; margin-top: 1rem; margin-bottom: 2rem;">
-                            L'obiettivo di questa libreria è la lettura, decodifica e manipolazione di file formattati
-                            JSON utilizzando le funzionalità core del C++. Si concentra sull'uso spinto dei concetti
-                            avanzati del paradigma ad oggetti e sulla gestione rigorosa della memoria.</p>
+                            Questo progetto ha previsto l'implementazione completa e la configurazione sicura di un
+                            server di posta su macchina virtuale Linux. Utilizzando <strong>Postfix</strong> come Mail
+                            Transfer Agent (MTA) e <strong>Dovecot</strong> per la consegna locale tramite IMAP/POP3, è
+                            stato instaurato un flusso end-to-end funzionante per l'invio e ricezione sicura di
+                            comunicazioni.</p>
 
-                        <h3>Fondamenti Tecnici:</h3>
+                        <h3>Punti Chiave:</h3>
                         <ul
                             style="color: var(--text-secondary); line-height: 1.6; margin-top: 1rem; margin-left: 1.5rem; margin-bottom: 2rem;">
-                            <li>Sviluppo guidato da grammatiche Context-Free teoriche.</li>
-                            <li>Applicazione massiccia del concetto di <strong>Polimorfismo</strong> per rappresentare
-                                Array, Oggetti, Stringhe e Numeri nativi estendendo una classe base JSONValue.</li>
-                            <li>Implementazione di <strong>Design Patterns</strong> classici come Composite e Iterator.
-                            </li>
-                            <li><strong>Operator Overloading</strong> per un rapido accesso ai dati (es. overloading
-                                delle parentesi quadre `json["key"]`).</li>
+                            <li>Configurazione dei record DNS (MX, SPF, DKIM) per garantire la deliverability ed evitare
+                                lo spam.</li>
+                            <li>Implementazione crittografia TLS/SSL per connessioni sicure (SMTPS/IMAPS).</li>
+                            <li>Test del traffico tramite <strong>Wireshark</strong> per ispezionare gli handshake e
+                                confermare la cifratura dei pacchetti.</li>
+                            <li>Gestione degli utenti virtuali e dei permessi di sistema.</li>
                         </ul>
 
                         <div
                             style="background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); border-radius: 12px; padding: 2rem; display: flex; justify-content: center; align-items: center; min-height: 200px;">
-                            <i class="fa-solid fa-brackets-curly"
+                            <i class="fa-solid fa-server"
                                 style="font-size: 4rem; color: var(--text-secondary); opacity: 0.5;"></i>
                         </div>
                     </div>
@@ -130,8 +131,8 @@
                     <div class="info-card">
                         <h3>Dettagli Progetto</h3>
 
-                        <div class="info-item"><span class="label">Anno</span><span class="value">2022</span></div>
-                        <div class="info-item"><span class="label">Ruolo</span><span class="value">C++ Developer</span>
+                        <div class="info-item"><span class="label">Anno</span><span class="value">2024</span></div>
+                        <div class="info-item"><span class="label">Ruolo</span><span class="value">System Admin</span>
                         </div>
                         <div class="info-item"
                             style="flex-direction: column; align-items: flex-start; gap: 0.5rem; margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
@@ -139,13 +140,13 @@
                             <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
                                 <span
                                     style="font-size: 0.8rem; padding: 0.3rem 0.6rem; background: rgba(255,255,255,0.1); border-radius: 4px;"><i
-                                        class="fa-brands fa-cuttlefish"></i>++</span>
+                                        class="fa-brands fa-linux"></i> Ubuntu</span>
                                 <span
                                     style="font-size: 0.8rem; padding: 0.3rem 0.6rem; background: rgba(255,255,255,0.1); border-radius: 4px;"><i
-                                        class="fa-solid fa-diagram-project"></i> OOP</span>
+                                        class="fa-solid fa-server"></i> Postfix</span>
                                 <span
                                     style="font-size: 0.8rem; padding: 0.3rem 0.6rem; background: rgba(255,255,255,0.1); border-radius: 4px;"><i
-                                        class="fa-solid fa-code"></i> Pointers</span>
+                                        class="fa-solid fa-envelope"></i> SMTP/IMAP</span>
                             </div>
                         </div>
                         <a href="https://github.com/Tiume001" target="_blank" class="btn-primary"
@@ -177,9 +178,9 @@
             event.currentTarget.classList.add('active');
         }
     </script>
-    <script src="script.js"></script>
-    <script type="module" src="navbar-auth.js"></script>
-    <script type="module" src="theme-switcher.js"></script>
+    <script src="../../js/script.js"></script>
+    <script type="module" src="../../js/auth.js"></script>
+    <script type="module" src="../../js/theme-switcher.js"></script>
 </body>
 
 </html>
