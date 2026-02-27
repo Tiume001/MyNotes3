@@ -1342,10 +1342,28 @@ details.snippet-container[open] summary.snippet-header i.fa-chevron-down {
     font-weight: 500;
 }
 
-/* Certification Cards */
+/* Certification Cards with Grouping */
 .cert-card {
     text-align: center;
     padding: 2rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+}
+
+.cert-card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform var(--transition-fast);
+    flex-grow: 1;
+    /* Allows header to take available space */
+}
+
+.cert-card:hover .cert-card-header {
+    transform: translateY(-5px);
 }
 
 .cert-icon {
@@ -1362,8 +1380,8 @@ details.snippet-container[open] summary.snippet-header i.fa-chevron-down {
 }
 
 .cert-card h3 {
-    margin-bottom: 0.75rem;
-    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
 }
 
 .cert-issuer {
@@ -1372,10 +1390,111 @@ details.snippet-container[open] summary.snippet-header i.fa-chevron-down {
     margin-bottom: 0.5rem;
 }
 
-.cert-date {
+.cert-card .toggle-icon {
+    font-size: 1.2rem;
     color: var(--text-secondary);
-    font-size: 0.85rem;
-    margin-bottom: 1rem;
+    margin-top: auto;
+    /* Pushes the icon to the very bottom of the card */
+    padding-top: 1rem;
+    transition: transform var(--transition-smooth);
+}
+
+.cert-card.active .toggle-icon {
+    transform: rotate(180deg);
+    color: var(--accent-primary);
+}
+
+/* Hidden content until expanded - Now an Overlay */
+.cert-group-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(19, 19, 22, 0.98);
+    backdrop-filter: blur(8px);
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 1.5rem 1.5rem 1.5rem;
+    overflow-y: auto;
+}
+
+.light-mode .cert-group-content {
+    background: rgba(250, 239, 225, 0.98);
+}
+
+.cert-card.active .cert-group-content {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Close Button for Overlay */
+.cert-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color var(--transition-fast);
+    z-index: 20;
+}
+
+.cert-close-btn:hover {
+    color: var(--accent-primary);
+}
+
+.cert-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+    margin-bottom: 0;
+    transition: var(--transition-fast);
+    text-align: left;
+}
+
+.light-mode .cert-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.cert-item:last-child {
+    border-bottom: none;
+}
+
+.cert-item:hover {
+    background: transparent;
+    border-color: var(--accent-primary);
+    transform: translateX(4px);
+}
+
+.cert-item-info h4 {
+    margin: 0 0 0.3rem 0;
+    font-size: 1rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.cert-item-info p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+    .cert-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
 }
 
 .btn-text {
