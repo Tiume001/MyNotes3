@@ -39,6 +39,23 @@
     </style>
     <link rel="icon" href="../../favicon.png" type="image/png">
     <link rel="apple-touch-icon" href="../../favicon.png">
+
+    <!-- Sync Navbar Auth Fix -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('user_logged_in') === 'true') {
+                const padlock = document.getElementById('authPadlock');
+                if (padlock) {
+                    padlock.classList.remove('fa-lock');
+                    padlock.classList.add('fa-lock-open');
+                    padlock.style.color = '#22c55e';
+                    padlock.title = "Accesso Effettuato";
+                    // Forziamo lo stile inline per superare eventuali delay CSS parse
+                    padlock.style.transition = 'none'; 
+                }
+            }
+        });
+    </script>
 </head>
 
 <body>
