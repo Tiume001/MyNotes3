@@ -2237,16 +2237,87 @@ a.clickable-project:hover .cv-details-linear strong {
 /* Global Mobile Fixes for Navbar and Headlines */
 @media (max-width: 768px) {
 
-    /* Navbar Wrapping */
-    .top-navbar {
-        padding: 1rem 1.5rem;
-        flex-wrap: wrap;
+    /* Main layout scaling */
+    .main-content {
+        padding: 1.5rem 1rem;
+    }
+
+    section,
+    .portfolio-section {
+        margin-bottom: 2.5rem;
+        padding: 0 1rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.2rem;
+    }
+
+    /* Reduce gaps in grids */
+    .cards-grid,
+    .social-grid,
+    .tech-grid {
         gap: 1rem;
+    }
+
+    /* Shrink padding and sizes of cards */
+    .card,
+    .project-card,
+    .cert-card,
+    .cv-card,
+    .social-card,
+    .info-card {
+        padding: 1.2rem;
+        gap: 0.8rem;
+        border-radius: 12px;
+    }
+
+    .cv-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    .cv-avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+
+    .cv-info h3 {
+        font-size: 1.2rem;
+    }
+
+    /* Navbar Wrapping & Shrinking */
+    .top-navbar {
+        padding: 0.5rem 1rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
     }
 
     .nav-left {
         flex: 1;
         /* Pushes theme toggle to the right */
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .nav-right {
+        gap: 1rem;
+    }
+
+    .nav-right a {
+        font-size: 1.1rem !important;
+    }
+
+    .theme-toggle-btn {
+        width: auto;
+        height: auto;
+        padding: 0.3rem;
     }
 
     .top-nav {
@@ -2258,30 +2329,32 @@ a.clickable-project:hover .cv-details-linear strong {
     }
 
     .nav-links {
-        gap: 0.8rem;
+        gap: 0.5rem;
         flex-wrap: wrap;
         justify-content: center;
     }
 
     .nav-links a {
-        font-size: 0.9rem;
-        padding: 0.3rem 0.5rem;
+        font-size: 0.85rem;
+        padding: 0.2rem 0.4rem;
     }
 
     /* Oversized Hero Text Fix */
     .hero-small {
-        padding: 2rem 1.5rem;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
     }
 
     .hero-small h1,
     .hero-content h1 {
-        font-size: 2.2rem !important;
+        font-size: 1.8rem !important;
         /* Overrides inline 4rem size */
-        line-height: 1.2;
+        line-height: 1.15;
     }
 
     .hero-content p {
-        font-size: 1.1rem !important;
+        font-size: 0.95rem !important;
+        margin-bottom: 1rem !important;
     }
 }
 
