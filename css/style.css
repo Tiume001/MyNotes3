@@ -2165,3 +2165,100 @@ a.clickable-project:hover .cv-details-linear strong {
         font-size: 1.1rem !important;
     }
 }
+
+/* =========================================
+   TABS UI (Project Pages)
+========================================= */
+
+.tabs-container {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 2rem;
+    padding-bottom: 0px;
+    scrollbar-width: none; /* Firefox */
+}
+
+.tabs-container::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
+
+.tab-btn {
+    background: transparent;
+    border: none;
+    padding: 1rem 1.5rem;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    white-space: nowrap;
+}
+
+.tab-btn:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.tab-btn.active {
+    color: var(--accent-primary);
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; /* Pull it down to cover the border-bottom */
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--accent-primary);
+    border-radius: 3px 3px 0 0;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Markdown Rendering Settings for tabs */
+.markdown-content h1, .markdown-content h2, .markdown-content h3 {
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+    color: var(--text-primary);
+}
+
+.markdown-content p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+}
+
+.markdown-content pre {
+    background: #1e1e1e !important;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.markdown-content code {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9em;
+}
+
+.light-mode .markdown-content pre {
+    background: #f8f9fa !important;
+    border-color: #e5e7eb;
+}

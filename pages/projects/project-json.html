@@ -43,7 +43,7 @@
                     padlock.style.color = '#22c55e';
                     padlock.title = "Accesso Effettuato";
                     // Forziamo lo stile inline per superare eventuali delay CSS parse
-                    padlock.style.transition = 'none'; 
+                    padlock.style.transition = 'none';
                 }
             }
         });
@@ -108,76 +108,1550 @@
                 </div>
             </section>
 
-            <!-- Two Column Layout -->
-
-            <div class="subject-layout">
-                <!-- Main Content -->
+            <!-- Full Width JSON Presentation -->
+            <div class="subject-layout" style="grid-template-columns: 1fr;">
                 <div class="subject-main">
-                    <div
-                        style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem;">
-                        <h2>Ingegneria del Software C++</h2>
-                        <p
-                            style="color: var(--text-secondary); line-height: 1.6; margin-top: 1rem; margin-bottom: 2rem;">
-                            L'obiettivo di questa libreria è la lettura, decodifica e manipolazione di file formattati
-                            JSON utilizzando le funzionalità core del C++. Si concentra sull'uso spinto dei concetti
-                            avanzati del paradigma ad oggetti e sulla gestione rigorosa della memoria.</p>
 
-                        <h3>Fondamenti Tecnici:</h3>
-                        <ul
-                            style="color: var(--text-secondary); line-height: 1.6; margin-top: 1rem; margin-left: 1.5rem; margin-bottom: 2rem;">
-                            <li>Sviluppo guidato da grammatiche Context-Free teoriche.</li>
-                            <li>Applicazione massiccia del concetto di <strong>Polimorfismo</strong> per rappresentare
-                                Array, Oggetti, Stringhe e Numeri nativi estendendo una classe base JSONValue.</li>
-                            <li>Implementazione di <strong>Design Patterns</strong> classici come Composite e Iterator.
-                            </li>
-                            <li><strong>Operator Overloading</strong> per un rapido accesso ai dati (es. overloading
-                                delle parentesi quadre `json["key"]`).</li>
-                        </ul>
+                    <!-- TABS NAV -->
+                    <nav class="tabs-container" style="margin-top: 2rem;">
+                        <button class="tab-btn active" onclick="openTab('tab-overview')">
+                            <i class="fa-solid fa-book-open"></i> Overview
+                        </button>
+                        <button class="tab-btn" onclick="openTab('tab-hpp')">
+                            <i class="fa-solid fa-code"></i> json.hpp
+                        </button>
+                        <button class="tab-btn" onclick="openTab('tab-cpp')">
+                            <i class="fa-solid fa-code"></i> json.cpp
+                        </button>
+                        <button class="tab-btn" onclick="openTab('tab-tests')">
+                            <i class="fa-solid fa-vial-virus"></i> Test Suite
+                        </button>
+                    </nav>
 
-                        <div
-                            style="background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); border-radius: 12px; padding: 2rem; display: flex; justify-content: center; align-items: center; min-height: 200px;">
-                            <i class="fa-solid fa-brackets-curly"
-                                style="font-size: 4rem; color: var(--text-secondary); opacity: 0.5;"></i>
+                    <!-- TAB CONTENTS -->
+
+                    <!-- 1. Overview Tab -->
+                    <div id="tab-overview" class="tab-content active"
+                        style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 2.5rem; margin-bottom: 2rem;">
+                        <h2>Specifiche del Progetto: JSON validatore</h2>
+                        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Di seguito la documentazione
+                            originale dell'Università che descrive vincoli e richieste architetturali.</p>
+                        <div class="markdown-content">
+                            <h1>Progetto Programmazione e laboratorio A.A. 2022/2023</h1>
+                            <p>Lo scopo del progetto è scrivere un parser (tramite grammatiche context-free) di file in
+                                formato json. Il contenuto del file deve essere salvato in un container C++ che permetta
+                                l’accesso (tramite iteratori e overloading di operatori) del contenuto letto dal file
+                                json.</p>
+                            <p>Nelle due sezioni seguenti vengono introdotti il formato json e la descrizione del
+                                container da realizzare. </p>
+                            <p><strong>Nota</strong>: se trovate imprecisioni/errori o volete un chiarimento su parti di
+                                questo documento o di json.hpp, aprite una GitHub issue (pulsante &quot;issues&quot; in
+                                alto) citando la linea del file in questione (se il commento riguarda una linea
+                                particolare del codice o di questo README). Per citare una particolare linea di
+                                README.md, aprite il file (cliccando su README.md in alto), rendete visibili le linee
+                                (pulsante <code>&lt;&gt;</code> &quot;display the source blob&quot;), selezionate i
+                                numeri di linea interessati -&gt; cliccate i tre puntini -&gt; &quot;copy
+                                permalink&quot;. A questo punto, potete incollare il link copiato nella issue. Analogo
+                                per json.hpp (in questo caso i numeri di linea sono immediatamente visibili).</p>
+                            <h2>1. Formato json</h2>
+                            <p>Si vuole scrivere un parser per una variante <em>semplificata</em> di json – un formato
+                                testuale per lo scambio di informazione sul Web. <strong>Importante</strong>: usate la
+                                descrizione json fornita di seguito e non quella trovata in rete.</p>
+                            <p>Un file json contiene dati in una struttura ad albero (ricorsiva), simile al formato XML.
+                                A differenza di XML, il formato json ammette sia <strong>liste</strong> di valori che
+                                <strong>dizionari</strong> (definiti nel dettaglio qui sotto). Globalmente, un file json
+                                è una lista, un dizionario, un numero (double), un booleano, una stringa, oppure null.
+                            </p>
+                            <h3>Liste</h3>
+                            <p>Una lista è una sequenza di valori eterogenei separati da virgola e racchiusa tra due
+                                parentesi quadre. I valori contenuti nella lista possono essere di <strong>sei</strong>
+                                tipi: una lista (ricorsione), un dizionario (definito sotto), una stringa racchiusa tra
+                                doppi apici, un valore di tipo double, bool (true/false), oppure null (che sta ad
+                                indicare l’assenza di un valore).</p>
+                            <p>Il seguente è un esempio di un semplice file json di tipo lista (ossia, l’intero file è
+                                una lista), contenente due stringhe, un valore di tipo double (34.5), seguito da un
+                                valore di tipo bool (true), seguito da null, seguito da una lista.</p>
+                            <pre><code>[
+    &quot;prima stringa&quot;,
+    &quot;seconda stringa&quot;,
+    34.5,
+    true,
+    null, 
+    [1,2,false,43]
+]
+</code></pre>
+                            <p><strong>Nota.</strong> I separatori (newline, tab, spazi) vanno ignorati. L’unica
+                                eccezione sono i separatori racchiusi tra doppi apici (per esempio, lo spazio in
+                                &quot;prima stringa&quot;): in questo caso, i separatori devono fare parte della stringa
+                                estratta dal file. </p>
+                            <h3>Una nota importante sulle stringhe</h3>
+                            <p>Tutti i caratteri tra le doppie virgolette vanno estratti tali e quali. Tenete presente
+                                che le stringhe possono contenere il carattere <code>&quot;</code> preceduto da un
+                                carattere di <code>\</code>, i.e., la stringa potrebbe contenere la sotto stringa
+                                <code>\&quot;</code>. In questo caso, quindi, la stringa **non** termina con quella
+                                occorrenza di <code>&quot;</code>. Le stringhe terminano solo quando il carattere
+                                <code>&quot;</code> **non** è preceduto da <code>\</code>.
+                            </p>
+                            <p><strong>Nota bene</strong>: Fate attenzione a seguire questa regola!</p>
+                            <p>Sotto riportiamo alcuni esempi.</p>
+                            <p>Per esempio, considerate il seguente file json: </p>
+                            <pre><code>[
+    &quot;una stringa con \n virgolette \&quot;escaped\&quot;&quot;,
+    &quot;seconda stringa senza escape&quot;,
+    &quot;terza stringa con altri\&quot; escape&quot;,
+    &quot;doppio \\&quot; escape&quot;
+]
+</code></pre>
+                            <p>Nell’esempio sopra, le quattro stringhe da estrarre dal file (ossia, i caratteri da
+                                inserire nelle <code>std::string</code> che andrete a costruire) sono, rispettivamente:
+                            </p>
+                            <pre><code>una stringa con \n virgolette \&quot;escaped\&quot;
+seconda stringa senza escape
+terza stringa con altri\&quot; escape
+doppio \\&quot; escape
+</code></pre>
+                            <p><strong>Nota</strong>: I caratteri speciali <code>\n</code> (e simili, tipo
+                                <code>\t</code>, <code>\r</code>, etc.) non fanno eccezione! Se il file json contiene
+                                una stringa in cui compare <code>\n</code>, ad esempio, vanno estratti
+                                <strong>due</strong> caratteri: backslash (<code>\</code>) seguito dal carattere
+                                <code>n</code>, **non** va estratto il singolo carattere <code>\n</code> (che significa
+                                newline). Questa è una modifica rispetto al formato originale che abbiamo introdotto per
+                                semplificare la scrittura del parser.
+                            </p>
+                            <h3>Dizionari</h3>
+                            <p>Un dizionario è un insieme (una lista) di coppie</p>
+                            <p><strong>chiave : valore</strong></p>
+                            <p>separate da virgola e racchiuse da due parentesi graffe. Notare che chiave e valore sono
+                                separate da un carattere ‘:’ (due punti). Le chiavi possono essere solo stringhe
+                                racchiuse tra doppi apici (di nuovo, queste stringhe possono contenere caratteri escape
+                                ‘\’). I valori possono essere, come sopra, una lista, un dizionario, una stringa
+                                racchiusa tra doppi apici (possibilmente con caratteri escape ‘\’), un valore double o
+                                bool, oppure null.</p>
+                            <p>Per esempio, il seguente file json è di tipo dizionario.</p>
+                            <pre><code>{
+    &quot;prima chiave&quot; : 5,
+    &quot;seconda chiave&quot; : [4.12,2,true],
+    &quot;terza chiave&quot; : &quot;una stringa&quot;,
+    &quot;quarta chiave&quot; : {&quot;a&quot; : 4, &quot;b&quot; : [4,5]}
+}
+</code></pre>
+                            <p>Nell’esempio qui sopra, il dizionario contiene quattro coppie <strong>chiave :
+                                    valore</strong> :</p>
+                            <ol>
+                                <li>Nella prima, la chiave è la stringa <strong>prima chiave</strong> e il valore è
+                                    l’intero <strong>5</strong></li>
+                                <li>Nella seconda, la chiave è la stringa <strong>seconda chiave</strong> e il valore è
+                                    la lista <strong>[4.12,2,true]</strong></li>
+                                <li>Nella terza, la chiave è la stringa <strong>terza chiave</strong> e il valore è la
+                                    stringa <strong>una stringa</strong></li>
+                                <li>Nella quarta, la chiave è la stringa <strong>quarta chiave</strong> e il valore è di
+                                    nuovo (ricorsivamente) un dizionario: <strong>{&quot;a&quot; : 4, &quot;b&quot; :
+                                        [4,5]}</strong></li>
+                            </ol>
+                            <p>Notate bene la struttura ricorsiva del formato json: la vostra grammatica deve ammettere
+                                annidamenti arbitrari di dizionari e liste. </p>
+                            <h3>Esempi e dataset su cui testare il parser</h3>
+                            <p>Potete usare il seguente database di file json per testare il vostro codice: </p>
+                            <p><a
+                                    href="https://github.com/jdorfman/awesome-json-datasets">https://github.com/jdorfman/awesome-json-datasets</a>.
+                            </p>
+                            <p>Può tornarvi utile visualizzare un file json in formato ad albero. Per questo, potete
+                                usare uno dei tanti visualizzatori json online, ad esempio il seguente:</p>
+                            <p><a href="https://jsonviewer.stack.hu/">https://jsonviewer.stack.hu/</a>.</p>
+                            <p><strong>Nota.</strong> Il visualizzatore sopra racchiude le stringhe tra doppi apici. Il
+                                vostro parser invece non deve estrarre i doppi apici che racchiudono le stringhe (vedi
+                                esempi sopra). </p>
+                            <h2>2. Container</h2>
+                            <p>Lo scopo del progetto è scrivere un container</p>
+                            <pre><code>class json;
+</code></pre>
+                            <p>che permetta di immagazzinare tutte le informazioni contenute in un file json. Il parser
+                                json realizzato verrà usato per estrarre dati da un file json e costruire un oggetto di
+                                tipo <code>json</code>. Qui sotto trovate una descrizione della dichiarazione della
+                                classe json.hpp che trovate in questo repository GitHub.</p>
+                            <p>La classe json deve essere definita in modo ricorsivo, come segue. Un oggetto di tipo
+                                <code>json</code> contiene un’unica variabile privata
+                            </p>
+                            <pre><code>impl* pimpl;
+</code></pre>
+                            <p>Dove <code>json::impl</code> è una struct (privata) che siete liberi di definire (come
+                                visto a lezione del modulo 1: pattern Pimpl). Nel decidere che variabili e metodi
+                                definire dentro <code>json::impl</code>, tenete conto che ogni istanza di
+                                <code>json</code> può essere una di queste sei cose:
+                            </p>
+                            <ol>
+                                <li>null,</li>
+                                <li>un numero,</li>
+                                <li>un booleano, </li>
+                                <li>una stringa, </li>
+                                <li>una lista (di json), oppure</li>
+                                <li>un dizionario (insieme di coppie &lt;stringa, json&gt;).</li>
+                            </ol>
+                            <p>Una buona idea potrebbe quindi essere quella di definire, dentro <code>json::impl</code>,
+                                una variabile double, una variabile <code>bool</code>, una variabile
+                                <code>std::string</code>, una lista di <code>json</code>, e una lista di
+                                <code>std::pair&lt;std::string,json&gt;</code> per il dizionario (in aggiunta a metodi e
+                                altre variabili che ritenete necessarie). Ogni oggetto <code>json</code> userà solo una
+                                di queste cinque variabili (in modo analogo a come abbiamo fatto con la classe token a
+                                lezione) e potreste modellare il valore null controllando che ognuna di queste cinque
+                                variabili non sia “in uso”.
+                            </p>
+                            <h3>Eccezioni</h3>
+                            <p>Nel file json.hpp è definita la struct</p>
+                            <pre><code>struct json_exception {
+    std::string msg;
+};
+</code></pre>
+                            <p>che dovete usare per le eccezioni. Usate la stringa <code>msg</code> per fornire un
+                                messaggio di errore informativo (vi tornerà utile in fase di debugging: nei nostri
+                                report che vi forniremo, stamperemo questi messaggi).</p>
+                            <h3>Tipi membri di json</h3>
+                            <pre><code>json::impl;
+</code></pre>
+                            <p>Questa è la struct (privata in json) che potete utilizzare per definire le variabili e
+                                metodi che volete usare nell’implementazione di json (come detto sopra, un oggetto
+                                <code>json</code> contiene un puntatore <code>impl*</code>).
+                            </p>
+                            <p>Ricordate che <code>json::impl</code> ha accesso ai membri privati di <code>json</code>,
+                                quindi se lo desiderate dentro <code>json::impl</code> potete anche definire metodi che
+                                prendono in input oggetti <code>json</code> e modificano il loro contenuto (accedendo a
+                                membri privati di <code>json</code>). </p>
+                            <hr>
+                            <pre><code>json::list_iterator;
+json::dictionary_iterator;
+json::const_list_iterator;
+json::const_dictionary_iterator;
+</code></pre>
+                            <p>Questi sono dei forward iterator che permettono di navigare le liste e i dizionari
+                                contenuti in un oggetto <code>json</code> (maggiori dettagli sono descritti sotto, nei
+                                metodi <code>begin_list()</code>, <code>end_list()</code>,
+                                <code>begin_dictionary()</code>, <code>end_dictionary()</code>). Su ognuno di questi
+                                iteratori, definire (come visto a lezione) i metodi per modificare gli iteratori ed
+                                accedere al loro contenuto (in particolare: <code>operator++</code> prefix e postfix,
+                                <code>operator*</code>, <code>operator-&gt;</code>, <code>operator==</code>,
+                                <code>operator!=</code>).
+                            </p>
+                            <h3>Metodi pubblici di json</h3>
+                            <h4>Costruttori, distruttore e assegnamenti:</h4>
+                            <p>Costruttore di default, copy constructor, move constructor, distruttore, copy assignment
+                                e move assignment, implementati con la semantica standard come visto a lezione. Il
+                                costruttore di default deve costruire un oggetto <code>json</code> di tipo null (ossia,
+                                la funzione <code>is_null()</code> descritta sotto deve restituire <code>true</code>).
+                            </p>
+                            <pre><code>json::json();
+json::json(json const&amp;);
+json::json(json&amp;&amp;);
+json::~json();
+json&amp; json::operator=(json const&amp;);
+json&amp; json::operator=(json&amp;&amp;);
+</code></pre>
+                            <h4>Metodi bool</h4>
+                            <p>I seguenti metodi possono essere utilizzati per capire di che tipo è l’oggetto
+                                <code>json</code> (lista, dizionario, stringa, numero, booleano, oppure null). Nota
+                                bene: esattamente <strong>uno</strong> di questi metodi deve restituire true (l’oggetto
+                                <code>json</code> è esattamente uno di questi sei tipi).
+                            </p>
+                            <hr>
+                            <pre><code>bool json::is_list() const;
+</code></pre>
+                            <p>Questo metodo restituisce true se e solo se l’oggetto è una lista.</p>
+                            <hr>
+                            <pre><code>bool json::is_dictionary() const;
+</code></pre>
+                            <p>Questo metodo restituisce true se e solo se l’oggetto è un dizionario.</p>
+                            <hr>
+                            <pre><code>bool json::is_string() const;
+</code></pre>
+                            <p>Questo metodo restituisce true se e solo se l’oggetto è una stringa.</p>
+                            <hr>
+                            <pre><code>bool json::is_number() const;
+</code></pre>
+                            <p>Questo metodo restituisce true se e solo se l’oggetto è un numero (double).</p>
+                            <hr>
+                            <pre><code>bool json::is_bool() const;
+</code></pre>
+                            <p>Questo metodo restituisce true se e solo se l’oggetto è un booleano.</p>
+                            <hr>
+                            <pre><code>bool json::is_null() const;
+</code></pre>
+                            <p>Questo metodo restituisce true se e solo se l’oggetto è null.</p>
+                            <h4>Metodi per accedere (dall’esterno) al contenuto del container</h4>
+                            <pre><code>json const&amp; json::operator[](std::string const&amp; key) const;
+json&amp; json::operator[](std::string const&amp; key);
+</code></pre>
+                            <p>Se l’oggetto è un dizionario (<code>is_dictionary()</code> restituisce
+                                <code>true</code>), questo metodo restituisce una reference all’elemento
+                                <code>json</code> associato alla chiave <code>key</code> (ricordate che un dizionario è
+                                un insieme di coppie chiave-valore in cui le chiavi sono di tipo
+                                <code>std::string</code> e i valori sono di tipo <code>json</code>).
+                            </p>
+                            <p><strong>Nota.</strong> Non è un problema se questo metodo scorre tutto il contenuto del
+                                dizionario (per esempio, se avete implementato il dizionario tramite una lista). Non ci
+                                aspettiamo che questo metodo sia particolarmente efficiente (a differenza del metodo
+                                <code>json::insert</code>, vedi sotto).
+                            </p>
+                            <p>Se il dizionario non contiene nessuna coppia chiave-valore la cui chiave è uguale a
+                                <code>key</code>, allora:
+                            </p>
+                            <ul>
+                                <li>il metodo <code>operator[]</code> deve inserire nel dizionario una nuova coppia
+                                    chiave-valore la cui chiave è <code>key</code> e il cui valore è un
+                                    <code>json</code> costruito con il costruttore di default (i.e., un
+                                    <code>json</code> il cui contenuto è <code>null</code>), ed infine restituire una
+                                    reference a questo nuovo <code>json</code> appena costruito;
+                                </li>
+                                <li>il metodo <code>operator[] const</code> deve lanciare invece un&#39;eccezione non
+                                    potendo effettuare nessun inserimento.</li>
+                            </ul>
+                            <p>In ogni caso, se l’oggetto non è un dizionario, lanciamo un’eccezione
+                                <code>json_exception</code> (con messaggio <code>msg</code> a piacere)
+                                se il metodo <code>operator[]</code> viene invocato.
+                            </p>
+                            <hr>
+                            <p>Se l’oggetto è una lista (<code>is_list()</code> restituisce <code>true</code>), usiamo
+                                gli iteratori <code>list_iterator</code> e <code>const_list_iterator</code> per accedere
+                                ai membri della lista (a loro volta, degli oggetti <code>json</code>).</p>
+                            <p>I seguenti metodi permettono di ottenere iteratori all’inizio e alla fine della lista. Se
+                                <code>is_list()</code> restituisce <code>false</code>, questi metodi devono lanciare
+                                un’eccezione <code>json_exception</code> (con messaggio <code>msg</code> a piacere).
+                            </p>
+                            <p><strong>Attenzione.</strong> L’ordine degli elementi nella lista deve essere lo stesso
+                                del file letto in input. In particolare, gli iteratori devono restituire gli elementi in
+                                questo ordine.</p>
+                            <pre><code>json::list_iterator json::begin_list();
+json::const_list_iterator json::begin_list() const;
+json::list_iterator json::end_list();
+json::const_list_iterator json::end_list() const;
+</code></pre>
+                            <hr>
+                            <p>In modo analogo, se l’oggetto è un dizionario (<code>is_dictionary()</code> restituisce
+                                <code>true</code>), usiamo gli iteratori <code>dictionary_iterator</code> e
+                                <code>const_dictionary_iterator</code> per accedere alle coppie contenute nel dizionario
+                                (le coppie sono di tipo <code>std::pair&lt;std::string,json&gt;</code>). I seguenti
+                                metodi permettono di ottenere iteratori all’inizio e alla fine del dizionario. Se
+                                <code>is_dictionary()</code> restituisce <code>false</code>, questi metodi devono
+                                lanciare un’eccezione <code>json_exception</code> (con messaggio <code>msg</code> a
+                                piacere).
+                            </p>
+                            <p><strong>Attenzione.</strong> A differenza degli iteratori su lista, in questo caso non è
+                                importante l’ordine in cui vengono immagazzinati e visitati gli elementi del dizionario.
+                            </p>
+                            <pre><code>json::dictionary_iterator json::begin_dictionary();
+json::const_dictionary_iterator json::begin_dictionary() const;
+json::dictionary_iterator json::end_dictionary();
+json::const_dictionary_iterator json::end_dictionary() const;
+</code></pre>
+                            <hr>
+                            <p>Se <code>is_number()</code> è <code>true</code> (l’oggetto è un numero), i metodi qui
+                                sotto restituiscono una reference / const reference alla variabile <code>double</code>
+                                contenuta nel <code>json</code> (e che potete salvare in <code>json::impl</code>). Se
+                                <code>is_number()</code> è <code>false</code>, questo metodo deve lanciare un’eccezione
+                                <code>json_exception</code> (con messaggio <code>msg</code> a piacere).
+                            </p>
+                            <pre><code>double&amp; json::get_number();
+double const&amp; json::get_number() const;
+</code></pre>
+                            <hr>
+                            <p>Se <code>is_bool()</code> è <code>true</code> (l’oggetto è un boolean), questi metodi
+                                restituiscono una reference / const reference alla variabile booleana contenuta nel
+                                <code>json</code> (e che potete salvare in <code>json::impl</code>). Altrimenti, viene
+                                lanciata un’eccezione <code>json_exception</code> (con messaggio <code>msg</code> a
+                                piacere).
+                            </p>
+                            <pre><code>bool&amp; json::get_bool();
+bool const&amp; json::get_bool() const;
+</code></pre>
+                            <hr>
+                            <p>Se <code>is_string()</code> è <code>true</code> (l’oggetto è una stringa), questi metodi
+                                restituiscono una reference / const reference alla variabile di tipo stringa stringa
+                                contenuta nel <code>json</code> (e che potete salvare in <code>json::impl</code>).
+                                Altrimenti, viene lanciata un’eccezione <code>json_exception</code> (con messaggio
+                                <code>msg</code> a piacere).
+                            </p>
+                            <pre><code>std::string&amp; json::get_string();
+std::string const&amp; json::get_string() const;
+</code></pre>
+                            <h4>Metodi per settare il contenuto del json</h4>
+                            <p>Questo metodo rende il json di tipo stringa, rendendo la sua stringa memorizzata
+                                internamente uguale a <code>x</code> e cancellando gli eventuali dati precedentemente
+                                memorizzati nel json (per esempio, se il json era di tipo lista, questa funzione deve
+                                svuotare la lista e poi memorizzare la stringa <code>x</code>). Dopo la chiamata di
+                                questa funzione, <code>is_string()</code> deve restituire <code>true</code> (nessun
+                                altro metodo booleano deve restituire <code>true</code>).</p>
+                            <pre><code>void json::set_string(std::string const&amp; x);
+</code></pre>
+                            <hr>
+                            <p>Questo metodo rende il json di tipo bool, rendendo il bool memorizzato internamente
+                                uguale a <code>x</code> e cancellando gli eventuali dati precedentemente memorizzati nel
+                                json (per esempio, se il json era di tipo lista, questa funzione deve svuotare la lista
+                                e poi memorizzare il booleano <code>x</code>). Dopo la chiamata di questa funzione,
+                                <code>is_bool()</code> deve restituire <code>true</code> (nessun altro metodo booleano
+                                deve restituire <code>true</code>).
+                            </p>
+                            <pre><code>void json::set_bool(bool x);
+</code></pre>
+                            <hr>
+                            <p>Questo metodo rende il json di tipo numero, rendendo il double memorizzato internamente
+                                uguale a <code>x</code> e cancellando gli eventuali dati precedentemente memorizzati nel
+                                json (per esempio, se il json era di tipo lista, questa funzione deve svuotare la lista
+                                e poi memorizzare il double <code>x</code>). Dopo la chiamata di questa funzione,
+                                <code>is_number()</code> deve restituire true (nessun altro metodo booleano deve
+                                restituire <code>true</code>).
+                            </p>
+                            <pre><code>void json::set_number(double x);
+</code></pre>
+                            <hr>
+                            <p>Questo metodo rende il json di tipo null, cancellando gli eventuali dati precedentemente
+                                memorizzati nel json (per esempio, se il json era di tipo lista, questa funzione deve
+                                svuotare la lista e poi memorizzare il fatto che l’oggetto è un json null). Dopo la
+                                chiamata di questa funzione, <code>is_null()</code> deve restituire <code>true</code>
+                                (nessun altro metodo booleano deve restituire <code>true</code>).</p>
+                            <pre><code>void json::set_null();
+</code></pre>
+                            <hr>
+                            <p>Questo metodo rende il json di tipo lista, rendendo la lista interna uguale alla lista
+                                vuota e cancellando gli eventuali dati precedentemente memorizzati nel json, <em>anche
+                                    nel caso il json fosse una lista</em> (per esempio, se il json era di tipo lista,
+                                questa funzione deve rimpiazzare la lista con la lista vuota). Dopo la chiamata di
+                                questa funzione, <code>is_list()</code> deve restituire <code>true</code> (nessun altro
+                                metodo booleano deve restituire <code>true</code>).</p>
+                            <pre><code>void json::set_list();
+</code></pre>
+                            <hr>
+                            <p>Questo metodo rende il json di tipo dizionario, rendendo il dizionario interno uguale al
+                                dizionario vuoto e cancellando gli eventuali dati precedentemente memorizzati nel json,
+                                <em>anche nel caso il json fosse un dizionario</em> (per esempio, se il json era di tipo
+                                lista, questa funzione deve svuotare la lista e inizializzare il dizionario a quello
+                                vuoto). Dopo la chiamata di questa funzione, <code>is_dictionary()</code> deve
+                                restituire <code>true</code> (nessun altro metodo booleano deve restituire
+                                <code>true</code>).
+                            </p>
+                            <pre><code>void json::set_dictionary();
+</code></pre>
+                            <hr>
+                            <p>Se il <code>json</code> è di tipo lista (<code>is_list()</code> restituisce true), questo
+                                metodo aggiunge <code>x</code> in testa alla lista. </p>
+                            <p><strong>Importante:</strong> per motivi di efficienza, il metodo non deve scorrere tutta
+                                la lista! implementate il metodo come visto a lezione. </p>
+                            <p>Se il <code>json</code> non è di tipo lista, questa funzione deve lanciare un’eccezione
+                                <code>json_exception</code> (con messaggio <code>msg</code> a piacere).
+                            </p>
+                            <pre><code>void json::push_front(json const&amp; x);
+</code></pre>
+                            <hr>
+                            <p>Se il <code>json</code> è di tipo lista (<code>is_list()</code> restituisce
+                                <code>true</code>), questo metodo aggiunge <code>x</code> in fondo alla lista.
+                            </p>
+                            <p><strong>Importante:</strong> per motivi di efficienza, il metodo non deve scorrere tutta
+                                la lista! implementate il metodo come visto a lezione. </p>
+                            <p>Se il <code>json</code> non è di tipo lista, questa funzione deve lanciare un’eccezione
+                                <code>json_exception</code> (con messaggio <code>msg</code> a piacere).
+                            </p>
+                            <pre><code>void json::push_back(json const&amp; x);
+</code></pre>
+                            <hr>
+                            <p>Se il <code>json</code> è di tipo dizionario (<code>is_dictionary()</code> restituisce
+                                <code>true</code>), questo metodo aggiunge la coppia chiave-valore <code>x</code> nel
+                                dizionario. Il metodo non deve verificare se esiste già una coppia nel dizionario la cui
+                                chiave è <code>x.first</code> (potete assumere che questo non avvenga mai nei test che
+                                eseguiremo noi).
+                            </p>
+                            <p><strong>Importante:</strong> per motivi di efficienza, il metodo non deve scorrere il
+                                contenuto di tutto il dizionario! </p>
+                            <p>Se il <code>json</code> non è di tipo dizionario, questa funzione deve lanciare
+                                un’eccezione <code>json_exception</code> (con messaggio <code>msg</code> a piacere).
+                            </p>
+                            <pre><code>void json::insert(std::pair&lt;std::string,json&gt; const&amp; x);
+</code></pre>
+                            <h3>Metodi esterni (non membri di json)</h3>
+                            <pre><code>std::ostream&amp; operator&lt;&lt;(std::ostream&amp; lhs, json const&amp; rhs);
+</code></pre>
+                            <p>Questo metodo scrive l’oggetto <code>rhs</code> sull’output stream <code>lhs</code> in
+                                formato json valido (vedi descrizione formato json all’inizio del documento). Nota: i
+                                separatori (spazi, tab, newlines) sono opzionali nel formato json (potete scegliere se
+                                metterli o no: è equivalente). </p>
+                            <hr>
+                            <pre><code>std::istream&amp; operator&gt;&gt;(std::istream&amp; lhs, json&amp; rhs);
+</code></pre>
+                            <p>Questo metodo legge da <code>lhs</code> un oggetto <code>json</code> e lo salva in
+                                <code>rhs</code> (sovrascrivendone il contenuto). Questa è la funzione che lancia il
+                                parser json realizzato: l’input stream è uno stream di caratteri che contiene un
+                                documento in formato json (come descritto all’inizio). L’operatore <code>&gt;&gt;</code>
+                                deve estrarre i dati dallo stream (usando il parser) e costruire l’oggetto
+                                <code>json</code> che contiene quei dati (cancellando il contenuto precedente di
+                                <code>rhs</code>, se questi sono presenti).
+                            </p>
+                            <p>Se la funzione riscontra dei problemi durante il parsing, deve venire lanciata
+                                un’eccezione <code>json_exception</code> (con messaggio <code>msg</code> a piacere).
+                                Cercate di rilevare il numero più elevato possibile di errori di parsing (testeremo il
+                                vostro codice anche su file json in formato errato, verificando che venga lanciata
+                                l’eccezione).</p>
+                            <h3>Suggerimenti sul parser</h3>
+                            <p>Suggeriamo di scrivere il parser come segue (come visto a lezione):</p>
+                            <ol>
+                                <li>Definite una grammatica context-free in grado di riconoscere il formato json,
+                                    seguendo la descrizione fornita all’inizio del documento.</li>
+                                <li>Create una funzione per ogni simbolo non terminale della grammatica. </li>
+                                <li>Ogni funzione creata al punto 2 dovrebbe ricevere in input una reference a
+                                    <code>std::istream</code> e restituire in output un oggetto di tipo
+                                    <code>json</code>. Per esempio, se avete scritto una funzione <code>LIST</code> che
+                                    parsa un’intera lista dal’istream in input, questa funzione costruirà un
+                                    <code>json</code> costruito a partire da quella lista (di oggetti <code>json</code>)
+                                    e la restituirà. Questo vi permetterà di implementare le funzioni in modo ricorsivo:
+                                    la funzione <code>LIST</code>, a sua volta, chiamerà funzioni per estrarre i
+                                    componenti della lista, le quali a loro volta restituiranno degli oggetti
+                                    <code>json</code>; questi oggetti andranno inseriti all’interno della lista
+                                    dell’oggetto json restituito da <code>LIST</code>.
+                                </li>
+                            </ol>
+                            <h2>3. Obiettivo finale ed esempi di come verrà testato il codice</h2>
+                            <p>Il container json creato può essere usato come un editor di file in formato json. Una
+                                volta caricato, il file può essere manipolato/navigato usando gli operatori definiti.
+                                Per esempio, supponiamo che <code>std::cin</code> contenga lo stream:</p>
+                            <pre><code>[
+    1,
+    {
+        &quot;prima chiave&quot; : 5,
+        &quot;seconda chiave&quot; : [4.12,2,true],
+        &quot;terza chiave&quot; : &quot;una stringa&quot;,
+        &quot;quarta chiave&quot; : {&quot;a&quot; : 4, &quot;b&quot; : [4,5]}
+    },
+    3
+]
+</code></pre>
+                            <p>allora, il seguente codice è valido e deve stampare a schermo “4”: </p>
+                            <pre><code>json j;
+std::cin &gt;&gt; j;
+json&amp; y = *(++j.begin_list());
+std::cout &lt;&lt; y[&quot;quarta chiave&quot;][&quot;a&quot;];
+</code></pre>
+                            <p>Inoltre, la classe ci permette di modificare un oggetto <code>json</code>. Per esempio,
+                                se la variabile </p>
+                            <pre><code>json z;
+</code></pre>
+                            <p>contiene i dati del file json</p>
+                            <pre><code>{&quot;c&quot; : 5, &quot;d&quot; : 6}
+</code></pre>
+                            <p>e <code>j</code> è la variabile di tipo <code>json</code> definita sopra, allora dopo
+                                l’assegnamento</p>
+                            <pre><code>(*(++j.begin_list()))[&quot;prima chiave&quot;] = z
+</code></pre>
+                            <p>La variabile <code>j</code> deve contenere i seguenti dati: </p>
+                            <pre><code>[
+    1,
+    {
+        &quot;prima chiave&quot; : {&quot;c&quot; : 5, &quot;d&quot; : 6},
+        &quot;seconda chiave&quot; : [4.12,2,true],
+        &quot;terza chiave&quot; : &quot;una stringa&quot;,
+        &quot;quarta chiave&quot; : {&quot;a&quot; : 4, &quot;b&quot; : [4,5]}
+    },
+    3
+]
+</code></pre>
+                            <h2>4. Come testare il vostro codice?</h2>
+                            <p>Ricordate la regola generale: la scrittura del codice è solo metà del lavoro! La metà
+                                rimanente consiste nel progettare dei test approfonditi per rilevare eventuali bug. In
+                                fase di valutazione, il nostro compito sarà quello di mettere sotto stress il vostro
+                                codice (testandolo sui file più disparati, sia in formato json valido che non, e
+                                combinando operatori in tutti i modi possibili), quindi progettate degli ottimi test e
+                                ricordatevi di compilare il codice con gli strumenti di debug mostrati a lezione
+                                (assert, compiler sanitizers). Ricordatevi anche di usare Valgrind.</p>
+                            <p>Detto questo, consigliamo di crearvi un file test.cpp in cui definirete una funzione
+                                <code>main</code> che testa l&#39;oggetto <code>json</code> da voi scritto. Questo file
+                                test.cpp <strong>non</strong> deve essere consegnato (dovrete consegnare solo json.cpp,
+                                leggi sotto): serve solo a voi per testare il vostro codice. Testate ogni metodo di
+                                <code>json</code> in maniera isolata, su molti test case. Verificate che non ci siano
+                                memory leaks. L&#39;output di Valgrind deve sempre terminare con:
+                            </p>
+                            <pre><code>ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+</code></pre>
+                            <p>Ogni errore di memoria che troveremo verrà penalizzato. </p>
+                            <h2>5. Consegna del progetto</h2>
+                            <p>Noi vi forniamo un file json.hpp (in questo repository GitHub) che contiene le
+                                dichiarazioni della classe e gli unici <code>#include</code> ammessi. </p>
+                            <p><strong>Nota.</strong> Il file json.hpp <strong>non</strong> deve essere modificato in
+                                alcun modo. Noi, infatti, compileremo e testeremo il vostro codice con il file json.hpp
+                                fornito da noi (e non con quello che voi potreste aver modificato).</p>
+                            <p>Il vostro compito sarà quello di implementare il file json.cpp, contenente la definizione
+                                di tutti i metodi/tipi descritti sopra. Note importanti: </p>
+                            <ol>
+                                <li>json.cpp può solo includere json.hpp. Non può contenere nessun altro #include e
+                                    nessuna macro (in generale, nessun codice preceduto da #, eccetto
+                                    <code>#include &quot;json.hpp&quot;</code>). Tutti gli include e macro verranno
+                                    automaticamente rimossi prima di compilare il vostro codice. Gli unici
+                                    <code>#include</code> ammessi sono quelli presenti nel file json.hpp fornito da noi.
+                                </li>
+                                <li>json.cpp <strong>non</strong> deve definire la funzione <code>main</code>: saremo
+                                    noi a scriverla per testare il vostro codice. Se definite la funzione
+                                    <code>main</code>, il codice non compilerà.
+                                </li>
+                            </ol>
+                            <h3>Formato e link per la consegna</h3>
+                            <p>Ogni studente deve consegnare il proprio file json.cpp (con esattamente questo nome),
+                                contenuto dentro ad una cartella il cui nome deve essere la matricola dello studente,
+                                archiviata e compressa in un file tar.gz creato come descritto qui sotto. Questo
+                                archivio è l&#39;unico file che va consegnato tramite il modulo moodle che troverete
+                                nella pagina moodle del modulo 1 (<a
+                                    href="https://moodle.unive.it/course/view.php?id=13453">https://moodle.unive.it/course/view.php?id=13453</a>).
+                            </p>
+                            <p>Esempio: se la mia matricola è 012345 e mi trovo dentro ad una cartella contenente la mia
+                                implementazione json.cpp, per creare l&#39;archivio devo seguire i seguenti passi (da
+                                terminale Ubuntu):</p>
+                            <pre><code>mkdir 012345
+mv json.cpp 012345
+tar -zcvf 012345.tar.gz 012345
+</code></pre>
+                            <p>Questi passi creano il file <code>012345.tar.gz</code>, che deve essere consegnato
+                                tramite moodle. Se volete verificare che la creazione dell&#39;archivio sia andata a
+                                buon fine, il seguente comando estrae l&#39;archivio:</p>
+                            <pre><code>tar -xvzf 012345.tar.gz
+</code></pre>
+                            <p><strong>Importante</strong>: seguite <strong>esattamente</strong> queste istruzioni.
+                                Lanceremo uno script che estrae e compila automaticamente tutti i vostri progetti,
+                                quindi ogni minimo errore (esempio: archivio non in formato tar.gz, nome cartella
+                                sbagliato, nome file diverso da json.cpp) porterà all&#39;esclusione automatica del
+                                progetto. </p>
+                            <p>Le scadenze di giugno sono:</p>
+                            <ul>
+                                <li><strong>14 giugno ore 23:59</strong></li>
+                                <li><strong>27 giugno ore 23:59</strong></li>
+                            </ul>
+                            <p>I prossimi appelli saranno a settembre e gennaio. </p>
+                            <p>Il modulo moodle per la consegna verrà aperto a breve e potrete cominciare a consegnare
+                                da subito. Potete ri-consegnare un numero illimitato di volte. Ad intervalli regolari
+                                (solitamente, ogni 2 settimane) noi scarichiamo tutti i progetti consegnati e li
+                                testiamo, segnalando eventuali problemi (per esempio, memory leaks, segmentation faults,
+                                ecc) via mail direttamente agli interessati. Dopo la scadenza il modulo per la consegna
+                                verrà disattivato e l’ultima consegna che avete fatto verrà valutata.</p>
+                            <p><strong>Importante</strong>: consigliamo di consegnare con largo anticipo rispetto alla
+                                scadenza, in modo da ricevere utili feedback! Come detto sopra, testiamo i vostri codici
+                                ogni circa 2 settimane. Evitate di consegnare all’ultimo: dopo la consegna non potrete
+                                più apportare modifiche quindi se il vostro programma contiene bug verrete valutati
+                                negativamente.</p>
+                            <h2>6. Valutazione del progetto</h2>
+                            <p>Ogni metodo da voi scritto verrà testato da noi in modo accurato, su molti input diversi
+                                (file json sia in formato valido che non). </p>
+                            <p>Compileremo il vostro codice con lo standard C++ 17 (compiler flag
+                                <code>-std=c++17</code>).
+                            </p>
+                            <p>Un metodo che porta all’interruzione inaspettata del codice (esempio, segmentation fault)
+                                viene valutato 0 punti. Un metodo non implementato viene valutato 0 punti. Alcuni
+                                metodi, come quelli su iteratori, sono molto importanti perché ci permettono di testare
+                                il vostro codice (accedendo al contenuto del container): fate attenzione ad
+                                implementarli correttamente, altrimenti non avremo modo di testare il vostro codice.
+                            </p>
+                            <h3>Timeout</h3>
+                            <p>Attenzione: il vostro codice deve essere ragionevolmente veloce. Imposteremo un timeout
+                                di qualche minuto (in realtà dovrebbero bastare pochi secondi) per la lettura di file
+                                json e costruzione dell’oggetto json corrispondente (vedi link con dataset json fornito
+                                sopra). Se il vostro codice impiega troppo tempo ad eseguire il parsing di un file json
+                                grosso, probabilmente avete implementato male l’inserimento di dati in liste/dizionari:
+                                ricordate che gli inserimenti non devono scorrere tutti gli elementi della
+                                lista/dizionario (ma, per esempio, devono solo allocare una nuova cella in memoria e
+                                sistemare qualche puntatore - se usate le liste per entrambe queste due strutture).</p>
+                            <h3>Plagi</h3>
+                            <p>I vostri codici verranno confrontati utilizzando un rilevatore di plagi. Questo strumento
+                                è in grado di rilevare tentativi di mascherare copiature di codice come rinomina di
+                                variabili, conversione di cicli for in cicli while, etc. Tutti i progetti coinvolti in
+                                copiature saranno considerati falliti automaticamente. Tenete bene a mente queste
+                                semplici regole: </p>
+                            <ol>
+                                <li><strong>Mai</strong> passare il codice ad uno compagno che deve ancora sostenere
+                                    l’esame. Costui infatti potrebbe copiare (anche solo in parte), con la conseguenza
+                                    che entrambi non passerete l’esame. Discutere idee generali sulla soluzione va bene,
+                                    ma il codice non deve mai essere condiviso. </li>
+                                <li>Non postate porzioni del vostro codice online (per esempio, su forum). Altri
+                                    studenti potrebbero copiare il codice ed entrambi non passerete l’esame (in passato
+                                    è successo anche questo).</li>
+                            </ol>
+
                         </div>
                     </div>
-                </div>
 
-                <!-- Sidebar -->
-                <aside class="subject-sidebar">
-                    <div class="info-card">
-                        <h3>Dettagli Progetto</h3>
-
-                        <div class="info-item"><span class="label">Anno</span><span class="value">2022</span></div>
-                        <div class="info-item"><span class="label">Ruolo</span><span class="value">C++ Developer</span>
+                    <!-- 2. HPP Tab -->
+                    <div id="tab-hpp" class="tab-content"
+                        style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <h3>Header File (json.hpp)</h3>
+                            <button class="btn-text copy-btn"><i class="fa-regular fa-copy"></i> Copia</button>
+                            <pre style="display:none;"></pre>
                         </div>
-                        <div class="info-item"
-                            style="flex-direction: column; align-items: flex-start; gap: 0.5rem; margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
-                            <span class="label">Tecnologie:</span>
-                            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                                <span
-                                    style="font-size: 0.8rem; padding: 0.3rem 0.6rem; background: rgba(255,255,255,0.1); border-radius: 4px;"><i
-                                        class="fa-brands fa-cuttlefish"></i>++</span>
-                                <span
-                                    style="font-size: 0.8rem; padding: 0.3rem 0.6rem; background: rgba(255,255,255,0.1); border-radius: 4px;"><i
-                                        class="fa-solid fa-diagram-project"></i> OOP</span>
-                                <span
-                                    style="font-size: 0.8rem; padding: 0.3rem 0.6rem; background: rgba(255,255,255,0.1); border-radius: 4px;"><i
-                                        class="fa-solid fa-code"></i> Pointers</span>
+                        <pre style="margin: 0;"><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;limits&gt;
+#include &lt;assert.h&gt;
+#include &lt;fstream&gt;
+
+struct json_exception {
+    std::string msg;
+};
+
+class json {
+public:
+    struct list_iterator;
+    struct dictionary_iterator;
+    struct const_list_iterator;
+    struct const_dictionary_iterator;
+
+    json();
+    json(json const&amp;);
+    json(json&amp;&amp;);
+    ~json();
+
+    json&amp; operator=(json const&amp;);
+    json&amp; operator=(json&amp;&amp;);
+
+    bool is_list() const;
+    bool is_dictionary() const;
+    bool is_string() const;
+    bool is_number() const;
+    bool is_bool() const;
+    bool is_null() const;
+
+    json const&amp; operator[](std::string const&amp;) const;
+    json&amp; operator[](std::string const&amp;);
+
+    list_iterator begin_list();
+    const_list_iterator begin_list() const;
+    list_iterator end_list();
+    const_list_iterator end_list() const;
+
+    dictionary_iterator begin_dictionary();
+    const_dictionary_iterator begin_dictionary() const;
+    dictionary_iterator end_dictionary();
+    const_dictionary_iterator end_dictionary() const;
+
+    double&amp; get_number();
+    double const&amp; get_number() const;
+
+    bool&amp; get_bool();
+    bool const&amp; get_bool() const;
+
+    std::string&amp; get_string();
+    std::string const&amp; get_string() const;
+
+    void set_string(std::string const&amp;);
+    void set_bool(bool);
+    void set_number(double);
+    void set_null();
+    void set_list();
+    void set_dictionary();
+    void push_front(json const&amp;);
+    void push_back(json const&amp;);
+    void insert(std::pair&lt;std::string, json&gt; const&amp;);
+
+private:
+    struct impl;
+    impl* pimpl;
+};
+
+std::ostream&amp; operator&lt;&lt;(std::ostream&amp; lhs, json const&amp; rhs);
+std::istream&amp; operator&gt;&gt;(std::istream&amp; lhs, json&amp; rhs);
+</code></pre>
+                    </div>
+
+                    <!-- 3. CPP Tab -->
+                    <div id="tab-cpp" class="tab-content"
+                        style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <h3>Implementation (json.cpp)</h3>
+                            <button class="btn-text copy-btn"><i class="fa-regular fa-copy"></i> Copia</button>
+                            <pre style="display:none;"></pre>
+                        </div>
+                        <pre style="margin: 0; max-height: 800px; overflow-y: auto;"><code class="language-cpp">#include &quot;json.hpp&quot;
+using namespace std;
+//MODIFICHE DAL 4o REPORT : CHIAVE BUG FIXATA (ANCHE SE FUNZIONAVA LO STESSO), TOLTO &quot;ESTENSIONE&quot; ITERATOR DI VECTOR E TOLTO SPACE COME VARIABILE GLOBALE E TOLTO DALLE FUNZIONI PRINT LIST E PRINT DICTIONARY + checkValidStream
+template&lt;typename T&gt;
+class Vector{
+public:
+    struct Cell{
+        Cell* next;
+        T info;
+        Cell(){
+            this-&gt;next = nullptr;
+        }
+        Cell(const T&amp; info){
+            this-&gt;info = info;
+            this-&gt;next = nullptr;
+        }
+    };
+    typedef Cell* Pcell;
+    Pcell headJson;
+    Pcell tailJson;
+    Vector(){
+        this-&gt;headJson = this-&gt;tailJson = nullptr;
+    }
+    Vector(const Vector&lt;T&gt;&amp; v){
+        this-&gt;headJson = this-&gt;tailJson = nullptr;
+        Pcell source = v.headJson;
+        Pcell dest = nullptr;
+        while(source != nullptr){
+            auto newNode = new Cell(source-&gt;info);
+            if(!dest){
+                this-&gt;headJson = newNode;
+            }
+            else{
+                dest-&gt;next = newNode;
+            }
+            dest = newNode;
+            source = source-&gt;next;
+        }
+        tailJson = dest;
+    }
+    Vector(Vector&lt;T&gt;&amp;&amp; v) noexcept{
+        this-&gt;headJson = std::move(v.headJson);
+        this-&gt;tailJson = std::move(v.tailJson);
+        v.headJson = nullptr;
+        v.tailJson = nullptr;
+    }
+    Vector&lt;T&gt;&amp; operator=(const Vector&lt;T&gt;&amp; v){
+        if (this != &amp;v) {
+            this-&gt;clearVector();
+            headJson = tailJson = nullptr;
+            *this = Vector&lt;T&gt;(v); 
+        }
+        return *this;
+    }
+    Vector&lt;T&gt;&amp; operator=(Vector&lt;T&gt;&amp;&amp; v) noexcept{
+        if (this != &amp;v) {
+            this-&gt;clearVector();
+            headJson = std::move(v.headJson);
+            tailJson = std::move(v.tailJson);
+            v.headJson = v.tailJson = nullptr;
+        }
+        return *this;
+    }
+    ~Vector(){
+        this-&gt;clearVector();
+    }
+    bool empty(){
+        return this-&gt;headJson == nullptr;
+    }
+    void toStringJson(){
+        Vector&lt;T&gt;::Iterator print = this-&gt;headJson;
+        while(print != nullptr){
+            std::cout &lt;&lt; *print &lt;&lt; &quot; &quot;;
+            ++print;
+        }
+        std::cout &lt;&lt; std::endl;
+    }
+    void clearVector(){
+        Pcell pc = this-&gt;headJson;
+        while (pc != nullptr) {
+            Pcell temp = pc;
+            pc = pc-&gt;next;
+            delete temp;
+        }
+        this-&gt;headJson = this-&gt;tailJson = nullptr;
+    }
+    void pushBack(const T&amp; value){
+        auto newNode = new Cell(value);
+        if(this-&gt;empty()){
+            this-&gt;headJson = newNode;
+            this-&gt;tailJson = newNode;  
+        } 
+        else{
+            this-&gt;tailJson-&gt;next = newNode;
+            this-&gt;tailJson = newNode;  
+        } 
+    }
+    void prepend(const T&amp; value){
+        auto newNode = new Cell(value);
+        if(this-&gt;empty()){
+            this-&gt;headJson = newNode;
+            this-&gt;tailJson = newNode;
+        }
+        else{
+            newNode-&gt;next = this-&gt;headJson;
+            this-&gt;headJson = newNode;
+        }
+    }
+    //--------------------------ITERATOR----------------------
+    class Iterator{
+    public:
+        Pcell current;
+        Iterator(Pcell current) : current(current) {}
+        Iterator&amp; operator++(){
+            current = current-&gt;next;
+            return *this;
+        }
+        Iterator operator++(int){
+            Iterator it = *this;
+            ++(*this);
+            return it;
+        }
+        bool operator==(const Iterator&amp; other) const{
+            return current == other.current;
+        }
+        bool operator!=(const Iterator&amp; other) const{
+            return !(*this == other);
+        }
+        T&amp; operator*() const{
+            return current-&gt;info;
+        }
+        T* operator-&gt;() const{
+            return &amp;(current-&gt;info);
+        }
+    };
+    Iterator beginJson(){
+        return this-&gt;headJson;
+    }
+    Iterator endJson(){
+        return nullptr;
+    }
+    Iterator getTail(){
+        return this-&gt;tailJson;
+    }
+};
+
+struct json::impl{
+    Vector&lt;pair&lt;string, json&gt;&gt; Dizionario;
+    Vector&lt;json&gt; Lista;
+    impl() {
+        tipo = &quot;Nullo&quot;;
+        boolean = false;
+        number = 0.0;
+        str = &quot;&quot;;
+    }
+    impl(const impl&amp; other){
+        tipo = other.tipo;
+        boolean = other.boolean;
+        number = other.number;
+        str = other.str;
+        Lista = other.Lista;
+        Dizionario = other.Dizionario;
+    }
+    impl(impl&amp;&amp; other){
+        tipo = std::move(other.tipo);
+        boolean = other.boolean;
+        number = other.number;
+        str = std::move(other.str);
+        Lista = std::move(other.Lista);
+        Dizionario = std::move(other.Dizionario);
+    }
+    impl&amp; operator=(const impl&amp; other){
+        if (this != &amp;other) {
+            this-&gt;Lista = other.Lista;
+            this-&gt;Dizionario = other.Dizionario;
+            this-&gt;tipo = other.tipo;
+            this-&gt;boolean = other.boolean;
+            this-&gt;number = other.number;
+            this-&gt;str = other.str;
+        }
+        return *this;
+    }
+    impl&amp; operator=(impl&amp;&amp; other) noexcept {
+        if (this != &amp;other) {
+            this-&gt;tipo = std::move(other.tipo);
+            this-&gt;str = std::move(other.str);
+            this-&gt;Lista = std::move(other.Lista);
+            this-&gt;Dizionario = std::move(other.Dizionario);
+            this-&gt;boolean = other.boolean;
+            this-&gt;number = other.number;
+        }
+        return *this;
+    }
+    ~impl(){
+        if(this-&gt;tipo == &quot;List&quot;){
+            this-&gt;Lista.clearVector();
+        }
+        else if(this-&gt;tipo == &quot;Dizio&quot;){
+            this-&gt;Dizionario.clearVector();
+        }
+    }
+    string tipo;
+    bool boolean;
+    double number;
+    string str;
+    Vector&lt;json&gt; getList(){
+        return this-&gt;Lista;
+    }
+    Vector&lt;pair&lt;string, json&gt;&gt; getDizio(){
+        return this-&gt;Dizionario;
+    }
+};
+
+json::json(){
+    this-&gt;pimpl = new impl();
+}
+
+json::json(json&amp;&amp; j) : json(){
+    *this = std::move(j);
+}
+
+json::json(const json &amp;other){
+    this-&gt;pimpl = new impl(*other.pimpl);
+}
+
+json &amp;json::operator=(json const &amp;j){
+    if (this == &amp;j) return *this;
+    delete this-&gt;pimpl;
+    if(j.pimpl != nullptr){
+        this-&gt;pimpl = new impl(*j.pimpl);
+    }
+    else{
+        this-&gt;pimpl = nullptr;
+    }
+    return *this;
+}
+json&amp; json::operator=(json&amp;&amp; j){
+    if (this == &amp;j) return *this;
+    delete pimpl;
+    pimpl = j.pimpl;
+    j.pimpl = new impl(); 
+    return *this;
+}
+
+json::~json(){
+    delete this-&gt;pimpl;
+}
+
+struct json::dictionary_iterator{
+    using pointer = pair&lt;string, json&gt;*;
+    using reference = pair&lt;string, json&gt;&amp;;
+    dictionary_iterator(Vector&lt;pair&lt;string, json&gt;&gt;::Iterator pc) : it(pc) {}
+    reference operator*() const { return it.operator*(); }
+    pointer operator-&gt;() const { return it.operator-&gt;(); }
+    dictionary_iterator operator++() {
+        ++it;
+        return *this;
+    }
+    dictionary_iterator operator++(int) {
+        dictionary_iterator it2 = {it};
+        ++(*this);
+        return it2;
+    }
+    operator bool() const { return it != nullptr; }
+    bool operator==(dictionary_iterator const&amp; other) const { return it == other.it; }
+    bool operator!=(dictionary_iterator const&amp; other) const { return it != other.it; }
+    Vector&lt;pair&lt;string, json&gt;&gt;::Iterator it;
+};
+
+struct json::const_dictionary_iterator{
+    using pointer = pair&lt;string, json&gt;*;
+    using reference = pair&lt;string, json&gt;&amp;;
+    const_dictionary_iterator(Vector&lt;pair&lt;string, json&gt;&gt;::Iterator pc) : it(pc) {}
+    reference operator*() const { return it.operator*(); }
+    pointer operator-&gt;() const { return it.operator-&gt;(); }
+    const_dictionary_iterator operator++() {
+        ++it;
+        return *this;
+    }
+    const_dictionary_iterator operator++(int) {
+        const_dictionary_iterator it2 = {it};
+        ++(*this);
+        return it2;
+    }
+    operator bool() const { return it != nullptr; }
+    bool operator==(const_dictionary_iterator const&amp; other) const { return it == other.it; }
+    bool operator!=(const_dictionary_iterator const&amp; other) const { return it != other.it; }
+    Vector&lt;pair&lt;string, json&gt;&gt;::Iterator it;
+};
+
+json::dictionary_iterator json::begin_dictionary(){
+    if (!is_dictionary()) throw json_exception{&quot;Non è dizio&quot;};
+    else return pimpl-&gt;Dizionario.beginJson();
+}
+
+json::dictionary_iterator json::end_dictionary(){
+    if (!is_dictionary()) throw json_exception{&quot;Non è dizio&quot;};
+    else return pimpl-&gt;Dizionario.endJson();
+}
+
+json::const_dictionary_iterator json::begin_dictionary() const{
+    if (!is_dictionary()) throw json_exception{&quot;Non è dizio Begin&quot;};
+    else return pimpl-&gt;Dizionario.beginJson();
+}
+
+json::const_dictionary_iterator json::end_dictionary() const{
+    if (!is_dictionary()) throw json_exception{&quot;Non è dizio End&quot;};
+    else return pimpl-&gt;Dizionario.endJson();
+}
+
+struct json::list_iterator{
+    //using value_type = json;
+    using pointer = json*;
+    using reference = json&amp;;
+    list_iterator(Vector&lt;json&gt;::Iterator pc) : it(pc) {}
+    reference operator*() const { return it.operator*(); }
+    pointer operator-&gt;() const { return it.operator-&gt;(); }
+    list_iterator&amp; operator++() {
+        ++it;
+        return *this;
+    }
+    list_iterator operator++(int) {
+        list_iterator it2 = {it};
+        ++(*this);
+        return it2;
+    }
+    operator bool() const { return it != nullptr; }
+    bool operator==(list_iterator const&amp; other) const { return it == other.it; }
+    bool operator!=(list_iterator const&amp; other) const { return it != other.it; }
+    Vector&lt;json&gt;::Iterator it;
+};
+struct json::const_list_iterator{
+    //using value_type = json const;
+    using pointer = json const*;
+    using reference = json const&amp;;
+    const_list_iterator(Vector&lt;json&gt;::Iterator const pc) : it(pc) {}
+    reference operator*() const { return it.operator*(); }
+    pointer operator-&gt;() const { return it.operator-&gt;(); }
+    const const_list_iterator&amp; operator++() {
+        ++it;
+        return *this;
+    }
+    const const_list_iterator operator++(int) {
+        const_list_iterator it2 = {it};
+        ++(*this);
+        return it2;
+    }
+    operator bool() const { return it != nullptr; }
+    bool operator==(const_list_iterator const&amp; other) const { return it == other.it; }
+    bool operator!=(const_list_iterator const&amp; other) const { return it != other.it; }
+    Vector&lt;json&gt;::Iterator it;
+};
+
+json::list_iterator json::begin_list(){
+    if (!is_list()) throw json_exception{&quot;Non è lista&quot;};
+    else return pimpl-&gt;Lista.beginJson();
+}
+
+json::list_iterator json::end_list(){
+    if (!is_list()) throw json_exception{&quot;Non è lista&quot;};
+    else return pimpl-&gt;Lista.endJson();
+}
+
+json::const_list_iterator json::begin_list() const{
+    if (!is_list()) throw json_exception{&quot;Non è lista&quot;};
+    else return pimpl-&gt;Lista.beginJson();
+}
+
+json::const_list_iterator json::end_list() const{
+    if (!is_list()) throw json_exception{&quot;Non è lista&quot;};
+    else return pimpl-&gt;Lista.endJson();
+}
+
+void json::push_back(json const&amp; info){
+    if(is_list()) this-&gt;pimpl-&gt;Lista.pushBack(info);
+    else throw json_exception{&quot;Non è una lista&quot;};
+}
+void json::push_front(json const&amp; info){
+    if(is_list()) this-&gt;pimpl-&gt;Lista.prepend(info);
+    else throw json_exception{&quot;Non è una lista&quot;};
+}
+void json::insert(pair&lt;string,json&gt; const&amp; info){
+    if (is_dictionary()) this-&gt;pimpl-&gt;Dizionario.pushBack(info);
+    else throw json_exception{&quot;Non è una dizio Insert&quot;};
+}
+
+void printList(ostream&amp; lhs, json const&amp; rhs){
+    json::const_list_iterator it = rhs.begin_list();
+    while (it != rhs.end_list()){
+        lhs &lt;&lt; it.operator*();
+        if(++it != rhs.end_list()){
+            lhs &lt;&lt; &#039;,&#039;;
+        }
+    }
+}
+
+void printDictionary(ostream&amp; lhs, json const&amp; rhs){
+    json::const_dictionary_iterator it = rhs.begin_dictionary();
+    while (it != rhs.end_dictionary()){
+        lhs &lt;&lt; it.operator*().first &lt;&lt; &#039;:&#039; &lt;&lt; it.operator*().second;
+        if(++it != rhs.end_dictionary()){
+            lhs &lt;&lt; &#039;,&#039;;
+        }
+    }
+}
+
+ostream&amp; operator&lt;&lt;(ostream&amp; lhs, json const&amp; rhs){
+    if (rhs.is_null()) {
+        return lhs &lt;&lt; &quot;\033[1;31mnull\033[0m&quot;;
+    }
+    else if (rhs.is_bool()) {
+        return lhs &lt;&lt; (rhs.get_bool() ? &quot;\033[1;32mtrue\033[0m&quot; : &quot;\033[1;32mfalse\033[0m&quot;);
+    }
+    else if (rhs.is_number()) {
+        return lhs &lt;&lt; &quot;\033[1;36m&quot; &lt;&lt; scientific &lt;&lt; fixed &lt;&lt; rhs.get_number() &lt;&lt; &quot;\033[0m&quot;;
+    }
+    else if (rhs.is_string()) {
+        return lhs &lt;&lt; &quot;\033[1;33m\&quot;&quot; &lt;&lt; rhs.get_string() &lt;&lt; &quot;\&quot;\033[0m&quot;;
+    }
+    else if (rhs.is_list()) {
+        lhs &lt;&lt; &#039;[&#039;;
+        printList(lhs, rhs);
+        lhs &lt;&lt; &#039;]&#039;;
+        return lhs;
+    }
+    else if (rhs.is_dictionary()) {
+        lhs &lt;&lt; &#039;{&#039;;
+        printDictionary(lhs, rhs);
+        lhs &lt;&lt; &#039;}&#039;;
+        return lhs;
+    }
+    else {
+        throw json_exception{&quot;errore nella stampa&quot;};
+    }
+}
+
+//-------------------------------------------Functions BOOL IS----------------------------------------------------------
+bool json::is_list() const{
+    return pimpl-&gt;tipo == &quot;List&quot;;
+}
+bool json::is_dictionary() const {
+    return pimpl-&gt;tipo == &quot;Dizio&quot;;
+}
+bool json::is_string() const {
+    return pimpl-&gt;tipo == &quot;String&quot;;
+}
+bool json::is_number() const {
+    return pimpl-&gt;tipo == &quot;Number&quot;;
+}
+bool json::is_bool() const {
+    return pimpl-&gt;tipo == &quot;Bool&quot;;
+}
+bool json::is_null() const {
+    return pimpl-&gt;tipo == &quot;Nullo&quot;;
+}
+//-------------------------------------------Functions GET--------------------------------------------------------------
+double&amp; json::get_number(){
+    if(is_number()) return pimpl-&gt;number;
+    else throw json_exception{&quot;Non è number&quot;};
+}
+double const&amp; json::get_number() const{
+    if(is_number()  &amp;&amp; pimpl!= nullptr) return pimpl-&gt;number;
+    else throw json_exception{&quot;Non è number || pimpl == nullptr&quot;};
+}
+bool&amp; json::get_bool(){
+    if(is_bool()) return pimpl-&gt;boolean;
+    else throw json_exception{&quot;Non è booleano&quot;};
+}
+bool const&amp; json::get_bool() const{
+    if(is_bool()  &amp;&amp; pimpl!= nullptr) return pimpl-&gt;boolean;
+    else throw json_exception{&quot;Non è booleano || pimpl == nullptr&quot;};
+}
+string&amp; json::get_string(){
+    if(is_string()) return pimpl-&gt;str;
+    else throw json_exception{&quot;Non è una string&quot;};
+}
+string const&amp; json::get_string() const{
+    if(is_string() &amp;&amp; pimpl!= nullptr) return pimpl-&gt;str;
+    else throw json_exception{&quot;Non è una string || pimpl == nullptr&quot;};
+}
+
+//-------------------------------------------Functions Set--------------------------------------------------------------
+void json::set_bool(bool boolean) {
+    delete pimpl;
+    pimpl = new impl();
+    pimpl-&gt;tipo = &quot;Bool&quot;;
+    pimpl-&gt;boolean = boolean;
+}
+
+void json::set_null(){
+    delete pimpl;
+    pimpl = new impl();
+    pimpl-&gt;tipo = &quot;Nullo&quot;;
+}
+
+void json::set_number(double number){
+    delete pimpl;
+    pimpl = new impl();
+    pimpl-&gt;tipo = &quot;Number&quot;;
+    pimpl-&gt;number = number;
+}
+
+void json::set_list(){
+    delete pimpl;
+    pimpl = new impl();
+    pimpl-&gt;tipo = &quot;List&quot;;
+}
+
+void json::set_dictionary(){
+    delete pimpl;
+    pimpl = new impl();
+    pimpl-&gt;tipo = &quot;Dizio&quot;;
+}
+
+void json::set_string(const string &amp;str){
+    delete pimpl;
+    pimpl = new impl();
+    pimpl-&gt;tipo = &quot;String&quot;;
+    pimpl-&gt;str = str;
+}
+
+void skip(istream&amp; lhs, char&amp; current){
+    while (lhs &gt;&gt; current and (isspace(current) or current == &#039;\n&#039; or current == &#039;\r&#039; or current == &#039;\t&#039;));
+}
+
+bool checkValidStream(istream&amp; lhs){ //il controllo lhs.good() già include la verifica di not lhs.fail() e not lhs.bad(), poiché good() restituisce true solo se nessun bit di stato di errore è impostato
+    return not lhs.eof() and not lhs.fail() and not lhs.bad() and lhs.good() and (istream::sentry(lhs)); //(istream::sentry(lhs)): Usa il costruttore sentry per gestire eventuali spazi bianchi iniziali nell&#039;oggetto istream
+}
+
+string chiaveBug(istream&amp; lhs){
+    string str;
+    bool escaped = false;
+    bool esci = true;
+    while (esci){
+        char current;
+        lhs.get(current);
+        if (!lhs) {
+            esci = false;
+        }
+        else{
+            esci = true;
+        }
+        if(escaped){
+            if (current == &#039;&quot;&#039;){
+                str.push_back(current);
+            }
+            else if (current == &#039;\\&#039;){
+                str.push_back(current);
+            }
+            else{
+                str.push_back(current);
+            }
+            escaped = false;
+        }
+        else{
+            if(current == &#039;&quot;&#039; and (str.empty() or str.back() != &#039;\\&#039;)){ //qui eccezione non riconosciuta?
+                esci = false;
+            }
+            else{
+                if (current == &#039;\\&#039;){
+                    escaped = true;
+                }
+                str.push_back(current);
+            }
+        }
+    }
+    return str;
+}
+
+void parse_dictionary(istream&amp; lhs, json&amp; rhs){
+    rhs.set_dictionary();
+    char current;
+    skip(lhs, current);
+    if(current == &#039;}&#039;){
+        return void(); // do nothing for empty dictionary
+    }
+    else{
+        assert(lhs.putback(current));
+    }
+    while(current != &#039;}&#039; and checkValidStream(lhs)){
+        skip(lhs, current);
+        if (current != &#039;&quot;&#039;){
+            throw json_exception{&quot;Errore nel parsing, virgolette mancanti&quot;};
+        } 
+        else{
+            string key = chiaveBug(lhs);
+            skip(lhs, current);
+            if (current != &#039;:&#039;) {
+                throw json_exception{&quot;Errore nel parsing, due punti mancanti&quot;};
+            } 
+            else{
+                json j;
+                lhs &gt;&gt; j;
+                rhs.insert(make_pair(key, j));
+                if(!(lhs &gt;&gt; current) or ((current != &#039;,&#039;) and (current != &#039;}&#039;))){
+                    throw json_exception{&quot;Errore nel parsing Dizio, carattere inaspettato&quot;};
+                }
+            }
+        }
+    }
+}
+
+void parseString(istream&amp; lhs, json&amp; rhs){
+    rhs.set_string(chiaveBug(lhs));
+}
+
+void parse_list(istream&amp; lhs, json&amp; rhs){
+    rhs.set_list();
+    char current;
+    bool guardia;
+    skip(lhs, current);
+    if(current == &#039;]&#039;){
+        guardia = false;
+    }
+    else{
+        assert(lhs.putback(current));
+        guardia = true;
+    }
+    while(checkValidStream(lhs) and guardia){
+        json j;
+        lhs &gt;&gt; j;
+        rhs.push_back(j);
+        if(!(lhs &gt;&gt; current)){
+            throw json_exception{&quot;Errore nel parsingList&quot;};
+        }
+        else{
+            if(current == &#039;,&#039;){
+                guardia = true;
+            }
+            else if(current == &#039;]&#039;){
+                guardia = false;
+            }
+            else{
+                throw json_exception{&quot;Errore nel parsingList&quot;};
+            }
+        }
+    }
+}
+
+void parseTrue(istream&amp; lhs, json&amp; rhs){
+    if(lhs.get() == &#039;r&#039; &amp;&amp; lhs.get() == &#039;u&#039; &amp;&amp; lhs.get() == &#039;e&#039; &amp;&amp; !isalnum(lhs.peek())) {
+        rhs.set_bool(true);
+    } 
+    else{
+        throw json_exception{&quot;true not recognized&quot;};
+    }
+}
+
+void parseFalse(istream&amp; lhs, json&amp; rhs){
+    if(lhs.get() == &#039;a&#039; &amp;&amp; lhs.get() == &#039;l&#039; &amp;&amp; lhs.get() == &#039;s&#039; &amp;&amp; lhs.get() == &#039;e&#039; &amp;&amp; !isalnum(lhs.peek())) {
+        rhs.set_bool(false);
+    } 
+    else{
+        throw json_exception{&quot;false not recognized&quot;};
+    }
+}
+
+void parseNumber(istream&amp; lhs, json&amp; rhs, char&amp; current){
+    double num;
+    assert(lhs.putback(current));
+    lhs &gt;&gt; num;
+    rhs.set_number(num);
+}
+
+void parseNull(istream&amp; lhs, json&amp; rhs){
+    if (lhs.get() == &#039;u&#039; &amp;&amp; lhs.get() == &#039;l&#039; &amp;&amp; lhs.get() == &#039;l&#039; &amp;&amp; !isalnum(lhs.peek())){
+        rhs.set_null();
+    } else {
+        throw json_exception{&quot;null not recognized&quot;};
+    }
+}
+
+istream&amp; parse(istream&amp; lhs, json&amp; rhs){
+    char current;
+    skip(lhs, current);
+    if(current == &#039;&quot;&#039;) {
+        parseString(lhs, rhs);
+    }
+    else if(current == &#039;n&#039;){
+        parseNull(lhs, rhs);
+    }
+    else if(current == &#039;t&#039;){
+        parseTrue(lhs, rhs);
+    }
+    else if(current == &#039;f&#039;){
+        parseFalse(lhs, rhs);
+    }
+    else if((current &gt;= &#039;0&#039; and current &lt;= &#039;9&#039;) or current == &#039;-&#039; or current == &#039;.&#039; or current == &#039;+&#039;) {
+        parseNumber(lhs, rhs, current);
+    }
+    else if(current == &#039;[&#039;){
+        parse_list(lhs, rhs);
+    }
+    else if(current == &#039;{&#039;){
+        parse_dictionary(lhs, rhs);
+    }
+    else{
+        throw json_exception{&quot;invalid input&quot;};
+    }
+    return lhs;
+}
+
+istream&amp; operator&gt;&gt;(istream&amp; lhs, json&amp; rhs){
+    if(not checkValidStream(lhs)){
+        throw json_exception{&quot;stream sbagliato / file vuoto&quot;};
+    } 
+    else {
+        return parse(lhs, rhs);
+    }
+}
+
+json&amp; json::operator[](string const&amp; str){
+    if(!is_dictionary()){
+        throw json_exception{&quot;Non è dizionario&quot;};
+    }
+    for(auto it = json::begin_dictionary(); it != json::end_dictionary(); ++it){
+        if(str == it-&gt;first){
+            return it-&gt;second;
+        }
+    }
+    this-&gt;insert(make_pair(str, json()));
+    return this-&gt;pimpl-&gt;Dizionario.tailJson-&gt;info.second;
+}
+
+json const&amp; json::operator[](string const&amp; str) const{
+    if(!is_dictionary()){
+        throw json_exception{&quot;Non è dizionario operator[]&quot;};
+    }
+    for(auto it = json::begin_dictionary(); it != json::end_dictionary(); ++it){
+        if(str == it-&gt;first){
+            return it-&gt;second;
+        }
+    }
+    throw json_exception{&quot;Chiave non presente&quot;};
+}
+</code></pre>
+                    </div>
+
+                    <!-- 4. Test Suite Tab -->
+                    <div id="tab-tests" class="tab-content"
+                        style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                        <h2>Test Cases & Validation</h2>
+                        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Esempio dell'ambiente di Testing
+                            ufficiale con input attesi validi fornito dalla cattedra di Ingegneria.</p>
+
+                        <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+                            <div>
+                                <h4>Input Esempio (pass1.json)</h4>
+                                <pre style="margin-top: 1rem;"><code class="language-json">{
+  &quot;test&quot;: &quot;valid&quot;
+}</code></pre>
+                            </div>
+                            <div>
+                                <h4>Test Runner C++</h4>
+                                <pre
+                                    style="margin-top: 1rem; max-height: 400px; overflow-y: auto;"><code class="language-cpp">// Test main file non disponibile</code></pre>
                             </div>
                         </div>
-                        <a href="https://github.com/Tiume001" target="_blank" class="btn-primary"
-                            style="display: flex; justify-content: center; gap: 0.5rem; align-items: center; margin-top: 1.5rem; padding: 0.8rem; border-radius: 8px;">
-                            <i class="fa-brands fa-github"></i> Vedi su GitHub
-                        </a>
                     </div>
-                </aside>
+
+                </div>
             </div>
-        </main>
+    </div>
+    </main>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
     <script>
+        function copyCode(btn) {
+            const preElement = btn.parentElement.nextElementSibling;
+            if (preElement && preElement.tagName === 'PRE') {
+                const code = preElement.innerText;
+                navigator.clipboard.writeText(code).then(() => {
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<i class="fa-solid fa-check"></i> Copiato!';
+                    btn.style.color = '#22c55e';
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.style.color = '';
+                    }, 2000);
+                });
+            }
+        }
+
+        // Bind copy buttons
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.copy-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => copyCode(e.currentTarget));
+            });
+        });
+
         function openTab(tabName) {
             // Hide all tab contents
             const contents = document.querySelectorAll('.tab-content');
