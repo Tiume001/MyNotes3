@@ -1120,16 +1120,38 @@ h2::before {
 /* SNIPPET & ACCORDION STYLES */
 details.snippet-container {
     background: var(--bg-card);
-    border: 1px solid var(--border-color);
+    border: 1px solid rgba(255, 255, 255, 0.08); /* More subtle elegant border */
     border-radius: 12px;
     margin-bottom: 2rem;
     overflow: hidden;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+details.snippet-container:hover {
+    border-color: rgba(255, 255, 255, 0.15);
 }
 
 details.snippet-container[open] {
     border-color: var(--accent-primary);
-    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 30px -5px rgba(0, 0, 0, 0.4);
+}
+
+/* Light mode overrides for container */
+.light-mode details.snippet-container {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.light-mode details.snippet-container:hover {
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.light-mode details.snippet-container[open] {
+    border-color: var(--accent-primary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 summary.snippet-header {
@@ -1139,8 +1161,8 @@ summary.snippet-header {
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    background: rgba(255, 255, 255, 0.02);
-    transition: background 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    background: transparent;
+    transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 summary.snippet-header::-webkit-details-marker {
@@ -1148,7 +1170,11 @@ summary.snippet-header::-webkit-details-marker {
 }
 
 summary.snippet-header:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.light-mode summary.snippet-header:hover {
+    background: rgba(0, 0, 0, 0.02);
 }
 
 summary.snippet-header i.fa-chevron-down {
@@ -1176,25 +1202,35 @@ details.snippet-container[open] summary.snippet-header i.fa-chevron-down {
 
 .snippet-body {
     position: relative;
-    background: #1e1e1e;
-    border-top: 1px solid var(--border-color);
+    background: #111116; /* Deep elegant dark */
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.light-mode .snippet-body {
+    background: #1e1e24; /* Keep snippet body dark in light mode too */
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .snippet-body pre {
     margin: 0;
     border: none;
     border-radius: 0;
-    padding: 2rem 1.5rem 1.5rem 1.5rem;
-    /* Extra top padding for copy button */
+    padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+}
+
+/* Force dark style on pre inside snippet body even in light mode! */
+.light-mode details.snippet-container .snippet-body pre {
+    background: transparent !important;
+    border-color: transparent !important;
 }
 
 .copy-btn {
     position: absolute;
     top: 0.75rem;
     right: 0.75rem;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #a1a1aa;
     padding: 0.4rem 0.8rem;
     border-radius: 6px;
     font-size: 0.8rem;
@@ -1210,8 +1246,22 @@ details.snippet-container[open] summary.snippet-header i.fa-chevron-down {
 
 .copy-btn:hover {
     background: rgba(255, 255, 255, 0.15);
-    color: var(--text-primary);
-    border-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Copy button kept dark style inside the dark code body for light mode */
+.light-mode .snippet-body .copy-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #d1d5db;
+}
+
+.light-mode .snippet-body .copy-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 
