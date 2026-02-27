@@ -5,116 +5,79 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================
 
     // Database of resources (Global Index)
-    const searchIndex = [
-        // Year 1
-        {
-            title: "Fondamenti di Informatica",
-            type: "Materia",
-            year: "Primo Anno",
-            url: "subject_template.html?subject=fondamenti",
-            icon: "fa-code",
-            keywords: "c++ programmazione puntatori algoritmi"
-        },
-        {
-            title: "Analisi Matematica 1",
-            type: "Materia",
-            year: "Primo Anno",
-            url: "subject_template.html?subject=analisi1",
-            icon: "fa-infinity",
-            keywords: "matematica limiti derivate integrali"
-        },
-        {
-            title: "Architettura Elaboratori",
-            type: "Materia",
-            year: "Primo Anno",
-            url: "subject_template.html?subject=architettura",
-            icon: "fa-microchip",
-            keywords: "assembly hardware cpu mips"
-        },
-        {
-            title: "Algebra e Geometria",
-            type: "Materia",
-            year: "Primo Anno",
-            url: "subject_template.html?subject=algebra",
-            icon: "fa-vector-square",
-            keywords: "matrici vettori lineare"
-        },
-        // Year 2
-        {
-            title: "Algoritmi e Strutture Dati",
-            type: "Materia",
-            year: "Secondo Anno",
-            url: "subject_template.html?subject=algoritmi",
-            icon: "fa-diagram-project",
-            keywords: "java grafi alberi complessità"
-        },
-        {
-            title: "Sistemi Operativi",
-            type: "Materia",
-            year: "Secondo Anno",
-            url: "subject_template.html?subject=os",
-            icon: "fa-terminal",
-            keywords: "c linux processi thread"
-        },
-        {
-            title: "Basi di Dati",
-            type: "Materia",
-            year: "Secondo Anno",
-            url: "subject_template.html?subject=db",
-            icon: "fa-database",
-            keywords: "sql sql database er"
-        },
-        {
-            title: "Reti di Calcolatori",
-            type: "Materia",
-            year: "Secondo Anno",
-            url: "subject_template.html?subject=reti",
-            icon: "fa-network-wired",
-            keywords: "tcp ip internet sicurezza"
-        },
-        // Year 3
-        {
-            title: "Ingegneria del Software",
-            type: "Materia",
-            year: "Terzo Anno",
-            url: "subject_template.html?subject=ingsoft",
-            icon: "fa-users-gear",
-            keywords: "uml design patterns agile"
-        },
-        {
-            title: "Intelligenza Artificiale",
-            type: "Materia",
-            year: "Terzo Anno",
-            url: "subject_template.html?subject=ai",
-            icon: "fa-brain",
-            keywords: "python machine learning nn"
-        },
-        {
-            title: "Sicurezza Informatica",
-            type: "Materia",
-            year: "Terzo Anno",
-            url: "subject_template.html?subject=security",
-            icon: "fa-shield-halved",
-            keywords: "crypto security malware ctf"
-        },
+    let searchIndex = [];
+
+    // Dynamically build search index from year pages
+    async function buildSearchIndex() {
+        const isDeeper = window.location.pathname.includes('/pages/notes/');
+        const basePath = isDeeper ? '../../' : '';
+        const pagesBasePath = isDeeper ? '' : 'pages/notes/';
+
         // Extras
-        {
-            title: "WeChall Writeups",
-            type: "Extra",
-            year: "Extra",
-            url: "extras1.html",
-            icon: "fa-flag",
-            keywords: "ctf hacking security challenge"
-        },
-        {
-            title: "Side Projects",
-            type: "Extra",
-            year: "Extra",
-            url: "extras2.html",
-            icon: "fa-code",
-            keywords: "progetti personali github"
+        searchIndex.push(
+            { title: "WeChall Writeups", type: "Extra", year: "Extra", url: pagesBasePath + "extras1.html", icon: "fa-flag", keywords: "ctf hacking security challenge" },
+            { title: "Side Projects", type: "Extra", year: "Extra", url: pagesBasePath + "extras2.html", icon: "fa-code", keywords: "progetti personali github" }
+        );
+
+        const years = [
+            { file: 'pages/notes/year1.html', yearName: 'Primo Anno' },
+            { file: 'pages/notes/year2.html', yearName: 'Secondo Anno' },
+            { file: 'pages/notes/year3.html', yearName: 'Terzo Anno' }
+        ];
+
+        for (const year of years) {
+            try {
+                const urlToFetch = basePath + year.file;
+                const response = await fetch(urlToFetch);
+                if (!response.ok) continue;
+                const html = await response.text();
+
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const cards = doc.querySelectorAll('.subject-card');
+
+                cards.forEach(card => {
+                    const titleEl = card.querySelector('h3');
+                    if (!titleEl) return;
+
+                    const title = titleEl.textContent.trim();
+                    let href = card.getAttribute('href');
+
+                    if (href) {
+                        href = pagesBasePath + href;
+                    } else {
+                        href = '#';
+                    }
+
+                    let icon = 'fa-book';
+                    const iconEl = card.querySelector('.card-header-img i');
+                    if (iconEl) {
+                        const classes = Array.from(iconEl.classList);
+                        const faClass = classes.find(c => c.startsWith('fa-') && c !== 'fa-solid');
+                        if (faClass) icon = faClass;
+                    }
+
+                    const tags = Array.from(card.querySelectorAll('.tag')).map(t => t.textContent.trim().toLowerCase());
+                    const descEl = card.querySelector('p');
+                    const desc = descEl ? descEl.textContent.toLowerCase() : '';
+
+                    searchIndex.push({
+                        title: title,
+                        type: "Materia",
+                        year: year.yearName,
+                        url: href,
+                        icon: icon,
+                        keywords: `${title.toLowerCase()} ${tags.join(' ')} ${desc}`
+                    });
+                });
+            } catch (err) {
+                console.error('Errore nel caricamento delle materie:', err);
+            }
         }
-    ];
+    }
+
+    // Initialize search index
+    buildSearchIndex();
 
     const searchInput = document.getElementById('searchInput');
     const searchContainer = document.querySelector('.search-container');
