@@ -7,9 +7,9 @@
     <title>Nerd Stats | Mattia Scarpa</title>
     <meta name="description" content="Statistiche tecniche in tempo reale sul tuo sistema e connessione.">
 
-        <!-- Sync Theme Fix -->
+    <!-- Sync Theme Fix -->
     <script>
-        if(localStorage.getItem('app-theme') === 'light') {
+        if (localStorage.getItem('app-theme') === 'light') {
             document.documentElement.classList.add('light-mode');
         }
     </script>
@@ -40,7 +40,7 @@
                     padlock.style.color = '#22c55e';
                     padlock.title = "Accesso Effettuato";
                     // Forziamo lo stile inline per superare eventuali delay CSS parse
-                    padlock.style.transition = 'none'; 
+                    padlock.style.transition = 'none';
                 }
             }
         });
@@ -57,11 +57,12 @@
                     <span>MyPortfolio</span>
                 </div>
             </div>
-            
+
             <div class="top-nav">
                 <ul class="nav-links">
                     <li class=""><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
-                    <li class=""><a href="notes.html"><i class="fa-solid fa-book"></i> Archivio Appunti <i id="authPadlock" class="fa-solid fa-lock" title="Stato Accesso"></i></a></li>
+                    <li class=""><a href="notes.html"><i class="fa-solid fa-book"></i> Archivio Appunti <i
+                                id="authPadlock" class="fa-solid fa-lock" title="Stato Accesso"></i></a></li>
                     <li class="active"><a href="nerd-stats.html"><i class="fa-solid fa-chart-line"></i> Stats</a></li>
                 </ul>
             </div>
@@ -70,9 +71,13 @@
                 <button id="themeToggleBtn" class="theme-toggle-btn" title="Cambia Tema">
                     <i id="themeIcon" class="fa-solid fa-moon"></i>
                 </button>
-                
-                <a href="https://github.com/Tiume001" target="_blank" style="color: var(--text-secondary); font-size: 1.2rem; transition: 0.2s;"><i class="fa-brands fa-github"></i></a>
-                <a href="mailto:tiume00@gmail.com" style="color: var(--text-secondary); font-size: 1.2rem; transition: 0.2s;"><i class="fa-solid fa-envelope"></i></a>
+
+                <a href="https://github.com/Tiume001" target="_blank"
+                    style="color: var(--text-secondary); font-size: 1.2rem; transition: 0.2s;"><i
+                        class="fa-brands fa-github"></i></a>
+                <a href="mailto:tiume00@gmail.com"
+                    style="color: var(--text-secondary); font-size: 1.2rem; transition: 0.2s;"><i
+                        class="fa-solid fa-envelope"></i></a>
             </div>
         </nav>
 
@@ -92,7 +97,7 @@
             </header>
 
             <!-- Hero Section -->
-            <section class="hero-small">
+            <section class="hero-small scroll-animate">
                 <div class="hero-content">
                     <h1>Nerd <span class="gradient-text">Statistics</span></h1>
                     <p>Statistiche tecniche in tempo reale sul tuo sistema e connessione.</p>
@@ -100,7 +105,7 @@
             </section>
 
             <!-- Stats Grid -->
-            <section class="stats-dashboard">
+            <section class="stats-dashboard scroll-animate delay-100">
                 <div class="stats-grid">
                     <!-- IP Address Card -->
                     <div class="stat-card card">
@@ -234,7 +239,7 @@
             </section>
 
             <!-- Real-time Updates Section -->
-            <section class="stats-dashboard">
+            <section class="stats-dashboard scroll-animate delay-200">
                 <h2>Real-Time Metrics</h2>
                 <div class="realtime-card card">
                     <div class="metric-row">
@@ -259,8 +264,9 @@
     <script src="js/script.js"></script>
     <!-- Nerd Stats Functionality -->
     <script src="js/nerd-stats.js"></script>
-<script type="module" src="js/auth.js"></script>
-<script type="module" src="js/theme-switcher.js"></script>
+    <script src="js/animations.js"></script>
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/theme-switcher.js"></script>
     <script type="module" src="js/navbar-auth.js"></script>
 </body>
 

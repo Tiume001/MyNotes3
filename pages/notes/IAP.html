@@ -33,6 +33,7 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
 
     <link rel="stylesheet" href="../../css/style.css?v=5">
+    <link rel="stylesheet" href="../../css/animations.css">
     <!-- Prevent Flash of Unauthenticated Content -->
     <style>
         body {
@@ -114,7 +115,7 @@
             </header>
 
             <!-- Subject Hero -->
-            <section class="hero-small">
+            <section class="hero-small scroll-animate">
                 <div class="hero-content">
                     <h1 id="subjectTitle">Introduzione alla <span class="gradient-text">Programmazione</span></h1>
                     <p id="subjectDesc">Corso di base sulla programmazione C.</p>
@@ -122,7 +123,7 @@
             </section>
 
             <!-- Two Column Layout -->
-            <div class="subject-layout">
+            <div class="subject-layout scroll-animate delay-100">
 
                 <!-- Left Column: Main Content -->
                 <div class="subject-main">
@@ -657,6 +658,7 @@ plt.show()
             event.currentTarget.classList.add('active');
         }
     </script>
+    <script src="../../js/animations.js"></script>
     <script src="../../js/script.js"></script>
     <!-- AUTH GUARD -->
     <script type="module" src="../../js/auth-guard.js"></script>

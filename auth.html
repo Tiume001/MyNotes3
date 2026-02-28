@@ -26,8 +26,9 @@ http://localhost:8000/auth.html
     href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/auth.css">
-    <link rel="icon" href="favicon.png" type="image/png">
-    <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="favicon.png">
 </head>
 
 <body>
@@ -43,7 +44,7 @@ http://localhost:8000/auth.html
     <a href="index.html" class="back-home-btn">
       <i class="fa-solid fa-arrow-left"></i> Torna alla Home
     </a>
-    <div class="auth-card" id="authCard">
+    <div class="auth-card scroll-animate" id="authCard">
       <!-- Header -->
       <div class="auth-header">
         <div class="auth-logo">🔐</div>
@@ -210,6 +211,7 @@ http://localhost:8000/auth.html
   </div>
 
   <!-- Firebase and Auth Script -->
+  <script src="js/animations.js"></script>
   <script type="module" src="js/auth.js"></script>
 </body>
 
