@@ -52,7 +52,7 @@
                     padlock.style.color = '#22c55e';
                     padlock.title = "Accesso Effettuato";
                     // Forziamo lo stile inline per superare eventuali delay CSS parse
-                    padlock.style.transition = 'none'; 
+                    padlock.style.transition = 'none';
                 }
             }
         });
@@ -98,7 +98,7 @@
             <!-- Header -->
             <header class="top-bar">
                 <div class="breadcrumbs">
-                    <a href="../../index.html">Home</a>
+                    <a href="../../notes.html">Archivio Appunti</a>
                     <i class="fa-solid fa-chevron-right"></i>
                     <a href="year1.html">Primo Anno</a>
                     <i class="fa-solid fa-chevron-right"></i>
@@ -126,7 +126,7 @@
                     <!-- Tabs Navigation -->
                     <div class="tabs-container">
                         <button class="tab-btn active" onclick="openTab('notes')"><i
-                                class="fa-regular fa-file-lines"></i> Appunti</button>
+                                class="fa-solid fa-layer-group"></i> Overview</button>
                         <button class="tab-btn" onclick="openTab('timeline')"><i class="fa-solid fa-timeline"></i>
                             Timeline</button>
                         <button class="tab-btn" onclick="openTab('projects')"><i class="fa-solid fa-laptop-code"></i>
@@ -135,43 +135,159 @@
                             Risorse</button>
                     </div>
 
-                    <!-- NOTES TAB -->
+                    <!-- NOTES TAB (Overview) -->
                     <div id="notes" class="tab-content active">
                         <div class="markdown-content">
                             <h2>Concetti Fondamentali</h2>
                             <p>Il corso di Analisi 2 estende i concetti del calcolo differenziale e integrale a funzioni
-                                di più variabili reali e studia le equazioni differenziali.</p>
+                                di più variabili reali e studia le equazioni differenziali ordinarie.</p>
 
-                            <h3>1. Equazioni Differenziali Ordinarie (EDO)</h3>
-                            <p>Un'equazione differenziale lega una funzione incognita \( y(x) \) e le sue derivate.</p>
-                            <ul>
-                                <li><strong>Ordine:</strong> L'ordine della derivata più alta presente.</li>
-                                <li><strong>Problema di Cauchy:</strong> EDO + condizioni iniziali per determinare una
-                                    soluzione unica.</li>
-                            </ul>
+                            <details class="snippet-container" open>
+                                <summary class="snippet-header">
+                                    <div class="snippet-title">
+                                        <h3>1. Equazioni Differenziali Ordinarie (EDO)</h3>
+                                        <p>Relazioni matematiche tra una funzione incognita e le sue derivate.</p>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </summary>
+                                <div class="snippet-body"
+                                    style="padding: 1.5rem; background: var(--bg-card); color: var(--text-secondary);">
+                                    <p>Un'equazione differenziale lega una funzione incognita <span
+                                            style="font-family: 'Space Mono', monospace; font-size: 0.9em;">y(x)</span>
+                                        e le sue derivate.</p>
+                                    <ul style="margin-left: 1.5rem; list-style-type: disc;">
+                                        <li><strong>Forma generale (1° ordine):</strong> <span
+                                                style="font-family: 'Space Mono', monospace; font-size: 0.9em;">y' =
+                                                f(x, y)</span></li>
+                                        <li><strong>Equazioni Lineari (1° ordine):</strong> <span
+                                                style="font-family: 'Space Mono', monospace; font-size: 0.9em;">y' +
+                                                a(x)y = b(x)</span></li>
+                                        <li><strong>Problema di Cauchy:</strong> EDO associata a una condizione iniziale
+                                            <span style="font-family: 'Space Mono', monospace; font-size: 0.9em;">y(x₀)
+                                                = y₀</span> per garantire l'unicità della soluzione locale (Teorema di
+                                            esistenza e unicità).</li>
+                                    </ul>
+                                </div>
+                            </details>
 
-                            <h3>2. Calcolo in R^n</h3>
-                            <p>Studio di funzioni \( f: \mathbb{R}^n \to \mathbb{R} \).</p>
-                            <ul>
-                                <li><strong>Derivate Parziali:</strong> Derivata rispetto a una variabile mantenendo le
-                                    altre costanti.</li>
-                                <li><strong>Gradiente (\( \nabla f \)):</strong> Vettore che punta nella direzione di
-                                    massima crescita.</li>
-                                <li><strong>Matrice Hessiana:</strong> Matrice delle derivate seconde.</li>
-                            </ul>
+                            <details class="snippet-container">
+                                <summary class="snippet-header">
+                                    <div class="snippet-title">
+                                        <h3>2. Calcolo Differenziale in ℝⁿ</h3>
+                                        <p>Topologia, limiti, continuità e derivate direzionali.</p>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </summary>
+                                <div class="snippet-body"
+                                    style="padding: 1.5rem; background: var(--bg-card); color: var(--text-secondary);">
+                                    <p>Studio dello spazio euclideo e delle funzioni scalari o vettoriali <span
+                                            style="font-family: 'Space Mono', monospace; font-size: 0.9em;">f: ℝⁿ →
+                                            ℝᵐ</span>.</p>
+                                    <ul style="margin-left: 1.5rem; list-style-type: disc;">
+                                        <li><strong>Limiti in ℝⁿ:</strong> Il limite deve esistere e coincidere lungo
+                                            qualsiasi curva di avvicinamento al punto <span
+                                                style="font-family: 'Space Mono', monospace; font-size: 0.9em;">(x₀,
+                                                y₀)</span>. Spesso si usano le coordinate polari per la verifica.</li>
+                                        <li><strong>Derivata Direzionale e Gradiente:</strong> Il gradiente <span
+                                                style="font-family: 'Space Mono', monospace; font-size: 0.9em;">∇f(x,y)
+                                                = (∂f/∂x, ∂f/∂y)</span> indica la direzione di massima pendenza della
+                                            superficie descritta da <span
+                                                style="font-family: 'Space Mono', monospace; font-size: 0.9em;">z =
+                                                f(x,y)</span>.</li>
+                                        <li><strong>Differenziabilità:</strong> Condizione più forte della derivabilità.
+                                            Se una funzione è differenziabile, ammette un piano tangente nel punto.</li>
+                                    </ul>
+                                </div>
+                            </details>
 
-                            <h3>3. Ottimizzazione</h3>
-                            <p>Ricerca di punti di massimo e minimo locale.</p>
-                            <pre><code class="language-text">Hf(x_0) definita positiva -> Minimo locale
-Hf(x_0) definita negativa -> Massimo locale
-Hf(x_0) indefinita -> Punto di sella</code></pre>
+                            <details class="snippet-container">
+                                <summary class="snippet-header">
+                                    <div class="snippet-title">
+                                        <h3>3. Ottimizzazione e Punti Critici</h3>
+                                        <p>Ricerca di massimi, minimi liberi e vincolati.</p>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </summary>
+                                <div class="snippet-body"
+                                    style="padding: 1.5rem; background: var(--bg-card); color: var(--text-secondary);">
+                                    <p>Un punto stazionario <span
+                                            style="font-family: 'Space Mono', monospace; font-size: 0.9em;">P₀</span>
+                                        annulla il gradiente: <span
+                                            style="font-family: 'Space Mono', monospace; font-size: 0.9em;">∇f(P₀) =
+                                            (0,0)</span>.</p>
+                                    <p style="margin-top:0.5rem;">La natura del punto critico è determinata dalla
+                                        matrice Hessiana <span
+                                            style="font-family: 'Space Mono', monospace; font-size: 0.9em;">Hf(P₀)</span>:
+                                    </p>
 
-                            <h3>4. Integrali Multipli</h3>
-                            <p>Estensione dell'integrale definito a domini in R^2 o R^3.</p>
-                            <blockquote>
-                                <p>Fondamentale il teorema del cambiamento di variabili, ad esempio passando a
-                                    coordinate polari per domini circolari.</p>
-                            </blockquote>
+                                    <pre
+                                        style="background: rgba(0,0,0,0.05); padding: 1rem; border-radius: 8px; font-family: 'Space Mono', monospace; font-size: 0.85em; overflow-x: auto;">
+det(Hf) > 0 e f_xx > 0   =>   Minimo locale
+det(Hf) > 0 e f_xx < 0   =>   Massimo locale
+det(Hf) < 0              =>   Punto di sella
+det(Hf) = 0              =>   Caso dubbio</pre>
+
+                                    <p style="margin-top:1rem;"><strong>Moltiplicatori di Lagrange:</strong> Metodo
+                                        impiegato per la ricerca di estremi vincolati su curve definite implicitamente
+                                        <span style="font-family: 'Space Mono', monospace; font-size: 0.9em;">g(x,y) =
+                                            0</span>, sfruttando la funzione Lagrangiana <span
+                                            style="font-family: 'Space Mono', monospace; font-size: 0.9em;">L = f -
+                                            λ·g</span>.</p>
+                                </div>
+                            </details>
+
+                            <details class="snippet-container">
+                                <summary class="snippet-header">
+                                    <div class="snippet-title">
+                                        <h3>4. Curve e Integrali di Linea</h3>
+                                        <p>Lunghezza d'arco, baricentri e lavoro dei campi vettoriali.</p>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </summary>
+                                <div class="snippet-body"
+                                    style="padding: 1.5rem; background: var(--bg-card); color: var(--text-secondary);">
+                                    <p>Una curva parametrica è definita dalla funzione <span
+                                            style="font-family: 'Space Mono', monospace; font-size: 0.9em;">γ(t) =
+                                            (x(t), y(t), z(t))</span> per <span
+                                            style="font-family: 'Space Mono', monospace; font-size: 0.9em;">t ∈
+                                            [a,b]</span>.</p>
+                                    <ul style="margin-left: 1.5rem; list-style-type: disc;">
+                                        <li><strong>Lunghezza della curva:</strong> <span
+                                                style="font-family: 'Space Mono', monospace; font-size: 0.9em;">L(γ) = ∫
+                                                ||γ'(t)|| dt</span></li>
+                                        <li><strong>Integrali curvilinei di 1° specie:</strong> Integrano funzioni
+                                            scalari <span
+                                                style="font-family: 'Space Mono', monospace; font-size: 0.9em;">f(x,y,z)</span>
+                                            lungo una curva (utili per massa e baricentro di un filo materiale).</li>
+                                    </ul>
+                                </div>
+                            </details>
+
+                            <details class="snippet-container">
+                                <summary class="snippet-header">
+                                    <div class="snippet-title">
+                                        <h3>5. Integrali Multipli</h3>
+                                        <p>Calcolo di volumi, aree e cambiamenti di coordinate.</p>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </summary>
+                                <div class="snippet-body"
+                                    style="padding: 1.5rem; background: var(--bg-card); color: var(--text-secondary);">
+                                    <p>Applicazione dell'integrale definito a domini <span
+                                            style="font-family: 'Space Mono', monospace; font-size: 0.9em;">D ⊂
+                                            ℝ²</span> (integrali doppi) o <span
+                                            style="font-family: 'Space Mono', monospace; font-size: 0.9em;">D ⊂
+                                            ℝ³</span> (integrali tripli).</p>
+                                    <p style="margin-top:0.5rem; margin-bottom: 0.5rem;">Cambiamento di variabile in
+                                        coordinate polari:</p>
+                                    <pre
+                                        style="background: rgba(0,0,0,0.05); padding: 1rem; border-radius: 8px; font-family: 'Space Mono', monospace; font-size: 0.85em; overflow-x: auto;">
+x = ρ cos(θ)
+y = ρ sin(θ)
+dx dy = ρ dρ dθ  (dove ρ è il determinante Jacobiano)</pre>
+                                </div>
+                            </details>
+
                         </div>
                     </div>
 
@@ -223,7 +339,7 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                 <div class="card-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <h3>Formulario</h3>
                                 <p>Formulario per lo svolgimento dell'esame.</p>
-                                <a href="Analisi2/formulario.pdf" class="btn-text">Vedi Formulario <i
+                                <a target="_blank" href="Analisi2/formulario.pdf" class="btn-text">Vedi Formulario <i
                                         class="fa-solid fa-arrow-right"></i></a>
                             </div>
                         </div>
@@ -233,7 +349,7 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                     <div id="resources" class="tab-content">
                         <h3 class="section-title">Appunti Lezioni</h3>
                         <div class="resources-list">
-                            <a href="Analisi2/integrali_gen.pdf" class="resource-link">
+                            <a target="_blank" href="Analisi2/integrali_gen.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Lezione 01 - Integrali Generalizzati</h4>
@@ -242,7 +358,7 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
                             <!-- Lezione2 -->
-                            <a href="Analisi2/integrali_gen_2.pdf" class="resource-link">
+                            <a target="_blank" href="Analisi2/integrali_gen_2.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Lezione 02 - Integrali Generalizzati 2</h4>
@@ -251,7 +367,7 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
                             <!-- Lezione3 -->
-                            <a href="Analisi2/integrali_gen_3.pdf" class="resource-link">
+                            <a target="_blank" href="Analisi2/integrali_gen_3.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Lezione 03 - Integrali Generalizzati 3</h4>
@@ -260,7 +376,7 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
                             <!-- Lezione4 -->
-                            <a href="Analisi2/EDO.pdf" class="resource-link">
+                            <a target="_blank" href="Analisi2/EDO.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Lezione 04 - Equazioni Differenziali Ordinarie (1° ordine)</h4>
@@ -269,7 +385,7 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
                             <!-- Lezione5 -->
-                            <a href="Analisi2/EDO2.pdf" class="resource-link">
+                            <a target="_blank" href="Analisi2/EDO2.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Lezione 05 - EDO 2 (1° ordine)</h4>
@@ -278,7 +394,7 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
                             <!-- EDO 3 (1° & 2° ordine) Lezione6 DA FINIREEEEE file dentro Analisi2/...-->
-                            <a href="Analisi2/EDO3.pdf" class="resource-link">
+                            <a target="_blank" href="Analisi2/EDO3.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Lezione 06 - EDO 3 (1° & 2° ordine)</h4>
@@ -287,7 +403,7 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
                             <!-- Lezione7 -->
-                            <a href="Analisi2/EDO4.pdf" class="resource-link">
+                            <a target="_blank" href="Analisi2/EDO4.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Lezione 07 - EDO 4 (2° ordine)</h4>
@@ -296,7 +412,7 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
                             <!-- Lezione8 -->
-                            <a href="Analisi2/curve_param.pdf" class="resource-link">
+                            <a target="_blank" href="Analisi2/curve_param.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Lezione 08 - Curve Parametriche</h4>
@@ -305,7 +421,7 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
                             <!-- Lezione9 -->
-                            <a href="Analisi2/curve_param2.pdf" class="resource-link">
+                            <a target="_blank" href="Analisi2/curve_param2.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Lezione 09 - Curve Parametriche 2</h4>
@@ -314,7 +430,7 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
                             <!-- Lezione10 -->
-                            <a href="Analisi2/curve_param3.pdf" class="resource-link">
+                            <a target="_blank" href="Analisi2/curve_param3.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Lezione 10 - Curve Parametriche 3 (Polari)</h4>
@@ -323,7 +439,7 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
                             <!-- Lezione11 -->
-                            <a href="Analisi2/lung_curve.pdf" class="resource-link">
+                            <a target="_blank" href="Analisi2/lung_curve.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Lezione 11 - Lunghezza Curve & Integrale di Linea prima specie</h4>
@@ -332,7 +448,7 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
                             <!-- Lezione12 -->
-                            <a href="Analisi2/funz_reali.pdf" class="resource-link">
+                            <a target="_blank" href="Analisi2/funz_reali.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Lezione 12 - Funzioni Reali di più Variabili Reali</h4>
@@ -341,7 +457,7 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
                             <!-- Lezione13 -->
-                            <a href="Analisi2/A 25.03.25 - Topologia di R^2.pdf" class="resource-link">
+                            <a target="_blank" href="Analisi2/A 25.03.25 - Topologia di R^2.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Lezione 13 - Topologia di R^2</h4>
@@ -350,7 +466,8 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
                             <!-- Lezione14 -->
-                            <a href="Analisi2/A 27.03.25 - Limiti di funzioni a 2 variabili & Calcolo differenziale.pdf"
+                            <a target="_blank"
+                                href="Analisi2/A 27.03.25 - Limiti di funzioni a 2 variabili & Calcolo differenziale.pdf"
                                 class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
@@ -360,7 +477,8 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
                             <!-- Lezione15 -->
-                            <a href="Analisi2/B 01.04.25 - Funzioni Differenziabili & Derivate parziali di ordine superiore.pdf"
+                            <a target="_blank"
+                                href="Analisi2/B 01.04.25 - Funzioni Differenziabili & Derivate parziali di ordine superiore.pdf"
                                 class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
@@ -371,7 +489,7 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
                             <!-- Lezione16 -->
-                            <a href="Analisi2/B 03.04.25 - Classificazione di matrici Hessiane.pdf"
+                            <a target="_blank" href="Analisi2/B 03.04.25 - Classificazione di matrici Hessiane.pdf"
                                 class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
@@ -381,7 +499,8 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
                             <!-- Lezione17 -->
-                            <a href="Analisi2/B 08.04.25 - Ricerca estremi 2 variabili.pdf" class="resource-link">
+                            <a target="_blank" href="Analisi2/B 08.04.25 - Ricerca estremi 2 variabili.pdf"
+                                class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Lezione 17 - Ricerca estremi 2 variabili</h4>
@@ -390,7 +509,8 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
                             <!-- Lezione18 -->
-                            <a href="Analisi2/B 10.04.25 - Esercizi ricerca estremi.pdf" class="resource-link">
+                            <a target="_blank" href="Analisi2/B 10.04.25 - Esercizi ricerca estremi.pdf"
+                                class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Lezione 18 - Esercizi ricerca estremi</h4>
@@ -399,7 +519,8 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
                             <!-- Lezione19 -->
-                            <a href="Analisi2/B 15.04.25 - Esercizi 2 ricerca estremi.pdf" class="resource-link">
+                            <a target="_blank" href="Analisi2/B 15.04.25 - Esercizi 2 ricerca estremi.pdf"
+                                class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Lezione 19 - Esercizi 2 ricerca estremi</h4>
@@ -408,7 +529,7 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
                             <!-- Lezione20 -->
-                            <a href="Analisi2/B 17.04.25 - Integrali doppi.pdf" class="resource-link">
+                            <a target="_blank" href="Analisi2/B 17.04.25 - Integrali doppi.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Lezione 20 - Integrali doppi</h4>
@@ -417,7 +538,7 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
                             <!-- Lezione21 -->
-                            <a href="Analisi2/24 apr 2025 integrali doppi cambiamento variabile.pdf"
+                            <a target="_blank" href="Analisi2/24 apr 2025 integrali doppi cambiamento variabile.pdf"
                                 class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
@@ -427,7 +548,7 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
                             <!-- Lezione22 -->
-                            <a href="Analisi2/29 apr 2025 baricentro.pdf" class="resource-link">
+                            <a target="_blank" href="Analisi2/29 apr 2025 baricentro.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Lezione 22 - Baricentro</h4>
@@ -436,7 +557,7 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
                             <!-- Lezione23 -->
-                            <a href="Analisi2/6 mag 2025 estremi liberi.pdf" class="resource-link">
+                            <a target="_blank" href="Analisi2/6 mag 2025 estremi liberi.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Lezione 23 - Estremi liberi</h4>
@@ -459,7 +580,7 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                             </summary>
                             <div class="snippet-body" style="padding: 1rem;">
                                 <div class="resources-list">
-                                    <a href="Analisi2/Esami/Esame del 2024-01-17 (solo traccia).pdf"
+                                    <a target="_blank" href="Analisi2/Esami/Esame del 2024-01-17 (solo traccia).pdf"
                                         class="resource-link">
                                         <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                         <div class="resource-info">
@@ -468,7 +589,8 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                         </div>
                                         <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                                     </a>
-                                    <a href="Analisi2/Esami/Esame del 2024-06-03.pdf" class="resource-link">
+                                    <a target="_blank" href="Analisi2/Esami/Esame del 2024-06-03.pdf"
+                                        class="resource-link">
                                         <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                         <div class="resource-info">
                                             <h4>Esame 03/06/2024</h4>
@@ -476,7 +598,8 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                         </div>
                                         <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                                     </a>
-                                    <a href="Analisi2/Esami/Esame del 2024-06-17.pdf" class="resource-link">
+                                    <a target="_blank" href="Analisi2/Esami/Esame del 2024-06-17.pdf"
+                                        class="resource-link">
                                         <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                         <div class="resource-info">
                                             <h4>Esame 17/06/2024</h4>
@@ -484,7 +607,8 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                         </div>
                                         <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                                     </a>
-                                    <a href="Analisi2/Esami/Esame del 2024-09-05.pdf" class="resource-link">
+                                    <a target="_blank" href="Analisi2/Esami/Esame del 2024-09-05.pdf"
+                                        class="resource-link">
                                         <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                         <div class="resource-info">
                                             <h4>Esame 05/09/2024</h4>
@@ -507,7 +631,7 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                             </summary>
                             <div class="snippet-body" style="padding: 1rem;">
                                 <div class="resources-list">
-                                    <a href="Analisi2/Esami/Esame del 2023-01-27 (solo traccia).pdf"
+                                    <a target="_blank" href="Analisi2/Esami/Esame del 2023-01-27 (solo traccia).pdf"
                                         class="resource-link">
                                         <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                         <div class="resource-info">
@@ -516,7 +640,7 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                         </div>
                                         <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                                     </a>
-                                    <a href="Analisi2/Esami/Esame del 2023-06-01 (solo traccia).pdf"
+                                    <a target="_blank" href="Analisi2/Esami/Esame del 2023-06-01 (solo traccia).pdf"
                                         class="resource-link">
                                         <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                         <div class="resource-info">
@@ -525,7 +649,8 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                         </div>
                                         <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                                     </a>
-                                    <a href="Analisi2/Esami/Esame del 2023-06-23.pdf" class="resource-link">
+                                    <a target="_blank" href="Analisi2/Esami/Esame del 2023-06-23.pdf"
+                                        class="resource-link">
                                         <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                         <div class="resource-info">
                                             <h4>Esame 23/06/2023</h4>
@@ -548,7 +673,8 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                             </summary>
                             <div class="snippet-body" style="padding: 1rem;">
                                 <div class="resources-list">
-                                    <a href="Analisi2/Esami/Esame del 2022-01-24.pdf" class="resource-link">
+                                    <a target="_blank" href="Analisi2/Esami/Esame del 2022-01-24.pdf"
+                                        class="resource-link">
                                         <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                         <div class="resource-info">
                                             <h4>Esame 24/01/2022</h4>
@@ -556,7 +682,8 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                         </div>
                                         <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                                     </a>
-                                    <a href="Analisi2/Esami/Esame del 2022-06-03.pdf" class="resource-link">
+                                    <a target="_blank" href="Analisi2/Esami/Esame del 2022-06-03.pdf"
+                                        class="resource-link">
                                         <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                         <div class="resource-info">
                                             <h4>Esame 03/06/2022</h4>
@@ -564,7 +691,8 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                         </div>
                                         <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                                     </a>
-                                    <a href="Analisi2/Esami/Esame del 2022-06-24.pdf" class="resource-link">
+                                    <a target="_blank" href="Analisi2/Esami/Esame del 2022-06-24.pdf"
+                                        class="resource-link">
                                         <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                         <div class="resource-info">
                                             <h4>Esame 24/06/2022</h4>
@@ -572,7 +700,7 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                         </div>
                                         <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                                     </a>
-                                    <a href="Analisi2/Esami/Esame del 2022-09-09 (solo traccia).pdf"
+                                    <a target="_blank" href="Analisi2/Esami/Esame del 2022-09-09 (solo traccia).pdf"
                                         class="resource-link">
                                         <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                         <div class="resource-info">
@@ -596,7 +724,8 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                             </summary>
                             <div class="snippet-body" style="padding: 1rem;">
                                 <div class="resources-list">
-                                    <a href="Analisi2/Esami/Esame del 2021-01-18.pdf" class="resource-link">
+                                    <a target="_blank" href="Analisi2/Esami/Esame del 2021-01-18.pdf"
+                                        class="resource-link">
                                         <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                         <div class="resource-info">
                                             <h4>Esame 18/01/2021</h4>
@@ -604,7 +733,8 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                         </div>
                                         <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                                     </a>
-                                    <a href="Analisi2/Esami/Esame del 2021-06-09 A.pdf" class="resource-link">
+                                    <a target="_blank" href="Analisi2/Esami/Esame del 2021-06-09 A.pdf"
+                                        class="resource-link">
                                         <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                         <div class="resource-info">
                                             <h4>Esame 09/06/2021 A</h4>
@@ -612,7 +742,8 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                         </div>
                                         <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                                     </a>
-                                    <a href="Analisi2/Esami/Esame del 2021-06-09 B.pdf" class="resource-link">
+                                    <a target="_blank" href="Analisi2/Esami/Esame del 2021-06-09 B.pdf"
+                                        class="resource-link">
                                         <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                         <div class="resource-info">
                                             <h4>Esame 09/06/2021 B</h4>
@@ -620,7 +751,8 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                         </div>
                                         <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                                     </a>
-                                    <a href="Analisi2/Esami/Esame del 2021-06-29.pdf" class="resource-link">
+                                    <a target="_blank" href="Analisi2/Esami/Esame del 2021-06-29.pdf"
+                                        class="resource-link">
                                         <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                         <div class="resource-info">
                                             <h4>Esame 29/06/2021</h4>
@@ -628,7 +760,8 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                         </div>
                                         <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                                     </a>
-                                    <a href="Analisi2/Esami/Esame del 2021-08-31.pdf" class="resource-link">
+                                    <a target="_blank" href="Analisi2/Esami/Esame del 2021-08-31.pdf"
+                                        class="resource-link">
                                         <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                         <div class="resource-info">
                                             <h4>Esame 31/08/2021</h4>
@@ -651,7 +784,8 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                             </summary>
                             <div class="snippet-body" style="padding: 1rem;">
                                 <div class="resources-list">
-                                    <a href="Analisi2/Esami/Esame del 2020-06-09.pdf" class="resource-link">
+                                    <a target="_blank" href="Analisi2/Esami/Esame del 2020-06-09.pdf"
+                                        class="resource-link">
                                         <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                         <div class="resource-info">
                                             <h4>Esame 09/06/2020</h4>
@@ -659,7 +793,8 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                         </div>
                                         <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                                     </a>
-                                    <a href="Analisi2/Esami/Esame del 2020-06-23.pdf" class="resource-link">
+                                    <a target="_blank" href="Analisi2/Esami/Esame del 2020-06-23.pdf"
+                                        class="resource-link">
                                         <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                         <div class="resource-info">
                                             <h4>Esame 23/06/2020</h4>
@@ -667,7 +802,8 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
                                         </div>
                                         <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                                     </a>
-                                    <a href="Analisi2/Esami/Esame del 2020-08-27.pdf" class="resource-link">
+                                    <a target="_blank" href="Analisi2/Esami/Esame del 2020-08-27.pdf"
+                                        class="resource-link">
                                         <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                         <div class="resource-info">
                                             <h4>Esame 27/08/2020</h4>
@@ -756,8 +892,20 @@ Hf(x_0) indefinita -> Punto di sella</code></pre>
             document.getElementById(tabName).classList.add('active');
 
             // Add active class to clicked button
-            event.currentTarget.classList.add('active');
+            const activeBtn = document.querySelector(`.tab-btn[onclick="openTab('${tabName}')"]`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            // Save state in URL
+            history.replaceState(null, null, '#' + tabName);
         }
+
+        // Check for preserved tab state on page load
+        document.addEventListener("DOMContentLoaded", function () {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                openTab(hash);
+            }
+        });
     </script>
     <script src="../../js/animations.js"></script>
     <script src="../../js/script.js"></script>

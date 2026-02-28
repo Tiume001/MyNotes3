@@ -192,8 +192,20 @@
             document.getElementById(tabName).classList.add('active');
 
             // Add active class to clicked button
-            event.currentTarget.classList.add('active');
+            const activeBtn = document.querySelector(`.tab-btn[onclick="openTab('${tabName}')"]`);
+            if(activeBtn) activeBtn.classList.add('active');
+            
+            // Save state in URL
+            history.replaceState(null, null, '#' + tabName);
         }
+
+        // Check for preserved tab state on page load
+        document.addEventListener("DOMContentLoaded", function() {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                openTab(hash);
+            }
+        });
     </script>
     <script src="../../js/animations.js"></script>
     <script src="../../js/script.js"></script>

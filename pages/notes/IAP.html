@@ -56,7 +56,7 @@
                     padlock.style.color = '#22c55e';
                     padlock.title = "Accesso Effettuato";
                     // Forziamo lo stile inline per superare eventuali delay CSS parse
-                    padlock.style.transition = 'none'; 
+                    padlock.style.transition = 'none';
                 }
             }
         });
@@ -477,7 +477,7 @@ plt.show()
                     <div id="resources" class="tab-content">
                         <h3 class="section-title">Lezioni</h3>
                         <div class="resources-list">
-                            <a href="RO\Lez1.pdf" class="resource-link">
+                            <a target="_blank" href="RO\Lez1.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Capitolo 01 - Richiami e Definizioni Generali</h4>
@@ -485,7 +485,7 @@ plt.show()
                                 </div>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
-                            <a href="RO\Lez2.pdf" class="resource-link">
+                            <a target="_blank" href="RO\Lez2.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Capitolo 02 - Richiami sulle funzioni continuamente differenziabili</h4>
@@ -493,7 +493,7 @@ plt.show()
                                 </div>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
-                            <a href="RO\Lez3.pdf" class="resource-link">
+                            <a target="_blank" href="RO\Lez3.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Capitolo 03 - Introduzione alla Programmazione Matematica</h4>
@@ -501,7 +501,7 @@ plt.show()
                                 </div>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
-                            <a href="RO\Lez4.pdf" class="resource-link">
+                            <a target="_blank" href="RO\Lez4.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Capitolo 04 - Proprietà e struttura dei problemi convessi</h4>
@@ -509,7 +509,7 @@ plt.show()
                                 </div>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
-                            <a href="RO\Lez5.pdf" class="resource-link">
+                            <a target="_blank" href="RO\Lez5.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Capitolo 05 - Ulteriori elementi di Programmazione Matematica</h4>
@@ -517,7 +517,7 @@ plt.show()
                                 </div>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
-                            <a href="RO\Lez6.pdf" class="resource-link">
+                            <a target="_blank" href="RO\Lez6.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Capitolo 06 - La Programmazione Lineare come caso particolare della
@@ -526,7 +526,7 @@ plt.show()
                                 </div>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
-                            <a href="RO\B_B.pdf" class="resource-link">
+                            <a target="_blank" href="RO\B_B.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Capitolo 07 - Branch and bound</h4>
@@ -534,7 +534,7 @@ plt.show()
                                 </div>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
-                            <a href="RO\costo_fisso_vincoli_disgiuntvi.pdf" class="resource-link">
+                            <a target="_blank" href="RO\costo_fisso_vincoli_disgiuntvi.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Capitolo 08 - Costo fisso & Vincoli disgiuntivi</h4>
@@ -542,7 +542,7 @@ plt.show()
                                 </div>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
-                            <a href="RO\massimo_flusso.pdf" class="resource-link">
+                            <a target="_blank" href="RO\massimo_flusso.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Capitolo 09 - Massimo flusso</h4>
@@ -550,7 +550,7 @@ plt.show()
                                 </div>
                                 <div class="resource-action"><i class="fa-solid fa-download"></i></div>
                             </a>
-                            <a href="RO\TEORIA.pdf" class="resource-link">
+                            <a target="_blank" href="RO\TEORIA.pdf" class="resource-link">
                                 <div class="resource-icon"><i class="fa-solid fa-file-pdf"></i></div>
                                 <div class="resource-info">
                                     <h4>Capitolo 10 - Riassunto di Teoria</h4>
@@ -655,8 +655,20 @@ plt.show()
             document.getElementById(tabName).classList.add('active');
 
             // Add active class to clicked button
-            event.currentTarget.classList.add('active');
+            const activeBtn = document.querySelector(`.tab-btn[onclick="openTab('${tabName}')"]`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            // Save state in URL
+            history.replaceState(null, null, '#' + tabName);
         }
+
+        // Check for preserved tab state on page load
+        document.addEventListener("DOMContentLoaded", function () {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                openTab(hash);
+            }
+        });
     </script>
     <script src="../../js/animations.js"></script>
     <script src="../../js/script.js"></script>
