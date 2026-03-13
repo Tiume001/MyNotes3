@@ -995,7 +995,7 @@ h2::before {
 
 /* Hero Small */
 .hero-small {
-    margin-bottom: 0;
+    margin-bottom: 1.5rem;
     padding-bottom: 0;
 }
 
@@ -2642,11 +2642,11 @@ a.clickable-project:hover .cv-details-linear strong {
     /* === Hero: more compact === */
     .hero-small {
         padding: 0.75rem 0.25rem 0 0.25rem;
-        margin-bottom: 0;
+        margin-bottom: 0.5rem;
     }
 
     .portfolio-section {
-        margin-top: -1.5rem !important;
+        margin-top: 1rem !important;
         padding-top: 0 !important;
     }
 
