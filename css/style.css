@@ -2479,6 +2479,11 @@ a.clickable-project:hover .cv-details-linear strong {
         transition: all 0.3s ease;
     }
 
+    /* Beige hamburger for light mode mobile */
+    :root.light-mode .hamburger-btn span {
+        background: #f2e8d9;
+    }
+
     .hamburger-btn.active span:nth-child(1) {
         transform: rotate(45deg) translate(5px, 5px);
     }
