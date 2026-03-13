@@ -959,10 +959,11 @@ h2::before {
     .hero {
         flex-direction: column;
         text-align: center;
+        margin-bottom: 2rem;
     }
 
     .hero-content {
-        margin-bottom: var(--spacing-xl);
+        margin-bottom: 0;
     }
 
     .hero-stats {
