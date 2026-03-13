@@ -1833,6 +1833,72 @@ details.snippet-container[open] summary.snippet-header i.fa-chevron-down {
     width: 0%;
 }
 
+/* Screen Tilt Card */
+.tilt-visual-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.75rem 0;
+    perspective: 200px;
+}
+
+.tilt-device {
+    width: 60px;
+    height: 40px;
+    background: rgba(99, 102, 241, 0.15);
+    border: 2px solid var(--accent-primary);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease-out;
+    transform-style: preserve-3d;
+}
+
+.tilt-screen {
+    width: 48px;
+    height: 28px;
+    background: var(--gradient-main);
+    border-radius: 3px;
+    opacity: 0.6;
+}
+
+.tilt-values {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.tilt-axis {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    padding: 0.3rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.light-mode .tilt-axis {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+.tilt-label {
+    font-size: 0.7rem;
+    color: var(--accent-primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tilt-axis .stat-value {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
 /* Real-time Card */
 .realtime-card {
     padding: 1.5rem;

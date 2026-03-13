@@ -356,6 +356,81 @@ function initializeStats() {
   getCPUCores();
   getGPUInfo();
   getBatteryStatus();
+  initScreenTilt();
+}
+
+// Screen Tilt / Device Orientation
+function initScreenTilt() {
+  const alphaEl = document.getElementById('tiltAlpha');
+  const betaEl = document.getElementById('tiltBeta');
+  const gammaEl = document.getElementById('tiltGamma');
+  const deviceEl = document.getElementById('tiltDevice');
+  const statusEl = document.getElementById('tiltStatus');
+
+  if (!alphaEl || !betaEl || !gammaEl) return;
+
+  function handleOrientation(event) {
+    const alpha = event.alpha; // 0-360 compass direction
+    const beta = event.beta;   // -180 to 180 front-back tilt
+    const gamma = event.gamma; // -90 to 90 left-right tilt
+
+    if (alpha !== null || beta !== null || gamma !== null) {
+      alphaEl.textContent = alpha !== null ? `${Math.round(alpha)}°` : '--°';
+      betaEl.textContent = beta !== null ? `${Math.round(beta)}°` : '--°';
+      gammaEl.textContent = gamma !== null ? `${Math.round(gamma)}°` : '--°';
+
+      // Animate the 3D visual indicator
+      if (deviceEl) {
+        const rotateX = beta !== null ? Math.max(-40, Math.min(40, beta)) : 0;
+        const rotateY = gamma !== null ? Math.max(-40, Math.min(40, gamma)) : 0;
+        deviceEl.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+      }
+
+      if (statusEl) statusEl.textContent = 'Live data';
+    }
+  }
+
+  // Check for DeviceOrientationEvent support
+  if (window.DeviceOrientationEvent) {
+    // iOS 13+ requires permission request
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+      if (statusEl) statusEl.textContent = 'Tap to enable';
+      
+      // Add click handler to request permission
+      const tiltCard = document.getElementById('tiltCard');
+      if (tiltCard) {
+        tiltCard.style.cursor = 'pointer';
+        tiltCard.addEventListener('click', async () => {
+          try {
+            const permission = await DeviceOrientationEvent.requestPermission();
+            if (permission === 'granted') {
+              window.addEventListener('deviceorientation', handleOrientation);
+              tiltCard.style.cursor = 'default';
+              if (statusEl) statusEl.textContent = 'Listening...';
+            } else {
+              if (statusEl) statusEl.textContent = 'Permission denied';
+            }
+          } catch (err) {
+            console.error('Orientation permission error:', err);
+            if (statusEl) statusEl.textContent = 'Permission error';
+          }
+        }, { once: true });
+      }
+    } else {
+      // Non-iOS: just add the event listener directly
+      window.addEventListener('deviceorientation', handleOrientation);
+      if (statusEl) statusEl.textContent = 'Listening...';
+
+      // If no data received within 2 seconds, show N/A
+      setTimeout(() => {
+        if (alphaEl.textContent === '--°' && betaEl.textContent === '--°' && gammaEl.textContent === '--°') {
+          if (statusEl) statusEl.textContent = 'Sensor not available';
+        }
+      }, 2000);
+    }
+  } else {
+    if (statusEl) statusEl.textContent = 'Not supported';
+  }
 }
 
 // Run initialization when DOM is ready
