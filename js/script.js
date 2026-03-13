@@ -293,4 +293,64 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // =========================================
+    // MOBILE DRAWER TOGGLE
+    // =========================================
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    const drawerClose = document.getElementById('drawerClose');
+    const drawerLinks = document.querySelectorAll('.drawer-links a');
+
+    function openDrawer() {
+        if (!mobileDrawer || !mobileOverlay || !hamburgerBtn) return;
+        mobileDrawer.classList.add('active');
+        mobileOverlay.classList.add('active');
+        hamburgerBtn.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scroll
+    }
+
+    function closeDrawer() {
+        if (!mobileDrawer || !mobileOverlay || !hamburgerBtn) return;
+        mobileDrawer.classList.remove('active');
+        mobileOverlay.classList.remove('active');
+        hamburgerBtn.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scroll
+    }
+
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (mobileDrawer.classList.contains('active')) {
+                closeDrawer();
+            } else {
+                openDrawer();
+            }
+        });
+    }
+
+    if (drawerClose) {
+        drawerClose.addEventListener('click', closeDrawer);
+    }
+
+    if (mobileOverlay) {
+        mobileOverlay.addEventListener('click', closeDrawer);
+    }
+
+    if (drawerLinks) {
+        drawerLinks.forEach(link => {
+            link.addEventListener('click', closeDrawer);
+        });
+    }
+
+    // Sync Auth Padlock in Drawer
+    if (localStorage.getItem('user_logged_in') === 'true') {
+        const drawerPadlock = document.getElementById('authPadlockDrawer');
+        if (drawerPadlock) {
+            drawerPadlock.classList.remove('fa-lock');
+            drawerPadlock.classList.add('fa-lock-open');
+            drawerPadlock.style.color = '#22c55e';
+        }
+    }
 });
