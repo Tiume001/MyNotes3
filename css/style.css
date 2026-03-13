@@ -100,14 +100,20 @@ a {
 .top-navbar {
     display: flex;
     align-items: center;
-    padding: 1.5rem 4rem;
-    background-color: rgba(15, 15, 18, 0.85);
+    padding: 0.8rem 2.5rem;
+    background-color: rgba(15, 15, 18, 0.7);
     /* Elegance via slight transparency (glassmorphism) */
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-color);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     position: sticky;
-    top: 0;
-    z-index: 100;
+    top: 1rem;
+    z-index: 1000;
+    margin: 1rem auto;
+    width: calc(100% - 4rem);
+    max-width: 1400px;
+    border-radius: 100px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
 }
 
 .nav-left {
@@ -1967,31 +1973,33 @@ details.snippet-container[open] summary.snippet-header i.fa-chevron-down {
     transform: rotate(15deg);
 }
 
-/* Light Mode Navbar Override: Keep text white */
+/* Light Mode Navbar - Modern Beige Pill */
 :root.light-mode .top-navbar {
-    color: #ffffff;
+    background-color: rgba(242, 232, 217, 0.75);
+    border-color: rgba(141, 110, 99, 0.2);
+    box-shadow: 0 10px 40px rgba(141, 110, 99, 0.12);
 }
 
 :root.light-mode .top-navbar .logo {
-    color: #ffffff;
+    color: var(--text-primary);
 }
 
 :root.light-mode .top-navbar .nav-links a {
-    color: rgba(255, 255, 255, 0.85);
-    /* Slightly muted white for links */
+    color: var(--text-secondary);
 }
 
 :root.light-mode .top-navbar .nav-links a:hover,
 :root.light-mode .top-navbar .nav-links li.active a {
-    color: #ffffff;
+    color: var(--text-primary);
+    background: rgba(141, 110, 99, 0.05);
 }
 
 :root.light-mode .top-navbar .nav-right a {
-    color: rgba(255, 255, 255, 0.85) !important;
+    color: var(--text-secondary) !important;
 }
 
 :root.light-mode .top-navbar .nav-right a:hover {
-    color: #ffffff !important;
+    color: var(--text-primary) !important;
 }
 
 :root.light-mode .theme-toggle-btn {
@@ -2441,6 +2449,15 @@ a.clickable-project:hover .cv-details-linear strong {
         flex-wrap: nowrap;
         gap: 0;
         justify-content: space-between;
+        top: 0;
+        margin: 0;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: none;
+        background-color: var(--bg-card);
     }
 
     .nav-left {
