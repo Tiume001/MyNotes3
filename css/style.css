@@ -995,11 +995,17 @@ h2::before {
 /* Hero Small */
 .hero-small {
     margin-bottom: 0;
+    padding-bottom: 0;
 }
 
-.hero-small h1 {
+.hero-small h1,
+.hero-content h1 {
     font-size: 2.5rem;
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: 0.2rem;
+}
+
+.hero-content p {
+    margin-bottom: 0;
 }
 
 /* Subject Cards */
@@ -2629,8 +2635,13 @@ a.clickable-project:hover .cv-details-linear strong {
 
     /* === Hero: more compact === */
     .hero-small {
-        padding: 0.75rem 0.25rem;
+        padding: 0.75rem 0.25rem 0 0.25rem;
         margin-bottom: 0;
+    }
+
+    .portfolio-section {
+        margin-top: -1.5rem !important;
+        padding-top: 0 !important;
     }
 
     .hero-small h1,
