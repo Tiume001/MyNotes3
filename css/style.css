@@ -2644,6 +2644,10 @@ a.clickable-project:hover .cv-details-linear strong {
         padding-top: 0 !important;
     }
 
+    .breadcrumbs {
+        display: none !important;
+    }
+
     .hero-small h1,
     .hero-content h1 {
         font-size: 1.65rem !important;
