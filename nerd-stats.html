@@ -79,7 +79,46 @@
                     style="color: var(--text-secondary); font-size: 1.2rem; transition: 0.2s;"><i
                         class="fa-solid fa-envelope"></i></a>
             </div>
+
+            <!-- Hamburger Button (mobile only) -->
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
         </nav>
+
+        <!-- Mobile Drawer Overlay -->
+        <div class="mobile-overlay" id="mobileOverlay"></div>
+
+        <!-- Mobile Drawer -->
+        <div class="mobile-drawer" id="mobileDrawer">
+            <div class="drawer-header">
+                <div class="logo">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <span>MyPortfolio</span>
+                </div>
+                <button class="drawer-close" id="drawerClose" aria-label="Chiudi Menu">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <ul class="drawer-links">
+                <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="notes.html"><i class="fa-solid fa-book"></i> Archivio Appunti <i id="authPadlockDrawer" class="fa-solid fa-lock" title="Stato Accesso"></i></a></li>
+                <li class="active"><a href="nerd-stats.html"><i class="fa-solid fa-chart-line"></i> Stats</a></li>
+            </ul>
+            <div class="drawer-divider"></div>
+            <div class="drawer-actions">
+                <button id="drawerThemeToggle" class="drawer-theme-btn">
+                    <i id="drawerThemeIcon" class="fa-solid fa-moon"></i>
+                    <span>Cambia Tema</span>
+                </button>
+            </div>
+            <div class="drawer-divider"></div>
+            <div class="drawer-socials">
+                <a href="https://github.com/Tiume001" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="mailto:tiume00@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/mattia-scarpa-a20a6b277/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </div>
 
         <!-- Main Content -->
         <main class="main-content">
