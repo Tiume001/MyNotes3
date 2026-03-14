@@ -2011,13 +2011,15 @@ details.snippet-container[open] summary.snippet-header i.fa-chevron-down {
 }
 
 :root.light-mode .theme-toggle-btn {
-    color: rgba(255, 255, 255, 0.85);
-    border-color: rgba(255, 255, 255, 0.3);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+    background: rgba(141, 110, 99, 0.05);
 }
 
 :root.light-mode .theme-toggle-btn:hover {
-    color: #ffffff;
-    border-color: #ffffff;
+    color: var(--accent-secondary);
+    border-color: var(--accent-secondary);
+    background: rgba(216, 67, 21, 0.1);
 }
 
 /* Elegant CV Grid System */
