@@ -3120,3 +3120,37 @@ html.is-animating,
 html.is-rendering {
     cursor: wait;
 }
+
+/* =========================================
+   STAGGERED FADE-IN ANIMATION (CSS ONLY)
+   ========================================= */
+@keyframes fadeInUpCascata {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.anim-load {
+    opacity: 0; /* Mantiene la struttura senza layout shift */
+    animation: fadeInUpCascata 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards !important;
+}
+
+/* Staggering progressivo automatico basato sulla posizione nell'HTML */
+.anim-load:nth-child(1) { animation-delay: 0.05s !important; }
+.anim-load:nth-child(2) { animation-delay: 0.10s !important; }
+.anim-load:nth-child(3) { animation-delay: 0.15s !important; }
+.anim-load:nth-child(4) { animation-delay: 0.20s !important; }
+.anim-load:nth-child(5) { animation-delay: 0.25s !important; }
+.anim-load:nth-child(6) { animation-delay: 0.30s !important; }
+.anim-load:nth-child(7) { animation-delay: 0.35s !important; }
+.anim-load:nth-child(8) { animation-delay: 0.40s !important; }
+.anim-load:nth-child(n+9) { animation-delay: 0.45s !important; }
+
+/* Classi manuali */
+.delay-1 { animation-delay: 0.05s !important; }
+.delay-2 { animation-delay: 0.15s !important; }
