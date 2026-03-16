@@ -2791,12 +2791,16 @@ a.clickable-project:hover .cv-details-linear strong {
     }
 
     .cv-section-content {
-        gap: 1.5rem;
+        gap: 0.8rem;
     }
 
     .cv-item-linear {
-        gap: 0.75rem;
-        padding-bottom: 1rem;
+        gap: 0.4rem;
+        padding-bottom: 0.75rem;
+    }
+    
+    .cv-item-linear.compact {
+        padding-bottom: 0.5rem;
     }
 
     .cv-date-linear {
@@ -2808,8 +2812,10 @@ a.clickable-project:hover .cv-details-linear strong {
         font-size: 0.95rem;
     }
 
-    .cv-details-linear p {
+    .cv-details-linear p, 
+    .cv-item-linear.compact .cv-details-linear {
         font-size: 0.85rem;
+        line-height: 1.4;
     }
 
     /* === Tech items: smaller on mobile === */
