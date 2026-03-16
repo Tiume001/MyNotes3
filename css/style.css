@@ -2801,6 +2801,7 @@ a.clickable-project:hover .cv-details-linear strong {
     
     .cv-item-linear.compact {
         padding-bottom: 0.5rem;
+        align-items: flex-start;
     }
 
     .cv-date-linear {
