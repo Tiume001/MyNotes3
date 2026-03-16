@@ -46,7 +46,7 @@ async function processHtmlFiles(dir, isRoot) {
             </div>
 
             <div class="nav-right">
-                <a href="https://github.com/Tiume001" target="_blank" style="color: var(--text-secondary); font-size: 1.2rem; transition: 0.2s;"><i class="fa-brands fa-github"></i></a>
+                <a href="https://links.mattiascarpa.it" target="_blank" style="color: var(--text-secondary); font-size: 1.2rem; transition: 0.2s;"><i class="fa-solid fa-link"></i></a>
                 <a href="mailto:tiume00@gmail.com" style="color: var(--text-secondary); font-size: 1.2rem; transition: 0.2s;"><i class="fa-solid fa-envelope"></i></a>
             </div>
         </nav>\n\n        `;
