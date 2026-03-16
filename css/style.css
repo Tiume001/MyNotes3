@@ -981,6 +981,33 @@ h2::before {
     }
 }
 
+/* Back Button Styles */
+.back-btn {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: var(--transition-fast);
+}
+
+.back-btn:hover {
+    background-color: rgba(255, 255, 255, 0.05); /* Effetto hover in Dark Mode */
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    transform: translateX(-3px); /* Leggero e moderno effetto di movimento verso sinistra */
+}
+
+/* Modifica per Light Mode */
+:root.light-mode .back-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05); /* Effetto hover più leggibile in Light Mode */
+}
+
 /* Breadcrumbs */
 .breadcrumbs {
     display: flex;

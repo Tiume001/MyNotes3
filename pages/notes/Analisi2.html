@@ -97,13 +97,19 @@
         <main class="main-content">
             <!-- Header -->
             <header class="top-bar">
-                <div class="breadcrumbs">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+        <!-- Tasto Back Nativo -->
+        <button onclick="window.history.back()" class="back-btn" title="Torna Indietro">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <div class="breadcrumbs">
                     <a href="../../notes.html">Archivio Appunti</a>
                     <i class="fa-solid fa-chevron-right"></i>
                     <a href="year1.html">Primo Anno</a>
                     <i class="fa-solid fa-chevron-right"></i>
                     <span id="subjectTitleBreadcrumb">Analisi Matematica 2</span>
                 </div>
+    </div>
             </header>
 
             <!-- Subject Hero -->
