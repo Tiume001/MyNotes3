@@ -6,5 +6,37 @@
 </head>
 <body>
     <h1>Ium</h1>
+
+    <!-- SWUP PAGE TRANSITIONS -->
+    <script src="https://unpkg.com/swup@4"></script>
+    <script src="https://unpkg.com/@swup/scroll-plugin@3"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Inizializza Swup solo se non è già attivo
+            if (!window.swup) {
+                window.swup = new Swup({
+                    // container in cui aggiornare l'HTML
+                    containers: ["#swup"],
+                    plugins: [
+                        new SwupScrollPlugin({
+                            // Forza a scorrere all'inizio della pagina nei nuovi click, 
+                            // ma resta esattamente dov'era nel "history.back()"
+                            doScrollingRightAway: false,
+                            animateScroll: true,
+                            scrollFriction: 0.3,
+                            scrollAcceleration: 0.04,
+                        })
+                    ]
+                });
+
+                // (Opzionale) Se usi snippet JS per rinfrescare icone/effetti al caricamento
+                // li agganci all'evento 'content:replace' di swup
+                window.swup.hooks.on('content:replace', () => {
+                    // Qui rimetti tutte quelle funzioni JS che devono attivarsi 
+                    // ogni volta che compare una nuova card della materia (es. initTheme)
+                });
+            }
+        });
+    </script>
 </body>
 </html>

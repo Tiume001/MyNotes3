@@ -2419,6 +2419,14 @@ a.clickable-project:hover .cv-details-linear strong {
    =================================== */
 @media (max-width: 768px) {
 
+    /* === Refine Back Button for Mobile Touch === */
+    .back-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 1.1rem;
+        margin-right: -0.2rem; /* Leggero compenso visivo se necessario */
+    }
+
     /* === Overflow Fix === */
     html,
     body,
@@ -3089,4 +3097,26 @@ a.clickable-project:hover .cv-details-linear strong {
 
 .light-mode .test-file-content {
     background: rgba(0, 0, 0, 0.02);
+}
+/* =========================================
+   SWUP.JS PAGE TRANSITIONS
+   ========================================= */
+
+/* Stato di transizione (animazione morbida) */
+.transition-fade {
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stato in cui la pagina "esce" o "sta caricando" */
+html.is-animating .transition-fade {
+    opacity: 0;
+    transform: translateY(10px); /* Piccolo effetto di slittamento verso l'alto */
+}
+
+/* Evita flash di colore durante il caricamento */
+html.is-animating, 
+html.is-rendering {
+    cursor: wait;
 }
